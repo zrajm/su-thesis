@@ -1,0 +1,311 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template for Bachelor's, Magister and Master's theses
+% at the Department of Linguistics, Stockholm University
+% Modelled on Studentuppsatsmall at https://www.su.se/biblioteket/
+%
+% Version 1.2 by zrajm, 23 February 2020
+% Version 1 by Mats Wirén, 12 February 2020
+% Version by Adam Ek & Elena Moser, 19 February 2019
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Projektstruktur
+% /
+% ├── su-template.sty
+% └── /media/
+%     ├── su-logga-sv.png
+%     └── su-logo-en.png
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Obs: I Overleaf, byt kompilator till XeLaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Configuration
+%%
+%% Before loading this package with '\usepackage{su-template}' you should
+%% choose a language with one of the following
+%%
+%%      \usepackage[swedish]{babel} % Swedish
+%%      \usepackage[UKenglish]{babel} % British English
+%%      \usepackage[USenglish]{babel} % American English
+%%
+%% The following can be used to set title, author name etc.
+%%
+%%     % Always used
+%%     \newcommand{\suentitle}{Title in English}
+%%     \newcommand{\susvtitle}{Titel på svenska}
+%%     \newcommand{\suauthor}{Förnamn Efternamn}
+%%     \newcommand{\susupervisor}{Förnamn1 Efternamn1[, Förnamn2 Efternamn2]}
+%%
+%%     % Swedish metadata (only used if language is Swedish)
+%%     \newcommand{\susvkeywords}{nyckelord1, nyckelord2, nyckelord3, \ldots}
+%%     \newcommand{\susvdepartment}{Institutionen för lingvistik}
+%%     \newcommand{\susvthesistype}{Examensarbete 15 hp}
+%%     \newcommand{\susvcourse}{Lingvistik -- kandidatkurs, LIN600}
+%%     \newcommand{\susvprogram}{Kandidatprogrammet i lingvistik 180 hp}
+%%     \newcommand{\susvsemester}{Vårterminen 2020}
+%%
+%%     % English metadata (only used if language is English)
+%%     \newcommand{\suenkeywords}{keyword1, keyword2, keyword3, \ldots}
+%%     \newcommand{\suendepartment}{Department of Linguistics}
+%%     \newcommand{\suenthesistype}{Bachelor's Thesis 15 ECTS credits}
+%%     \newcommand{\suencourse}{Linguistics -- Bachelor's Course, LIN600}
+%%     \newcommand{\suenprogram}{Bachelor's Programme in Linguistics 180 ECTS credits}
+%%     \newcommand{\suensemester}{Spring semester 2020}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Support for Swedish characters (and other Unicode characters).
+%% [https://tex.stackexchange.com/questions/664/]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Use " for quotes. [https://tex.stackexchange.com/questions/386695/]
+%%
+%% The csquotes package also allows for language-sensitive quotes, and quotes
+%% inside quotes etc. For full specs see csquotes docs:
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/csquotes/csquotes.pdf
+\usepackage[autostyle=true]{csquotes}
+\MakeOuterQuote{"}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Slew of random stuff
+
+\usepackage{xcolor}
+\definecolor{Blue}{rgb}{0,0.1843,0.3725}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+% \setmainfont{Doulos SIL} %%% Contains IPA. See https://software.sil.org/doulos/
+% \setmainfont{Linux Libertine O} %%% Contains IPA
+
+%\usepackage{libertine}
+%\usepackage{libertinust1math}
+%\setmonofont[Scale=0.76]{Bitstream Vera Sans Mono} % typewriter font and scaling
+
+\usepackage{amsmath}
+\usepackage{tabularx}
+% \usepackage[capitalize,noabbrev]{cleveref}
+% \usepackage[capitalize,noabbrev]{cleveref}
+
+% Create normal/logarithmic plots in two and three dimensions
+% \usepackage{pgfplots}
+
+% \usepackage{filecontents}
+\usepackage[title]{appendix}
+
+% Define footnotecolor
+\makeatletter
+\def\@footnotecolor{red}
+\define@key{Hyp}{footnotecolor}{%
+ \HyColor@HyperrefColor{#1}\@footnotecolor%
+}
+\def\@footnotemark{
+    \leavevmode
+    \ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
+    \stepcounter{Hfootnote}%
+    \global\let\Hy@saved@currentHref\@currentHref
+    \hyper@makecurrent{Hfootnote}%
+    \global\let\Hy@footnote@currentHref\@currentHref
+    \global\let\@currentHref\Hy@saved@currentHref
+    \hyper@linkstart{footnote}{\Hy@footnote@currentHref}%
+    \@makefnmark
+    \hyper@linkend
+    \ifhmode\spacefactor\@x@sf\fi
+    \relax
+  }
+\makeatother
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true, % hyperlinks will be coloured
+  linkcolor=blue, % hyperlink text will be blue
+  citecolor=red, % citation year will be red
+  footnotecolor=black, % footnotes will be black
+  % linkbordercolor=red % hyperlink border will be red
+  }
+% Hyperlänkar för citeringar omfattar bara år. Ska tydligen vara så: https://latex.org/forum/viewtopic.php?t=25341
+
+% Examples & Glossaries
+%\usepackage{expex} % for examples
+%\usepackage{glossaries}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+
+\usepackage{soulutf8} % Highlighting with \hl{} and utf-8
+
+\usepackage{multirow}
+
+\usepackage{etoolbox}
+
+\newcommand{\suname}[1]{%
+  \ifcsdef{#1}{%
+    \csuse{#1}%
+  }{%
+    \ifstrequal{#1}{suenabstract}{%
+      \hl{Add \texttt{\textbackslash{}suabstract\{...\}}}%
+    }{%
+      \ifstrequal{#1}{susvabstract}{%
+        \hl{Add \texttt{\textbackslash{}suabstract[swedish]\{...\}}}%
+      }{%
+        \hl{Add \texttt{\textbackslash{}newcommand\{\textbackslash{}#1\}\{...\}}}%
+      }%
+    }%
+  }%
+}
+
+\newcommand{\suabstract}[2][english]{
+  \ifstrequal{#1}{english}{%
+    \newcommand{\suenabstract}{#2}%
+  }{%
+    \newcommand{\susvabstract}{#2}%
+  }%
+}
+
+\newcommand{\sumaketitlepage}{
+  \noindent
+  {\Huge\iflanguage{swedish}{\suname{susvtitle}}{\suname{suentitle}}}
+
+  \vspace*{2em}
+
+  \noindent
+  {\large\suname{suauthor}}
+
+  \vspace*{\fill}
+
+  \begin{small}
+    \noindent
+    \iflanguage{swedish}{%
+      \suname{susvdepartment} \\
+      \suname{susvthesistype} \\
+      \suname{susvcourse} \\
+      \suname{susvprogram} \\
+      \suname{susvsemester} \\
+      Handledare: \suname{susupervisor} \\
+      English title: \suname{suentitle}
+    }{%
+      \suname{suendepartment} \\
+      \suname{suenthesistype} \\
+      \suname{suencourse} \\
+      \suname{suenprogram} \\
+      \suname{suensemester} \\
+      Supervisor\hl{(s)}: \suname{susupervisor} \\
+      Swedish title: \suname{susvtitle}
+    }
+  \end{small}
+
+  \iflanguage{swedish}{
+    \vspace*{-2.5em}   % Swedish
+  }{%
+    \vspace*{-1em}     % English
+  }
+
+  \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
+    \raisebox{-3mm}{%
+      \iflanguage{swedish}{%
+        \includegraphics[width=41mm]{./media/su-logga-sv.png}%
+      }{%
+        \includegraphics[width=41mm]{./media/su-logo-en.png}%
+      }%
+    }%
+  }
+  %\renewcommand{\contentsname}{Table of Contents} % Uncomment to change the title of table of contents page to what is written in {Table of Contents}.
+  \pagenumbering{gobble} % Switch off page numbering in table of contents
+}
+
+\newcommand{\sumakeabstractpage}{
+  \noindent
+  {\LARGE\iflanguage{swedish}{\suname{susvtitle}}{\suname{suentitle}}}
+
+  \vspace*{2em}
+
+  \noindent
+  {\large\suname{suauthor}}
+
+  \vspace*{3em}
+
+  \iflanguage{swedish}{%
+    \section*{Sammanfattning}
+    \suname{susvabstract}
+    \subsection*{Nyckelord}
+    \suname{susvkeywords}
+
+    \section*{Abstract}
+    \suname{suenabstract}
+    \subsection*{Keywords}
+    \suname{suenkeywords}
+  }{%
+    \section*{Abstract}
+    \suname{suenabstract}
+    \subsection*{Keywords}
+    \suname{suenkeywords}
+
+    \section*{Sammanfattning}
+    \suname{susvabstract}
+    \subsection*{Nyckelord}
+    \suname{susvkeywords}
+  }
+}
+
+\newcommand{\sumakebackpage}{
+  \vspace*{\fill}
+
+  \begin{small}
+    \noindent
+    \iflanguage{swedish}{%
+      Stockholms universitet \\
+      106\,91 Stockholm \\
+      Telefon 08-16\,20\,00 \\
+      \texttt{https://www.su.se/}
+    }{%
+      Stockholm University \\
+      SE-106\,91 Stockholm, Sweden \\
+      Telephone +46 (0)8\,16\,20\,00 \\
+      \texttt{https://www.su.se/}
+    }
+  \end{small}
+
+  \vspace*{-.5em}
+
+  \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
+    \raisebox{-3mm}{%
+      \iflanguage{swedish}{%
+        \includegraphics[width=41mm]{./media/su-logga-sv.png}%
+      }{%
+        \includegraphics[width=41mm]{./media/su-logo-en.png}%
+      }%
+    }%
+  }
+}
+
+\AtBeginDocument{
+  \sumaketitlepage
+  \clearpage
+
+  \sumakeabstractpage
+  \clearpage
+
+  \tableofcontents
+  \clearpage
+
+  \pagenumbering{arabic} % Start page numbering
+}
+
+\AtEndDocument{
+  \pagenumbering{gobble} % Switch off page numbering
+  \sumakebackpage
+  \clearpage
+}
+
+%% [eof]

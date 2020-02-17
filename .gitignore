@@ -1,0 +1,28 @@
+# -*- conf -*-
+\#*#
+.#*
+*~
+*.bak
+*.tmp
+
+# LaTeX buildfiles
+# [https://tex.stackexchange.com/a/55734/185988]
+# [https://gitlab.theedgeofrage.com/TheEdgeOfRage/bachelor-runner/commit/f4570ea1b287f879f82bebf5af072ed1b01e21d7]
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.toc
+*.xdv
+
+# Files compiled by LaTeX
+*.pdf
+
+#[eof]

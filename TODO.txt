@@ -1,0 +1,21 @@
+-*- mode: org; ispell-dictionary: "svenska" -*-
+
+* TODO Fixa så referenser funkar
+* TODO PDF medatada commands
+  From 'default-su.tex':
+
+      \hypersetup{
+        pdfsubject = {},
+        pdftitle = {},
+        pdfauthor = {}
+      }
+* TODO \usepackage{microtype}?
+  Use LaTeX tricks from PM and LREC article to make prettier.
+  \usepackage[protrusion=true,expansion=true]{microtype}
+* TODO Rubriker ska ha rätt typsnitt
+* TODO Framsidan ska ha blå text
+* TODO Innehållsförteckning ska ha svart text
+* DONE
+** DONE Använd LaTeX-mall från Stockholms universitet
+   CLOSED: [2020-02-23 Sun 01:09]
+* [eof]
