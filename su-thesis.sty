@@ -81,6 +81,8 @@
 \usepackage[autostyle=true]{csquotes}
 \MakeOuterQuote{"}
 
+%% Needed for \IfSubStr.
+\usepackage{xstring}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Slew of random stuff
@@ -158,6 +160,7 @@
 
 \usepackage{etoolbox}
 
+%% Commands which set/get variables named \su<LANG><NAME>.
 \newcommand{\suset}[3][english]{\csdef{su#1#2}{#3}}
 \newcommand{\suget}[2][english]{%
   \ifcsdef{su#1#2}{%
@@ -194,7 +197,7 @@
       \suget[english]{course} \\
       \suget[english]{program} \\
       \suget[english]{semester} \\
-      Supervisor\hl{(s)}: \suget{supervisor} \\
+      Supervisor\IfSubStr{\suenglishsupervisor}{,}{s}{}: \suget{supervisor} \\
       Swedish title: \suget[swedish]{title}
     }
   \end{small}
