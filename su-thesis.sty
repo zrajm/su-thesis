@@ -1,57 +1,66 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Template for Bachelor's, Magister and Master's theses
-% at the Department of Linguistics, Stockholm University
-% Modelled on Studentuppsatsmall at https://www.su.se/biblioteket/
-%
-% Version 1.2 by zrajm, 23 February 2020
-% Version 1 by Mats Wirén, 12 February 2020
-% Version by Adam Ek & Elena Moser, 19 February 2019
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Projektstruktur
-% /
-% ├── su-template.sty
-% └── /media/
-%     ├── su-logga-sv.png
-%     └── su-logo-en.png
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Obs: I Overleaf, byt kompilator till XeLaTeX
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Template for Bachelor's, Magister and Master's theses at the Department of
+%% Linguistics, Stockholm University
+%%
+%% Modelled on Studentuppsatsmall at https://www.su.se/biblioteket/
+%%
+%% Version 1.2 by zrajm, 23 February 2020
+%% Version 1 by Mats Wirén, 12 February 2020
+%% Version by Adam Ek & Elena Moser, 19 February 2019
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Projektstruktur
+%% /
+%% ├── su-template.sty
+%% └── /media/
+%%     ├── su-logga-sv.png
+%%     └── su-logo-en.png
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Denna uppsatsmall inkluderar:
+%%
+%%   * Titelsida
+%%   * Sida med abstract/sammanfattning
+%%   * Innehållsförteckning
+%%   * Baksida
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% OBS: I Overleaf, byt kompilator till XeLaTeX
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Configuration
 %%
-%% Before loading this package with '\usepackage{su-template}' you should
-%% choose a language with one of the following
+%% To use this template, first set a babel language, then load this package,
+%% then set all the relevant values. Like this:
 %%
-%%      \usepackage[swedish]{babel} % Swedish
-%%      \usepackage[UKenglish]{babel} % British English
-%%      \usepackage[USenglish]{babel} % American English
+%%     \usepackage[swedish]{babel} % Swedish
+%%     \usepackage[UKenglish]{babel} % British English
+%%     \usepackage[USenglish]{babel} % American English
 %%
-%% The following can be used to set title, author name etc.
+%%     \usepackage{su-template}
 %%
-%%     % Always used
-%%     \newcommand{\suentitle}{Title in English}
-%%     \newcommand{\susvtitle}{Titel på svenska}
-%%     \newcommand{\suauthor}{Förnamn Efternamn}
-%%     \newcommand{\susupervisor}{Förnamn1 Efternamn1[, Förnamn2 Efternamn2]}
-%%
-%%     % Swedish metadata (only used if language is Swedish)
-%%     \newcommand{\susvkeywords}{nyckelord1, nyckelord2, nyckelord3, \ldots}
-%%     \newcommand{\susvdepartment}{Institutionen för lingvistik}
-%%     \newcommand{\susvthesistype}{Examensarbete 15 hp}
-%%     \newcommand{\susvcourse}{Lingvistik -- kandidatkurs, LIN600}
-%%     \newcommand{\susvprogram}{Kandidatprogrammet i lingvistik 180 hp}
-%%     \newcommand{\susvsemester}{Vårterminen 2020}
-%%
-%%     % English metadata (only used if language is English)
-%%     \newcommand{\suenkeywords}{keyword1, keyword2, keyword3, \ldots}
-%%     \newcommand{\suendepartment}{Department of Linguistics}
-%%     \newcommand{\suenthesistype}{Bachelor's Thesis 15 ECTS credits}
-%%     \newcommand{\suencourse}{Linguistics -- Bachelor's Course, LIN600}
-%%     \newcommand{\suenprogram}{Bachelor's Programme in Linguistics 180 ECTS credits}
-%%     \newcommand{\suensemester}{Spring semester 2020}
+%%     %% Always used
+%%     \suset{author}{Förnamn Efternamn}
+%%     \suset{supervisor}{Förnamn1 Efternamn1[, Förnamn2 Efternamn2]}
+%%     \suset[swedish]{title}{Titel på svenska}
+%%     \suset[swedish]{abstract}{Sammanfattning på svenska}
+%%     \suset[english]{title}{Title in English}
+%%     \suset[english]{abstract}{Abstract in English}
+%%     %% Swedish metadata (only used if language is Swedish)
+%%     \suset[swedish]{keywords}{nyckelord1, nyckelord2, nyckelord3, \ldots}
+%%     \suset[swedish]{department}{Institutionen för lingvistik}
+%%     \suset[swedish]{thesistype}{Examensarbete 15 hp}
+%%     \suset[swedish]{course}{Lingvistik -- kandidatkurs, LIN600}
+%%     \suset[swedish]{program}{Kandidatprogrammet i lingvistik 180 hp}
+%%     \suset[swedish]{semester}{Vårterminen 2020}
+%%     %% English metadata (only used if language is English)
+%%     \suset[english]{keywords}{keyword1, keyword2, keyword3, \ldots}
+%%     \suset[english]{department}{Department of Linguistics}
+%%     \suset[english]{thesistype}{Bachelor's Thesis 15 ECTS credits}
+%%     \suset[english]{course}{Linguistics -- Bachelor's Course, LIN600}
+%%     \suset[english]{program}{Bachelor's Programme in Linguistics 180 ECTS credits}
+%%     \suset[english]{semester}{Spring semester 2020}
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -149,59 +158,44 @@
 
 \usepackage{etoolbox}
 
-\newcommand{\suname}[1]{%
-  \ifcsdef{#1}{%
-    \csuse{#1}%
+\newcommand{\suset}[3][english]{\csdef{su#1#2}{#3}}
+\newcommand{\suget}[2][english]{%
+  \ifcsdef{su#1#2}{%
+    \csuse{su#1#2}%
   }{%
-    \ifstrequal{#1}{suenabstract}{%
-      \hl{Add \texttt{\textbackslash{}suabstract\{...\}}}%
-    }{%
-      \ifstrequal{#1}{susvabstract}{%
-        \hl{Add \texttt{\textbackslash{}suabstract[swedish]\{...\}}}%
-      }{%
-        \hl{Add \texttt{\textbackslash{}newcommand\{\textbackslash{}#1\}\{...\}}}%
-      }%
-    }%
-  }%
-}
-
-\newcommand{\suabstract}[2][english]{
-  \ifstrequal{#1}{english}{%
-    \newcommand{\suenabstract}{#2}%
-  }{%
-    \newcommand{\susvabstract}{#2}%
+    \hl{Add \texttt{\textbackslash{}suset[#1]\{#2\}\{...\}}}%
   }%
 }
 
 \newcommand{\sumaketitlepage}{
   \noindent
-  {\Huge\iflanguage{swedish}{\suname{susvtitle}}{\suname{suentitle}}}
+  {\Huge\iflanguage{swedish}{\suget[swedish]{title}}{\suget[english]{title}}}
 
   \vspace*{2em}
 
   \noindent
-  {\large\suname{suauthor}}
+  {\large\suget{author}}
 
   \vspace*{\fill}
 
   \begin{small}
     \noindent
     \iflanguage{swedish}{%
-      \suname{susvdepartment} \\
-      \suname{susvthesistype} \\
-      \suname{susvcourse} \\
-      \suname{susvprogram} \\
-      \suname{susvsemester} \\
-      Handledare: \suname{susupervisor} \\
-      English title: \suname{suentitle}
+      \suget[swedish]{department} \\
+      \suget[swedish]{thesistype} \\
+      \suget[swedish]{course} \\
+      \suget[swedish]{program} \\
+      \suget[swedish]{semester} \\
+      Handledare: \suget{supervisor} \\
+      English title: \suget[english]{title}
     }{%
-      \suname{suendepartment} \\
-      \suname{suenthesistype} \\
-      \suname{suencourse} \\
-      \suname{suenprogram} \\
-      \suname{suensemester} \\
-      Supervisor\hl{(s)}: \suname{susupervisor} \\
-      Swedish title: \suname{susvtitle}
+      \suget[english]{department} \\
+      \suget[english]{thesistype} \\
+      \suget[english]{course} \\
+      \suget[english]{program} \\
+      \suget[english]{semester} \\
+      Supervisor\hl{(s)}: \suget{supervisor} \\
+      Swedish title: \suget[swedish]{title}
     }
   \end{small}
 
@@ -226,35 +220,35 @@
 
 \newcommand{\sumakeabstractpage}{
   \noindent
-  {\LARGE\iflanguage{swedish}{\suname{susvtitle}}{\suname{suentitle}}}
+  {\LARGE\iflanguage{swedish}{\suget[swedish]{title}}{\suget[english]{title}}}
 
   \vspace*{2em}
 
   \noindent
-  {\large\suname{suauthor}}
+  {\large\suget{author}}
 
   \vspace*{3em}
 
   \iflanguage{swedish}{%
     \section*{Sammanfattning}
-    \suname{susvabstract}
+    \suget[swedish]{abstract}
     \subsection*{Nyckelord}
-    \suname{susvkeywords}
+    \suget[swedish]{keywords}
 
     \section*{Abstract}
-    \suname{suenabstract}
+    \suget[english]{abstract}
     \subsection*{Keywords}
-    \suname{suenkeywords}
+    \suget[english]{keywords}
   }{%
     \section*{Abstract}
-    \suname{suenabstract}
+    \suget[english]{abstract}
     \subsection*{Keywords}
-    \suname{suenkeywords}
+    \suget[english]{keywords}
 
     \section*{Sammanfattning}
-    \suname{susvabstract}
+    \suget[swedish]{abstract}
     \subsection*{Nyckelord}
-    \suname{susvkeywords}
+    \suget[swedish]{keywords}
   }
 }
 
