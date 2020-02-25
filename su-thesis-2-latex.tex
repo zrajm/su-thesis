@@ -1,0 +1,60 @@
+%% -*- mode: latex; ispell-dictionary: "svenska" -*-
+
+\section{Att använda {\rmfamily\LaTeX}}
+\label{latex}
+
+Detta är en uppsatsmall för \LaTeX\ för Stockholms universitet. Den kan
+användas med \XeLaTeX\ på din egen dator eller med Overleaf
+(\texttt{\href{https://overleaf.com/edu/su}{https://\linebreak[0]{}overleaf\linebreak[0]{}.com/\linebreak[0]{}edu/\linebreak[0]{}su}})
+-- som student på Stockholms universitet har du automatiskt tillgång Overleaf.
+
+Denna mall måste kompileras med \XeLaTeX, vilket du slå på manuellt i Overleaf.
+
+\subsection{Overleaf}
+
+
+\subsection{På egen dator}
+
+\subsubsection{Installation av program}
+
+Denna uppsatsmall kräver kommandot \texttt{xelatex} (det traditionella
+kommandot \texttt{pdflatex} fungerar inte. \hl{FIXME: fungerar inte
+pdflatex?}). Denna guide utgår också ifrån bekvämlighetsverktyget
+\texttt{latexmk}.
+
+\noindent Om du kör Linux (med Debian eller Ubuntu) kör du följande kommandon (som
+användaren 'root') för att installera:
+
+\begin{verbatim}
+apt install texlive-xetex
+apt install latexmk
+\end{verbatim}
+
+
+\subsubsection{Kompilering}
+
+Det enklaste sättet att kompilera din uppsats är:
+
+\begin{verbatim}
+latexmk -xelatex su-thesis.tex
+\end{verbatim}
+
+\noindent Om du inte använder \texttt{latexmk} utan insisterar på att kompilera
+själv så motsvarar detta följande kommandon (Ja! -- \texttt{xelatex} behöver
+vanligtvis köras tre gånger för att vara säker på att både innehållsförteckning
+och referenser stämmer överens med texten).
+
+\begin{verbatim}
+xelatex su-thesis.tex
+bibtex su-thesis.bib
+xelatex su-thesis.tex
+xelatex su-thesis.tex
+\end{verbatim}
+
+\noindent Då och då råkar man skriva något galet i \LaTeX-koden, och kompileringen
+stannar mitt i. Då får man upp en prompt, med ett frågetecken i början på en ny
+rad. -- När detta händer skriv 'x' (och tryck enter) för att avsluta. Rätta
+felet i din \texttt{.tex}-fil och kompilera om.
+
+
+%% [eof]

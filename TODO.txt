@@ -1,18 +1,5 @@
 -*- mode: org; ispell-dictionary: "svenska" -*-
 
-* TODO PDF medatada commands
-  From 'default-su.tex':
-
-      \hypersetup{
-        pdfsubject = {},
-        pdftitle = {},
-        pdfauthor = {}
-      }
-* TODO \usepackage{microtype}?
-  Use LaTeX tricks from PM and LREC article to make prettier.
-  \usepackage[protrusion=true,expansion=true]{microtype}
-* TODO Rubriker ska ha rätt typsnitt
-* TODO Framsidan ska ha blå text
 * TODO Använd Stockholms universitets grafisk profil
 ** Länkar till grafisk profil
   https://www.su.se/medarbetare/organisation-styrning/styrdokument-regelboken/kommunikation-och-samverkan/regler-f%C3%B6r-visuell-identitet-vid-stockholms-universitet-1.26306
@@ -20,10 +7,10 @@
   https://www.su.se/medarbetare/kommunikation/grafisk-manual
   https://www.su.se/medarbetare/kommunikation/grafisk-manual/typsnitt-1.362024
   https://www.su.se/medarbetare/kommunikation/grafisk-manual/f%C3%A4rger-1.362110
-** Uppsatstitel
+** [0/2] Uppsatstitel
 *** TODO Vid avstavning sticker titeln ut i marginalen ibland
 *** TODO Vid multipla flera rader varierar radavståndet
-** [1/9] Verdana
+** [3/9] Verdana
 *** DONE Ladda Verdana
     CLOSED: [2020-02-25 Tue 02:32]
 *** TODO Rubriker
@@ -34,12 +21,31 @@
     Underunderrubriker är fet Times New Roman:
     + Petersdotter (2018)
 *** TODO All text i innehållsförteckning
-*** TODO All text på framsidan
-*** TODO All text på baksidan
+*** DONE All text på framsidan
+    CLOSED: [2020-02-25 Tue 11:53]
+*** DONE All text på baksidan
+    CLOSED: [2020-02-25 Tue 12:25]
 *** TODO Underrubrik på sammanfattningssida
 *** TODO Författarnamn på sammanfattningssida
 *** TODO Bildtexter
-** [2/3] Stockholms universitets-blå färg
+** [0/2] Logo (front + back page)
+*** TODO SVG-version av logo?
+*** TODO Fix placement of logo
+* TODO Innehållsförteckning ska ha svart text
+* TODO PDF metadata i LaTeX-koden
+  From 'default-su.tex':
+
+      \hypersetup{
+        pdfsubject = {},
+        pdftitle = {},
+        pdfauthor = {}
+      }
+* DONE
+** DONE \usepackage{microtype}?
+   CLOSED: [2020-02-25 Tue 14:32]
+   Use LaTeX tricks from PM and LREC article to make prettier.
+   \usepackage[protrusion=true,expansion=true]{microtype}
+** [3/3] Stockholms universitets-blå färg
    RGB 0 47 95 / HTML #002F5F
 *** DONE Define the color
     CLOSED: [2020-02-25 Tue 02:31]
@@ -47,10 +53,8 @@
     \definecolor{Blue}{rgb}{0,0.1843,0.3725}
 *** DONE All text på framsidan
     CLOSED: [2020-02-25 Tue 02:31]
-*** TODO All text på baksidan
-** TODO SVG-version av logo?
-* TODO Innehållsförteckning ska ha svart text
-* DONE
+*** DONE All text på baksidan
+    CLOSED: [2020-02-25 Tue 12:14]
 ** DONE Fixa så referenser funkar
    CLOSED: [2020-02-23 Sun 06:54]
 ** DONE Läs in brödtext till kapitlen från separata filer
