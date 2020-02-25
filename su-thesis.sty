@@ -108,9 +108,9 @@
 %%   * subtitle + auth name size:14pt / lead:20pt or 24pt / (above:6pt / below:28pt)
 %%
 
-\renewcommand\Huge{\@setfontsize\Large{28pt}{34pt}}  % title
-\renewcommand\large{\@setfontsize\large{14pt}{24pt}} % subtitle
-
+\renewcommand\Huge{\@setfontsize\Large{28pt}{34pt}}   % front page title
+\renewcommand\large{\@setfontsize\large{14pt}{24pt}}  % front page subtitle
+\renewcommand\small{\@setfontsize\large{8pt}{11.6pt}} % front/back page text
 
 %% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/fontspec/fontspec.pdf
 \usepackage{fontspec}
@@ -223,77 +223,77 @@
   \ifcsdef{su#1#2}{%
     \vspace{10pt}
 
-    \noindent{\large\csuse{su#1#2}\par}%
+    \noindent{\large\suget[#1]{#2}\par}%
   }{}
 }
 
-\newcommand{\sumaketitlepage}{{%
-  \color{Blue}%
-  \sffamily
+\newcommand{\sumakefrontpage}{%
+  {%
+    \color{Blue}%
+    \sffamily
 
-  \noindent
-  {\raggedright%
-    \Huge%
-    \iflanguage{swedish}{%
-      \suget[swedish]{title}%
-    }{%
-      \suget[english]{title}%
-    }%
-    \par%
-  }
-
-  \iflanguage{swedish}{%
-    \susubtitle[swedish]{subtitle}%
-  }{%
-    \susubtitle[english]{subtitle}%
-  }
-
-  \vspace{38pt}
-
-  \noindent
-  {\large\suget{author}}
-
-  \vspace*{\fill}
-
-  \begin{small}
-    \noindent
-    \iflanguage{swedish}{%
-      \suget[swedish]{department} \\
-      \suget[swedish]{thesistype} \\
-      \suget[swedish]{course} \\
-      \suget[swedish]{program} \\
-      \suget[swedish]{semester} \\
-      Handledare: \suget{supervisor} \\
-      English title: \suget[english]{title}
-    }{%
-      \suget[english]{department} \\
-      \suget[english]{thesistype} \\
-      \suget[english]{course} \\
-      \suget[english]{program} \\
-      \suget[english]{semester} \\
-      Supervisor\IfSubStr{\suenglishsupervisor}{,}{s}{}: \suget{supervisor} \\
-      Swedish title: \suget[swedish]{title}
-    }
-  \end{small}
-
-  \iflanguage{swedish}{
-    \vspace*{-2.5em}   % Swedish
-  }{%
-    \vspace*{-1em}     % English
-  }
-
-  \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
-    \raisebox{-3mm}{%
+    \noindent{%
+      \raggedright%
+      \Huge%
       \iflanguage{swedish}{%
-        \includegraphics[width=41mm]{./media/su-logga-sv.png}%
+        \suget[swedish]{title}%
       }{%
-        \includegraphics[width=41mm]{./media/su-logo-en.png}%
+        \suget[english]{title}%
       }%
-    }%
-  }
-  %\renewcommand{\contentsname}{Table of Contents} % Uncomment to change the title of table of contents page to what is written in {Table of Contents}.
-  \pagenumbering{gobble} % Switch off page numbering in table of contents
-}}
+      \par%
+    }
+
+    \iflanguage{swedish}{%
+      \susubtitle[swedish]{subtitle}%
+    }{%
+      \susubtitle[english]{subtitle}%
+    }
+
+    \vspace{38pt}
+
+    \noindent{%
+      \large%
+      \suget{author}%
+    }
+
+    \vspace{\fill}
+
+    \begin{small}
+      \noindent
+      \iflanguage{swedish}{%
+        \suget[swedish]{department} \\
+        \suget[swedish]{thesistype} \\
+        \suget[swedish]{course} \\
+        \suget[swedish]{program} \\
+        \suget[swedish]{semester} \\
+        Handledare: \suget{supervisor} \\
+        English title: \suget[english]{title}
+      }{%
+        \suget[english]{department} \\
+        \suget[english]{thesistype} \\
+        \suget[english]{course} \\
+        \suget[english]{program} \\
+        \suget[english]{semester} \\
+        Supervisor\IfSubStr{\suenglishsupervisor}{,}{s}{}: \suget{supervisor} \\
+        Swedish title: \suget[swedish]{title}
+      }
+    \end{small}
+
+    \vspace{-2.5em}%
+
+    \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
+      \raisebox{-3mm}{%
+        \iflanguage{swedish}{%
+          \includegraphics[width=41mm]{./media/su-logga-sv.png}%
+        }{%
+          \includegraphics[width=41mm]{./media/su-logo-en.png}%
+        }%
+      }%
+    }
+    %\renewcommand{\contentsname}{Table of Contents} % Uncomment to change the title of table of contents page to what is written in {Table of Contents}.
+    \pagenumbering{gobble} % Switch off page numbering in table of contents
+  }%
+}
 
 \newcommand{\sumakeabstractpage}{
   \noindent
@@ -329,39 +329,44 @@
   }
 }
 
-\newcommand{\sumakebackpage}{
-  \vspace*{\fill}
+\newcommand{\sumakebackpage}{%
+  {%
+    \color{Blue}%
+    \sffamily
 
-  \begin{small}
-    \noindent
-    \iflanguage{swedish}{%
-      Stockholms universitet \\
-      106\,91 Stockholm \\
-      Telefon 08-16\,20\,00 \\
-      \texttt{https://www.su.se/}
-    }{%
-      Stockholm University \\
-      SE-106\,91 Stockholm, Sweden \\
-      Telephone +46 (0)8\,16\,20\,00 \\
-      \texttt{https://www.su.se/}
-    }
-  \end{small}
+    \vspace*{\fill}
 
-  \vspace*{-.5em}
-
-  \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
-    \raisebox{-3mm}{%
+    \begin{small}
+      \noindent
       \iflanguage{swedish}{%
-        \includegraphics[width=41mm]{./media/su-logga-sv.png}%
+        Stockholms universitet \\
+        106\,91 Stockholm \\
+        Telefon 08-16\,20\,00 \\
+        \texttt{https://www.su.se/}
       }{%
-        \includegraphics[width=41mm]{./media/su-logo-en.png}%
+        Stockholm University \\
+        SE-106\,91 Stockholm, Sweden \\
+        Telephone +46 (0)8\,16\,20\,00 \\
+        \texttt{https://www.su.se/}
+      }
+    \end{small}
+
+    \vspace*{-1em}
+
+    \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
+      \raisebox{-3mm}{%
+        \iflanguage{swedish}{%
+          \includegraphics[width=41mm]{./media/su-logga-sv.png}%
+        }{%
+          \includegraphics[width=41mm]{./media/su-logo-en.png}%
+        }%
       }%
     }%
-  }
+  }%
 }
 
 \AtBeginDocument{
-  \sumaketitlepage
+  \sumakefrontpage
   \clearpage
 
   \sumakeabstractpage
