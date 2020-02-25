@@ -13,6 +13,30 @@ För att ladda mallen använd:
 \usepackage{su-thesis}
 \end{verbatim}
 
+
+\subsection{Välja språk}
+\label{sprak}
+
+\noindent Språket på uppsatsen ställer man in med hjälp av paketet
+\texttt{babel}. När du byter språk så kommer byts fram- och baksida ut mot
+information på det relevanta språket (men resten av uppsatsen får du förstås
+översätta själv). :)
+
+\begin{verbatim}
+\usepackage[swedish]{babel} % Swedish
+%% \usepackage[UKenglish]{babel} % British English
+%% \usepackage[USenglish]{babel} % American English
+\end{verbatim}
+
+\noindent\textbf{Notera:} När du bytt språk behöver du radera alla tempfiler
+och kompilera om. Om du använder \texttt{latexmk} är detta enkelt.
+
+\begin{verbatim}
+latexmk -xelatex su-thesis.tex -C  % radera alla tempfiler
+latexmk -xelatex su-thesis.tex     % kompilera om
+\end{verbatim}
+
+
 \subsection{Mallens variabler}
 \label{variabler}
 
@@ -51,27 +75,14 @@ språk).
 \end{verbatim}
 
 
-\subsection{Byta språk}
-\label{sprak}
+\subsection{Fonetiska tecken (IPA)}
+\label{ipa}
 
-\noindent Språket på uppsatsen ställer man in med hjälp av paketet
-\texttt{babel}. När du byter språk så kommer byts fram- och baksida ut mot
-information på det relevanta språket (men resten av uppsatsen får du förstås
-översätta själv). :)
+\hl{FIXME: Lägg till en \texttt{\textbackslash{}suipa\{...\}} funktion.}
 
-\begin{verbatim}
-\usepackage[swedish]{babel} % Swedish
-%% \usepackage[UKenglish]{babel} % British English
-%% \usepackage[USenglish]{babel} % American English
-\end{verbatim}
-
-\noindent\textbf{Notera:} När du bytt språk behöver du radera alla tempfiler
-och kompilera om. Om du använder \texttt{latexmk} är detta enkelt.
-
-\begin{verbatim}
-latexmk -xelatex su-thesis.tex -C  % radera alla tempfiler
-latexmk -xelatex su-thesis.tex     % kompilera om
-\end{verbatim}
+Det finns en IPA-skrivmaskin på nätet som man kan använda för att skriva
+IPA-symboler:
+\texttt{\href{https://ipa.typeit.org/full/}{https://\linebreak[0]{}ipa\linebreak[0]{}.typeit\linebreak[0]{}.org/\linebreak[0]{}full/}}
 
 
 \subsection{Ta bort inledande/avslutande sidor}
