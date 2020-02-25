@@ -93,6 +93,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Slew of random stuff
 
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/xcolor/xcolor.pdf
 \usepackage{xcolor}
 \definecolor{Blue}{rgb}{0,0.1843,0.3725}
 
@@ -116,7 +117,6 @@
 \usepackage{fontspec}
 \setmainfont[Ligatures=TeX]{Times New Roman}
 \setsansfont[Ligatures=TeX,WordSpace=.95,LetterSpace=1]{Verdana}
-
 % \setmainfont{Doulos SIL} % contains IPA (see https://software.sil.org/doulos/)
 % \setmainfont{Linux Libertine O} % contains IPA
 
@@ -124,12 +124,11 @@
 %\usepackage{libertinust1math}
 %\setmonofont[Scale=0.76]{Bitstream Vera Sans Mono} % typewriter font and scaling
 
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/titlesec/titlesec.pdf
 \usepackage{titlesec}
 
-\definecolor{SUBlue}{rgb}{.204,.353,.541}
-% Define a new fontfamily for the subsubsection font
+% Define a new fontfamily for the section font
 % Don't use \fontspec directly to change the font
-%\newfontfamily\sectionfont[Color=SUBlue]{Verdana}
 \newfontfamily\sectionfont{Verdana}
 %% % Set formats for each heading level
 %% \titleformat*{\section}{\Large\sectionfont\color{MSBlue}}
@@ -151,7 +150,6 @@
 %% %\titleformat*{\section}{\subsubsectionfont}
 %% %% \titleformat*{\subsection}{\subsubsectionfont}
 %% %% \titleformat*{\subsubsection}{\subsubsectionfont}
-
 
 \usepackage{amsmath}
 \usepackage{tabularx}
@@ -186,14 +184,8 @@
   }
 \makeatother
 
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/hyperref/doc/manual.pdf
 \usepackage{hyperref}
-\hypersetup{
-  colorlinks=true, % hyperlinks will be coloured
-  linkcolor=blue, % hyperlink text will be blue
-  citecolor=red, % citation year will be red
-  footnotecolor=black, % footnotes will be black
-  % linkbordercolor=red % hyperlink border will be red
-  }
 % Hyperlänkar för citeringar omfattar bara år. Ska tydligen vara så: https://latex.org/forum/viewtopic.php?t=25341
 
 % Examples & Glossaries
@@ -207,10 +199,21 @@
 
 \usepackage{multirow}
 
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/etoolbox/etoolbox.pdf
 \usepackage{etoolbox}
 
 %% Commands which set/get variables named \su<LANG><NAME>.
-\newcommand{\suset}[3][english]{\csdef{su#1#2}{#3}}
+\newcommand{\suset}[3][english]{%
+  \csdef{su#1#2}{#3}%
+  \iflanguage{swedish}{%
+    \ifstrequal{#1#2}{swedishtitle}{\hypersetup{pdftitle=#3}}{}%
+    %\ifstrequal{#1#2}{swedishkeywords}{\hypersetup{pdfkeywords=#3}}{}%
+  }{%
+    \ifstrequal{#1#2}{englishtitle}{\hypersetup{pdftitle=#3}}{}%
+    %\ifstrequal{#1#2}{englishkeywords}{\hypersetup{pdfkeywords=#3}}{}%
+  }%
+  \ifstrequal{#2}{author}{\hypersetup{pdfauthor=#3}}{}%
+}
 \newcommand{\suget}[2][english]{%
   \ifcsdef{su#1#2}{%
     \csuse{su#1#2}%

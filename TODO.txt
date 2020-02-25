@@ -29,18 +29,20 @@
 *** TODO Författarnamn på sammanfattningssida
 *** TODO Bildtexter
 ** [0/2] Logo (front + back page)
+   Hur logon ska användas.
+   https://www.su.se/medarbetare/kommunikation/grafisk-manual/logotyp-1.361901#Ladda%20ner%20logotypen
 *** TODO SVG-version av logo?
 *** TODO Fix placement of logo
 * TODO Innehållsförteckning ska ha svart text
-* TODO PDF metadata i LaTeX-koden
-  From 'default-su.tex':
-
-      \hypersetup{
-        pdfsubject = {},
-        pdftitle = {},
-        pdfauthor = {}
-      }
 * DONE
+** DONE PDF metadata i LaTeX-koden
+   CLOSED: [2020-02-25 Tue 15:50]
+   From 'default-su.tex':
+       \hypersetup{
+         pdfsubject = {},
+         pdftitle = {},
+         pdfauthor = {}
+       }
 ** DONE \usepackage{microtype}?
    CLOSED: [2020-02-25 Tue 14:32]
    Use LaTeX tricks from PM and LREC article to make prettier.
