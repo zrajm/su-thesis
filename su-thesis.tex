@@ -1,0 +1,84 @@
+%% -*- mode:latex; ispell-dictionary: "svenska" -*-
+\documentclass[11pt]{article}
+
+%% Nowidow's documentation:
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/nowidow/nowidow.pdf
+\usepackage[all]{nowidow} % Tries to remove widows
+
+%% Microtype's documentation:
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/microtype/microtype.pdf
+\usepackage{microtype} % Improves typography, load after fontpackage is selected
+
+\usepackage[swedish]{babel} % Swedish
+%% \usepackage[UKenglish]{babel} % British English
+%% \usepackage[USenglish]{babel} % American English
+
+\usepackage{su-thesis}
+
+%% Always used
+\suset{author}{Zrajm}
+\suset{supervisor}{Ingen}
+\suset[swedish]{title}{Mall för uppsats vid Stockholms universitet}
+\suset[swedish]{subtitle}{För användning med {\rmfamily\LaTeX} och Overleaf}
+\suset[english]{title}{Thesis Template for Stockholm University}
+\suset[english]{subtitle}{For Use with {\rmfamily\LaTex} and Overleaf}
+\suset[swedish]{abstract}{Sammanfattning på svenska}
+\suset[english]{abstract}{Abstract in English}
+
+%% Swedish metadata (only used if language is Swedish)
+\suset[swedish]{keywords}{nyckelord1, nyckelord2, nyckelord3, \ldots}
+\suset[swedish]{department}{Institutionen för lingvistik} % e.g. ''
+\suset[swedish]{thesistype}{Examensarbete X hp/Degree X HE credits} % e.g. 'Examensarbete 15 hp'
+\suset[swedish]{course}{Examensämne} % e.g. 'Lingvistik -- kandidatkurs, LIN600'
+\suset[swedish]{program}{Kandidatprogrammet i lingvistik 180 hp}
+\suset[swedish]{semester}{Vårterminen 2020}
+
+%% English metadata (only used if language is English)
+\suset[english]{keywords}{keyword1, keyword2, keyword3, \ldots}
+\suset[english]{department}{Department of Linguistics}
+\suset[english]{thesistype}{Bachelor's Thesis 15 ECTS credits}
+\suset[english]{course}{Thesis Subject} % e.g. 'Linguistics -- Bachelor's Course, LIN600'
+\suset[english]{program}{Bachelor's Programme in Linguistics 180 ECTS credits}
+\suset[english]{semester}{Spring semester 2020}
+
+%% Use 'apacite' package for references
+\usepackage[natbibapa]{apacite}
+\bibliographystyle{apacite}
+\setcitestyle{notesep={:}}      % put ':' between year and page number
+
+%% Hyphenation patterns
+\hyphenation{Fo-ne-tik-lab-bet}
+
+%% Remove margin around lists
+\usepackage{enumitem}
+\setlist{itemsep=0pt}
+
+%% For XeLaTeX logo
+\usepackage{metalogo}
+
+\renewcommand{\sumakeabstractpage}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\input{su-thesis-1-utseende.tex}
+\clearpage
+
+\input{su-thesis-2-anvandning.tex}
+\clearpage
+
+\input{su-thesis-3-uppsatsstruktur.tex}
+\clearpage
+
+%% \nocite{*} % show all references, even those not referred to in text
+\bibliography{su-thesis-8-referenser.bib}
+\clearpage
+
+%% \begin{appendices}
+%% \input{su-thesis-9-bilagor.tex}
+%% \end{appendices}
+%% \clearpage
+
+\end{document}
+
+%% [eof]

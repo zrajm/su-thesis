@@ -1,6 +1,5 @@
 -*- mode: org; ispell-dictionary: "svenska" -*-
 
-* TODO Fixa så referenser funkar
 * TODO PDF medatada commands
   From 'default-su.tex':
 
@@ -14,8 +13,48 @@
   \usepackage[protrusion=true,expansion=true]{microtype}
 * TODO Rubriker ska ha rätt typsnitt
 * TODO Framsidan ska ha blå text
+* TODO Använd Stockholms universitets grafisk profil
+** Länkar till grafisk profil
+  https://www.su.se/medarbetare/organisation-styrning/styrdokument-regelboken/kommunikation-och-samverkan/regler-f%C3%B6r-visuell-identitet-vid-stockholms-universitet-1.26306
+  https://www.su.se/medarbetare/kommunikation
+  https://www.su.se/medarbetare/kommunikation/grafisk-manual
+  https://www.su.se/medarbetare/kommunikation/grafisk-manual/typsnitt-1.362024
+  https://www.su.se/medarbetare/kommunikation/grafisk-manual/f%C3%A4rger-1.362110
+** Uppsatstitel
+*** TODO Vid avstavning sticker titeln ut i marginalen ibland
+*** TODO Vid multipla flera rader varierar radavståndet
+** [1/9] Verdana
+*** DONE Ladda Verdana
+    CLOSED: [2020-02-25 Tue 02:32]
+*** TODO Rubriker
+*** TODO Underrubriker (fetstil?)
+    Underrubriker är i fetstil i:
+    + Petersdotter (2018)
+
+    Underunderrubriker är fet Times New Roman:
+    + Petersdotter (2018)
+*** TODO All text i innehållsförteckning
+*** TODO All text på framsidan
+*** TODO All text på baksidan
+*** TODO Underrubrik på sammanfattningssida
+*** TODO Författarnamn på sammanfattningssida
+*** TODO Bildtexter
+** [2/3] Stockholms universitets-blå färg
+   RGB 0 47 95 / HTML #002F5F
+*** DONE Define the color
+    CLOSED: [2020-02-25 Tue 02:31]
+    \usepackage{xcolor}
+    \definecolor{Blue}{rgb}{0,0.1843,0.3725}
+*** DONE All text på framsidan
+    CLOSED: [2020-02-25 Tue 02:31]
+*** TODO All text på baksidan
+** TODO SVG-version av logo?
 * TODO Innehållsförteckning ska ha svart text
 * DONE
+** DONE Fixa så referenser funkar
+   CLOSED: [2020-02-23 Sun 06:54]
+** DONE Läs in brödtext till kapitlen från separata filer
+   CLOSED: [2020-02-23 Sun 01:08]
 ** DONE Använd LaTeX-mall från Stockholms universitet
    CLOSED: [2020-02-23 Sun 01:09]
 * [eof]

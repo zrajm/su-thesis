@@ -5,6 +5,7 @@
 %% Modelled on Studentuppsatsmall at https://www.su.se/biblioteket/
 %%
 %% Version 1.2 by zrajm, 23 February 2020
+%% Version 1.1 by zrajm, 22 February 2020
 %% Version 1 by Mats Wirén, 12 February 2020
 %% Version by Adam Ek & Elena Moser, 19 February 2019
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,6 +49,7 @@
 %%     \suset[swedish]{abstract}{Sammanfattning på svenska}
 %%     \suset[english]{abstract}{Abstract in English}
 %%     %% Swedish metadata (only used if language is Swedish)
+%%     \suset[swedish]{subtitle}{Svensk undertitel}
 %%     \suset[swedish]{keywords}{nyckelord1, nyckelord2, nyckelord3, \ldots}
 %%     \suset[swedish]{department}{Institutionen för lingvistik}
 %%     \suset[swedish]{thesistype}{Examensarbete 15 hp}
@@ -55,6 +57,7 @@
 %%     \suset[swedish]{program}{Kandidatprogrammet i lingvistik 180 hp}
 %%     \suset[swedish]{semester}{Vårterminen 2020}
 %%     %% English metadata (only used if language is English)
+%%     \suset[english]{subtitle}{English Subtitle}
 %%     \suset[english]{keywords}{keyword1, keyword2, keyword3, \ldots}
 %%     \suset[english]{department}{Department of Linguistics}
 %%     \suset[english]{thesistype}{Bachelor's Thesis 15 ECTS credits}
@@ -84,25 +87,71 @@
 %% Needed for \IfSubStr.
 \usepackage{xstring}
 
+%% \usepackage{showframe} % DEBUG: displays margin
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Slew of random stuff
 
 \usepackage{xcolor}
 \definecolor{Blue}{rgb}{0,0.1843,0.3725}
+
+%% http://mirrors.ctan.org/macros/latex/contrib/geometry/geometry.pdf
 \usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{hyperref}
 
+%% Title page:
+%%   * title = size:28pt / lead:28pt(?)
+%%   * subtitle + auth name size:14pt / lead:20pt or 24pt / (above:6pt / below:28pt)
+%%
 
+\renewcommand\Huge{\@setfontsize\Large{28pt}{34pt}}  % title
+\renewcommand\large{\@setfontsize\large{14pt}{24pt}} % subtitle
+
+
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/fontspec/fontspec.pdf
 \usepackage{fontspec}
-\setmainfont{Times New Roman}
-% \setmainfont{Doulos SIL} %%% Contains IPA. See https://software.sil.org/doulos/
-% \setmainfont{Linux Libertine O} %%% Contains IPA
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setsansfont[Ligatures=TeX,WordSpace=.95,LetterSpace=1]{Verdana}
+
+% \setmainfont{Doulos SIL} % contains IPA (see https://software.sil.org/doulos/)
+% \setmainfont{Linux Libertine O} % contains IPA
 
 %\usepackage{libertine}
 %\usepackage{libertinust1math}
 %\setmonofont[Scale=0.76]{Bitstream Vera Sans Mono} % typewriter font and scaling
+
+\usepackage{titlesec}
+
+\definecolor{SUBlue}{rgb}{.204,.353,.541}
+% Define a new fontfamily for the subsubsection font
+% Don't use \fontspec directly to change the font
+%\newfontfamily\sectionfont[Color=SUBlue]{Verdana}
+\newfontfamily\sectionfont{Verdana}
+%% % Set formats for each heading level
+%% \titleformat*{\section}{\Large\sectionfont\color{MSBlue}}
+%% \titleformat*{\subsection}{\large\bfseries\sffamily\color{MSLightBlue}}
+%% %\titleformat*{\subsubsection}{\itshape}
+
+\titleformat*{\section}{\Huge\sectionfont}
+\titleformat*{\subsection}{\Large\bfseries\sectionfont}
+\titleformat*{\subsubsection}{\bfseries\sectionfont}
+%% \titleformat*{\paragraph}{\large\bfseries}
+%% \titleformat*{\subparagraph}{\large\bfseries}
+
+
+%% % Define a new fontfamily for the subsubsection font
+%% % Don't use \fontspec directly to change the font
+%% \newfontfamily\sectionfont{Verdana}
+%% % Set formats for each heading level
+%% \titleformat*{\section}{\Large\bfseries\sffamily}
+%% %\titleformat*{\section}{\subsubsectionfont}
+%% %% \titleformat*{\subsection}{\subsubsectionfont}
+%% %% \titleformat*{\subsubsection}{\subsubsectionfont}
+
 
 \usepackage{amsmath}
 \usepackage{tabularx}
@@ -170,11 +219,36 @@
   }%
 }
 
-\newcommand{\sumaketitlepage}{
-  \noindent
-  {\Huge\iflanguage{swedish}{\suget[swedish]{title}}{\suget[english]{title}}}
+\newcommand{\susubtitle}[2][english]{
+  \ifcsdef{su#1#2}{%
+    \vspace{10pt}
 
-  \vspace*{2em}
+    \noindent{\large\csuse{su#1#2}\par}%
+  }{}
+}
+
+\newcommand{\sumaketitlepage}{{%
+  \color{Blue}%
+  \sffamily
+
+  \noindent
+  {\raggedright%
+    \Huge%
+    \iflanguage{swedish}{%
+      \suget[swedish]{title}%
+    }{%
+      \suget[english]{title}%
+    }%
+    \par%
+  }
+
+  \iflanguage{swedish}{%
+    \susubtitle[swedish]{subtitle}%
+  }{%
+    \susubtitle[english]{subtitle}%
+  }
+
+  \vspace{38pt}
 
   \noindent
   {\large\suget{author}}
@@ -219,11 +293,11 @@
   }
   %\renewcommand{\contentsname}{Table of Contents} % Uncomment to change the title of table of contents page to what is written in {Table of Contents}.
   \pagenumbering{gobble} % Switch off page numbering in table of contents
-}
+}}
 
 \newcommand{\sumakeabstractpage}{
   \noindent
-  {\LARGE\iflanguage{swedish}{\suget[swedish]{title}}{\suget[english]{title}}}
+  {\LARGE\sectionfont\iflanguage{swedish}{\suget[swedish]{title}}{\suget[english]{title}}}
 
   \vspace*{2em}
 
@@ -296,11 +370,11 @@
   \tableofcontents
   \clearpage
 
-  \pagenumbering{arabic} % Start page numbering
+  \pagenumbering{arabic} % start page numbering
 }
 
 \AtEndDocument{
-  \pagenumbering{gobble} % Switch off page numbering
+  \pagenumbering{gobble} % turn off page numbering
   \sumakebackpage
   \clearpage
 }
