@@ -89,30 +89,66 @@
 
 %% \usepackage{showframe} % DEBUG: displays margin
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Slew of random stuff
-
 %% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/xcolor/xcolor.pdf
 \usepackage{xcolor}
 \definecolor{Blue}{rgb}{0,0.1843,0.3725}
 
 %% http://mirrors.ctan.org/macros/latex/contrib/geometry/geometry.pdf
-\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=27.25mm,bottom=25mm]{geometry}
 
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{hyperref}
 
-%% Title page:
-%%   * title = size:28pt / lead:28pt(?)
-%%   * subtitle + auth name size:14pt / lead:20pt or 24pt / (above:6pt / below:28pt)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define font sizes and margins around headings/paragraphs etc.
 %%
+%% LaTeX size scale
+%% ----------------
+%% \Huge
+%% \huge
+%% \LARGE                -- default för \title{} (i \maketitle)
+%% \Large                -- default för \section{}
+%% \large                -- default för \subsection{}, \author{}/\date{} (i \maketitle)
+%% \normalsize (default) -- default för brödtext, \subsubsection{}
+%% \small
+%% \footnotesize         -- default för footnote{}
+%% \scriptsize
+%% \tiny
 
-\renewcommand\Huge{\@setfontsize\Large{28pt}{34pt}}   % front page title
-\renewcommand\large{\@setfontsize\large{14pt}{24pt}}  % front page subtitle
-\renewcommand\small{\@setfontsize\large{8pt}{11.6pt}} % front/back page text
+%% |------|---------------|-------------------------------|
+%% | 28pt | \LARGE        | titel sidan 1                 | \title{} (FIXME)
+%% |------|---------------|-------------------------------|
+%% | 26pt | \Large*       | titel sidan 2; rubrik;        | \section{}
+%% |      |               | onumrerad rubrik              |
+%% |      |               | (innehåll, sammanfattning,    |
+%% |      |               | referenser)                   |
+%% |------|---------------|-------------------------------|
+%% | 16pt | \large*       | underrubrik                   | \subsection{}
+%% |------|---------------|-------------------------------|
+%% | 14pt | \subtitlesize | undertitel sidan 1            |
+%% |------|---------------|-------------------------------|
+%% | 11pt | \normalsize*  | brödtext; undertitel sidan 2; | \subsubsection{}
+%% |      |               | under-underrubrik; onumrerad  |
+%% |      |               | under|under (nyckelord); text |
+%% |      |               | i innehållsförteckning        |
+%% |------|---------------|-------------------------------|
+%% |  8pt | \small        | textruta                      |
+%% |------|---------------|-------------------------------|
+%%
+%% * = default for LaTeX
 
+\setlength{\parindent}{0cm} % remove indent of 1st line in paragraph
+\setlength{\parskip}{6pt}   % add vertical space between paragraphs
+
+%% FIXME line height! (Currently rounded off fontsize * 1.2).
+\renewcommand\LARGE{\@setfontsize\LARGE{28pt}{34pt}}
+\renewcommand\Large{\@setfontsize\Large{26pt}{31pt}}
+\renewcommand\large{\@setfontsize\large{16pt}{19pt}}
+\newcommand\subtitlesize{\@setfontsize\subtitlesize{14pt}{16.8pt}}
+\renewcommand\small{\@setfontsize\small{8pt}{9pt}}
+
+%% Set default fonts.
 %% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/fontspec/fontspec.pdf
 \usepackage{fontspec}
 \setmainfont[Ligatures=TeX]{Times New Roman}
@@ -120,36 +156,34 @@
 % \setmainfont{Doulos SIL} % contains IPA (see https://software.sil.org/doulos/)
 % \setmainfont{Linux Libertine O} % contains IPA
 
+%% Set section heading font and size.
+%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/titlesec/titlesec.pdf
+\usepackage{titlesec}
+\titleformat*{\section      }{\sffamily\raggedright\Large}
+\titleformat*{\subsection   }{\sffamily\raggedright\bfseries\large}
+\titleformat*{\subsubsection}{\sffamily\raggedright\bfseries\normalsize}
+
+\titlespacing*{\section      }{0pt}{36pt}{24pt}
+\titlespacing*{\subsection   }{0pt}{24pt}{ 6pt}
+\titlespacing*{\subsubsection}{0pt}{12pt}{ 6pt}
+
+% For 'keyword' heading on abstract page.
+% (A \subsubsection with doubled space above.)
+\newcommand{\keywordsection}[1]{%
+    \vspace{12pt}
+
+    \subsubsection*{#1}
+    \vspace{-6pt}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Slew of random stuff
+
 %\usepackage{libertine}
 %\usepackage{libertinust1math}
 %\setmonofont[Scale=0.76]{Bitstream Vera Sans Mono} % typewriter font and scaling
-
-%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/titlesec/titlesec.pdf
-\usepackage{titlesec}
-
-% Define a new fontfamily for the section font
-% Don't use \fontspec directly to change the font
-\newfontfamily\sectionfont{Verdana}
-%% % Set formats for each heading level
-%% \titleformat*{\section}{\Large\sectionfont\color{MSBlue}}
-%% \titleformat*{\subsection}{\large\bfseries\sffamily\color{MSLightBlue}}
-%% %\titleformat*{\subsubsection}{\itshape}
-
-\titleformat*{\section}{\Huge\sectionfont}
-\titleformat*{\subsection}{\Large\bfseries\sectionfont}
-\titleformat*{\subsubsection}{\bfseries\sectionfont}
-%% \titleformat*{\paragraph}{\large\bfseries}
-%% \titleformat*{\subparagraph}{\large\bfseries}
-
-
-%% % Define a new fontfamily for the subsubsection font
-%% % Don't use \fontspec directly to change the font
-%% \newfontfamily\sectionfont{Verdana}
-%% % Set formats for each heading level
-%% \titleformat*{\section}{\Large\bfseries\sffamily}
-%% %\titleformat*{\section}{\subsubsectionfont}
-%% %% \titleformat*{\subsection}{\subsubsectionfont}
-%% %% \titleformat*{\subsubsection}{\subsubsectionfont}
 
 \usepackage{amsmath}
 \usepackage{tabularx}
@@ -222,11 +256,21 @@
   }%
 }
 
+% Subtitle on front page.
 \newcommand{\susubtitle}[2][english]{
   \ifcsdef{su#1#2}{%
-    \vspace{10pt}
+    \vspace{11pt}
 
-    \noindent{\large\suget[#1]{#2}\par}%
+    \noindent\suget[#1]{#2}%
+  }{}
+}
+
+% Subtitle on abstract page.
+\newcommand{\susubtitlex}[2][english]{%
+  \ifcsdef{su#1#2}{%
+    \noindent\suget[#1]{#2}%
+
+    \vspace*{34pt}
   }{}
 }
 
@@ -237,7 +281,7 @@
 
     \noindent{%
       \raggedright%
-      \Huge%
+      \LARGE%
       \iflanguage{swedish}{%
         \suget[swedish]{title}%
       }{%
@@ -246,16 +290,17 @@
       \par%
     }
 
-    \iflanguage{swedish}{%
-      \susubtitle[swedish]{subtitle}%
-    }{%
-      \susubtitle[english]{subtitle}%
-    }
+    {%
+      \subtitlesize%
+      \iflanguage{swedish}{%
+        \susubtitle[swedish]{subtitle}%
+      }{%
+        \susubtitle[english]{subtitle}%
+      }
 
-    \vspace{38pt}
+      \vspace{33pt}
 
-    \noindent{%
-      \large%
+      \noindent%
       \suget{author}%
     }
 
@@ -299,41 +344,57 @@
 }
 
 \newcommand{\sumakeabstractpage}{
-  \noindent
-  {\LARGE\sectionfont\iflanguage{swedish}{\suget[swedish]{title}}{\suget[english]{title}}}
+  \noindent%
+  \section*{%
+    \iflanguage{swedish}{%
+      \suget[swedish]{title}%
+    }{%
+      \suget[english]{title}%
+    }%
+  }
 
-  \vspace*{2em}
+  \noindent{%
+    \sffamily\bfseries\raggedright%
+    \iflanguage{swedish}{%
+      \susubtitlex[swedish]{subtitle}%
+    }{%
+      \susubtitlex[english]{subtitle}%
+    }
 
-  \noindent
-  {\large\suget{author}}
-
-  \vspace*{3em}
+    \suget{author}%
+  }
+  \vspace*{20pt}
 
   \iflanguage{swedish}{%
     \section*{Sammanfattning}
     \suget[swedish]{abstract}
-    \subsection*{Nyckelord}
+
+    \keywordsection{Nyckelord}
     \suget[swedish]{keywords}
 
     \section*{Abstract}
     \suget[english]{abstract}
-    \subsection*{Keywords}
+
+    \keywordsection{Keywords}
     \suget[english]{keywords}
   }{%
     \section*{Abstract}
     \suget[english]{abstract}
-    \subsection*{Keywords}
+    \keywordsection{Keywords}
     \suget[english]{keywords}
 
     \section*{Sammanfattning}
     \suget[swedish]{abstract}
-    \subsection*{Nyckelord}
+    \keywordsection{Nyckelord}
     \suget[swedish]{keywords}
   }
 }
 
 \newcommand{\sutableofcontents}{%
-  \tableofcontents%
+  {%
+    \sffamily%
+    \tableofcontents%
+  }%
 }
 
 \newcommand{\sumakebackpage}{%

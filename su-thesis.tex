@@ -18,9 +18,9 @@
 %% Always used
 \suset{author}{Zrajm}
 \suset{supervisor}{Ingen}
-\suset[swedish]{title}{Mall för uppsatser vid Stockholms universitet}
+\suset[swedish]{title}{Mall för uppsats vid Stockholms~universitet}
 \suset[swedish]{subtitle}{För {\rmfamily\LaTeX} och Overleaf}
-\suset[english]{title}{Thesis Template for Stockholm University}
+\suset[english]{title}{Thesis Template for Stockholm~University}
 \suset[english]{subtitle}{For {\rmfamily\LaTeX} and Overleaf}
 \suset[swedish]{abstract}{Sammanfattning på svenska}
 \suset[english]{abstract}{Abstract in English}
@@ -56,7 +56,11 @@
 %% For XeLaTeX logo
 \usepackage{metalogo}
 
-\renewcommand{\sumakeabstractpage}{}
+%% Suppress abstract page.
+%\renewcommand{\sumakeabstractpage}{}
+
+\usepackage{tabularx}
+\usepackage{longtable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}

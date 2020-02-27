@@ -9,6 +9,13 @@ Stockholms Universitet har en uppsatsmall, men dessvärre finns den bara till
 Ytterligare information om Stockholms universitets grafiska profil kan hittas här:
 \texttt{\href{https://www.su.se/medarbetare/kommunikation/grafisk-manual}{https://\linebreak[0]{}www.su.se/medarbetare/\linebreak[0]{}kommunikation/\linebreak[0]{}grafisk-manual}}.
 
+"Mallar och visuell identitet för avhandling"
+\verb|http://su.se/biblioteket/avhandlingsmallar|
+
+
+PDF "Dokumentmall i Word för doktorsavhandlingar"
+\verb|https://www.su.se/polopoly_fs/1.264229.1576661286!/menu/standard/file/Instruktioner%20SU_Wordmall_20180509.pdf|
+
 
 \subsection{Sidmarginaler}
 
@@ -18,31 +25,225 @@ Sidmarginalerna 2,5 cm på alla sidor.
 \subsection{Sidnumrering}
 
 
-\subsection{Typsnitt}
+%% \subsection{Typsnitt}
 
-Brödtexten är satt i Times New Roman 11 pt, medan rubriker och underrubriker är
-satta i Verdana.
+%% Brödtexten är satt i Times New Roman, medan titel, rubrik, underrubriker etc.
+%% är satta i Verdana. På fram- och baksida är all text och universitetets logotyp
+%% satta i Stockholms universitetets blåa färg, på övriga sidor är all text svart.
+
+%% %% Brödtext (12 uppsatser):
+%% %%  Blankrad: 11 / Indrag: 1 (Bark 2018)
+%% %%  Vänsterjusterad: 7, Spärrad: 5 (Bäckström 2015, Lyxell 2016, Petersdotter
+%% %%                                 2018, Bark 2018, Klintberg 2018)
+
+%% \subsubsection{Times New Roman}
+
+%% Brödtexten används för den huvudsakliga texten i uppsatsen. Den används också
+%% för texten i styckena för sammanfattning/abstract, och nyckelord/keywords. Den
+%% används däremot \emph{inte} för innehållsförteckning eller i textrutorna på
+%% fram- och baksida.
+
+%% %\textbf{Styckeindrag} -- Inget.
 
 
-\subsubsection{Brödtext}
+\subsection{Stilar}
+
+\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
+  \hline
+%%% Wordmall: 'Default Style'
+  %% Set with:
+  %%   \documentclass[11pt]{article} % set base font size
+  %%   \setlength{\parindent}{0cm}   % remove 1st line of paragraph indentation
+  %%   \setlength{\parskip}{6pt}     % add vertical space between paragraphs
+  Brödtext &
+  Times New Roman 11~punkter. Vänsterjusterad.
+  % I Libreoffice: (Line spacing: Single.)
+  Avstånd ovanför 0~punkter, avstånd nedanför 6~punkter.
+  \\\hline
+%% %%% Wordmall: 'Header'
+%%   Sidhuvud &
+%%   \hl{FIXME}
+%%   \\\hline
+%% %%% Wordmall: 'Footer'
+%%   Sidfot &
+%%   \hl{FIXME}
+%%   \\\hline
+\end{longtable}
 
 
-\subsubsection{Rubriker}
+\subsubsection{Fram- och baksida}
 
-Alla rubriker har stor bokstav i början, men i övrigt små bokstäver (utom i
-namn, som ju alltid har stor bokstav i början oavsett om de kommer inuti en
-rubrik eller ej). Rubriker avslutas inte med punkt.
+På fram- och baksida är all text satt i Verdana, och allting (text och logotyp)
+har Stockholms universitets blå färg.
+
+\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
+  \hline
+%%% Wordmall: 'Uppsatstitel' (sans, blå)
+  {\sffamily\raggedright\LARGE\color{Blue}Titel} &
+  Uppsatstiteln på framsidan. Verdana 28~punkter rak. Vänsterjusterad.
+  % I Libreoffice: (Line spacing "at least" 15~punkter.)
+  \\\hline
+%%% Wordmall: 'Undertitel' (sans, blå)
+  {\color{Blue}\sffamily\large{}Undertitel} &
+  Undertitel och författarnamn på framsidan. Verdana 14~punkter rak.
+  Vänsterjusterad.
+  % I Lireoffice: (Line spacing "at least" 24~punkter.) Avstånd ovanför
+  % 6~punkter, avstånd nedanför 28~punkter.
+  \\\hline
+%%% Wordmall: 'Textruta' (sans, blå)
+  {\color{Blue}\sffamily\small{}Textruta} &
+  Textruta med tryckinformation längst ned till vänster på fram- och baksida.
+  Verdana 8~punkter rak. Vänsterjusterad.
+  % I Libreoffice: (Line spacing "fixed" 14~punkter.) Avstånd ovanför
+  % 0~punkter, avstånd nedanför 0~punkter.
+  \\\hline
+\end{longtable}
 
 
-\subsubsection{Underrubriker}
+\subsubsection{Sammanfattningssida / Abstract}
+
+\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
+  \hline
+%%% Wordmall: 'Uppsatstitel sidan2' (sans) -- \section*{}
+  {\sffamily\raggedright\Large{}Titel sidan 2} &
+  %% Verdana 26~punkter. Vänsterjusterad. (Line spacing "at least"
+  %% 15~punkter.) Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter \\
+  Uppsatstiteln på sammanfattningssidan. Samma stil som '1 Rubrik'.
+  \\\hline
+%%% Wordmall: 'Undertitel sidan2' (sans)
+  {\sffamily\bfseries{}Undertitel sidan 2} &
+  Används bara på sammanfattningssidan till undertitel och författarnamn på.
+  Verdana 11~punkter, fetstil. Vänsterjusterad.
+  % I Libreoffice: (Line spacing "at least" 15~punkter.)
+  Avstånd ovanför 36~punkter, avstånd nedanför 18~punkter (Typsnittstorlek är
+  densamma som i under-underrubrik men här är avståndet ovan/under större).
+  \\\hline
+%%% Wordmall: 'Sammanfattning' (sans) -- \section*{}
+  {\sffamily\Large\raggedright{}Rubrik sammanfattning} &
+  Onumrerad rubrik till sammanfattning/abstract.
+  %% Verdana 26~punkter. Vänsterjusterad. (Line spacing "at least"
+  %% 15~punkter.) Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter
+  (samma som '1 Rubrik').
+  \\\hline
+%%% Wordmall: 'Nyckelord' (sans) samma som 'Heading 3'?)
+  {\sffamily\bfseries{}Nyckelordsrubrik} &
+  Onumrerad under-underrubrik. Verdana 11~punkter fetstil. Vänsterjusterad.
+  % I Libreoffice (Line spacing "at least" 15~punkter.)
+  Avstånd ovanför 24~punkter, avstånd nedanför 6~punkter. (Samma som
+  under-underrubrik, men här är avståndet ovanför dubbelt så stort).
+  \\\hline
+\end{longtable}
 
 
-\subsection{Färg}
+\subsubsection{Inuti uppsatsen}
 
-Hela dokumentet utom fram- och baksida har svart text på vit botten.
+Inuti uppsatsen används sansserifftypsnitt för alla rubriker, samt för texten i
+innehållsförteckningen. All text är svart.
 
-På fram- och baksida har texten Stockholms universitets blåa färg
-(\texttt{\#002F5F}).
+\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
+  \hline
+%%% Wordmall: 'Innehållsförteckning' (sans) (rubrik) -- \section*{}
+  {\sffamily\raggedright\Large{}Rubrik innehåll} &
+  Onumrerad rubrik till innehållsförteckning.
+  %% Verdana 26~punkter. Vänsterjusterad. (Line spacing "at least"
+  %% 15~punkter.) Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter
+  (samma som '1 Rubrik').
+  \\\hline
+%%% Wordmall: FIXME
+  {\sffamily\textbf{Kapitelrubrik i innehållsförteckning}} &
+  Text i innehållsförteckning. Verdana 11~punkter fetstil. Vänsterjusterad.
+  %I Libreoffice: (Line spacing: Single.)
+  Avstånd ovanför 0~punkter, avstånd nedanför 5~punkter.
+  \\\hline
+%%% Wordmall: FIXME
+  {\sffamily{}Underrubrik i innehållsförteckning} &
+  Text i innehållsförteckning. Verdana 11~punkter rak. Vänsterjusterad.
+  % I Libreoffice: (Line spacing: Single.)
+  Avstånd ovanför 0~punkter, avstånd nedanför 5~punkter.
+  \\\hline
+%%% Wordmall: 'Heading 1' (sans)
+  {\sffamily\Huge{}1 Rubrik} &
+  Numrerad kapitelrubrik. Verdana 26~punkter. Vänsterjusterad.
+  % I Libreoffice: (Line spacing "at least" 15~punkter.)
+  Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter.
+  \\\hline
+%%% Wordmall: 'Heading 2' (sans) -- \subsection{}
+  {\sffamily\raggedright\bfseries\large{}1.1 Underrubrik} &
+  Numrerad underrubrik. Verdana 16~punkter fetstil. Vänsterjusterad.
+  % I Libreoffice: (Line spacing "at least" 15~punkter.)
+  Avstånd ovanför 24~punkter, avstånd nedanför 6~punkter.
+  \\\hline
+%%% Wordmall: 'Heading 3' (sans) -- \subsubsection{}
+  {\sffamily\raggedright\bfseries\normalsize{}1.1.1 Under-underrubrik} &
+  Numrerad under-underrubrik. Verdana 11~punkter fetstil. Vänsterjusterad.
+  % I Libreoffice: (Line spacing "at least" 15~punkter.)
+  Avstånd ovanför 12~punkter, avstånd nedanför 6~punkter. (Samma som i
+  undertiteln på sidan 2 men här är avståndet ovan/under mindre).
+  \\\hline
+\end{longtable}
+
+
+%%% Wordmall: 'Uppsatstitel' (sans, blå)
+%% \textbf{Titel} -- Används bara på framsidan, till uppsatstiteln. Verdana
+%% 18~punkter. Vänsterjusterad. (Line spacing "at least" 15~punkter.) Färg: blå.
+
+%% %%% Wordmall: 'Undertitel' (sans, blå)
+%% \textbf{Undertitel} -- Används bara på framsidan till undertitel och
+%% författarnamn. Verdana 14~punkter, rak. Vänsterjusterad. (Line spacing "at
+%% least" 24~punkter.) Avstånd ovanför 6~punkter, avstånd nedanför 28~punkter.
+%% Färg: blå.
+
+%% %%% Wordmall: 'Textruta' (sans, blå)
+%% \textbf{Textruta} -- Används bara på fram- och baksida till tryckinformation
+%% (textrutan längst ned till vänster). Verdana 8~punkter, rak.
+%% Vänsterjusterad. (Line spacing "fixed" 14~punkter.) Avstånd ovanför 0~punkter,
+%% avstånd nedanför 0~punkter. Färg: blå.
+
+%% %%% Wordmall: 'Uppsatstitel sidan2' (sans)
+%% \textbf{Titel sida 2} -- Används bara på sammanfattningssidan. Verdana
+%% 26~punkter. Vänsterjusterad. (Line spacing "at least" 15~punkter.) Avstånd
+%% ovanför 36~punkter, avstånd nedanför 24~punkter.
+
+%% %%% Wordmall: 'Undertitel sidan2' (sans)
+%% \textbf{Undertitel sida 2} -- Används bara på sammanfattningssidan till
+%% undertitel och författarnamn på framsidan. Verdana 11~punkter, fetstil.
+%% Vänsterjusterad. (Line spacing "at least" 15~punkter.) Avstånd ovanför
+%% 36~punkter, avstånd nedanför 18~punkter.
+
+%% %%% Wordmall: 'Heading 1' (sans)
+%% \textbf{Rubrik (rubrik 1)} -- Numrerad kapitelrubrik.
+
+%% %%% Wordmall: 'Heading 2' (sans)
+%% \textbf{Underrubrik (rubrik 2)} -- Numrerad underrubrik.
+
+%% %%% Wordmall: 'Heading 3' (sans)
+%% \textbf{Under-underrubrik (rubrik 2)} -- Numrerad under-underrubrik.
+
+%% %%% Wordmall: 'Sammanfattning' (sans)
+%% \textbf{Sammanfattning}
+
+%% %%% Wordmall: 'Nyckelord' (sans) samma som 'Heading 3'?)
+%% \textbf{Nyckelordsrubrik}
+
+%% %%% Wordmall: 'Innehållsförteckning' (sans) (rubrik)
+
+
+%% \subsubsection{Rubriker}
+
+%% Alla rubriker har stor bokstav i början, men i övrigt små bokstäver (utom i
+%% namn, som ju alltid har stor bokstav i början oavsett om de kommer inuti en
+%% rubrik eller ej). Rubriker avslutas inte med punkt.
+
+
+%% \subsubsection{Underrubriker}
+
+
+%% \subsection{Färg}
+
+%% Hela dokumentet utom fram- och baksida har svart text på vit botten.
+
+%% På fram- och baksida har texten Stockholms universitets blåa färg
+%% (\texttt{\#002F5F}).
 
 
 \subsection{Referenser}
