@@ -89,9 +89,13 @@
 
 %% \usepackage{showframe} % DEBUG: displays margin
 
-%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/xcolor/xcolor.pdf
-\usepackage{xcolor}
-\definecolor{Blue}{rgb}{0,0.1843,0.3725}
+%% Stockholm university's official colors.
+\usepackage{xcolor} % https://ctan.org/pkg/xcolor
+\definecolor{sublue}{HTML}{002F5F}
+\definecolor{suolive}{HTML}{A3A86B}
+\definecolor{susky}{HTML}{ACDEE6}
+\definecolor{suwater}{HTML}{9BB2CE}
+\definecolor{sufire}{HTML}{D95E00}
 
 %% http://mirrors.ctan.org/macros/latex/contrib/geometry/geometry.pdf
 \usepackage[paper=a4paper,left=25mm,right=25mm,top=27.25mm,bottom=25mm]{geometry}
@@ -276,7 +280,7 @@
 
 \newcommand{\sumakefrontpage}{%
   {%
-    \color{Blue}%
+    \color{sublue}%
     \sffamily
 
     \noindent{%
@@ -399,7 +403,7 @@
 
 \newcommand{\sumakebackpage}{%
   {%
-    \color{Blue}%
+    \color{sublue}%
     \sffamily
 
     \vspace*{\fill}
