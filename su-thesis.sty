@@ -183,7 +183,11 @@
 \titleformat*{\subsection   }{\sffamily\raggedright\bfseries\large}
 \titleformat*{\subsubsection}{\sffamily\raggedright\bfseries\normalsize}
 
-\titlespacing*{\section      }{0pt}{36pt}{24pt}
+%% This length is needed elsewhere too.
+\newlength{\lengthBelowSection}
+\deflength{\lengthBelowSection}{24pt}
+
+\titlespacing*{\section      }{0pt}{36pt}{\lengthBelowSection}
 \titlespacing*{\subsection   }{0pt}{24pt}{ 6pt}
 \titlespacing*{\subsubsection}{0pt}{12pt}{ 6pt}
 
@@ -296,9 +300,15 @@
 % Subtitle on abstract page.
 \newcommand{\susubtitlex}[2][english]{%
   \ifcsdef{su#1#2}{%
-    \noindent\suget[#1]{#2}%
+    %% Remove space under \section{}.
+    \newlength{\lengthRemoveMargin}%
+    \deflength{\lengthRemoveMargin}{0pt - \lengthBelowSection}%
+    \vspace{\lengthRemoveMargin}
 
-    \vspace*{34pt}
+    \subsubsection*{\suget[#1]{#2}}
+
+    %% And add that space below the subtitle instead.
+    \vspace{\lengthBelowSection}
   }{}
 }
 
@@ -373,25 +383,20 @@
 
 \newcommand{\sumakeabstractpage}{
   \noindent%
-  \section*{%
-    \iflanguage{swedish}{%
-      \suget[swedish]{title}%
-    }{%
-      \suget[english]{title}%
-    }%
+  \iflanguage{swedish}{%
+    \section*{\suget[swedish]{title}}%
+  }{%
+    \section*{\suget[english]{title}}%
+  }%
+
+  \iflanguage{swedish}{%
+    \susubtitlex[swedish]{subtitle}%
+  }{%
+    \susubtitlex[english]{subtitle}%
   }
 
-  \noindent{%
-    \sffamily\bfseries\raggedright%
-    \iflanguage{swedish}{%
-      \susubtitlex[swedish]{subtitle}%
-    }{%
-      \susubtitlex[english]{subtitle}%
-    }
-
-    \suget{author}%
-  }
-  \vspace*{20pt}
+  \subsubsection*{\suget{author}}
+  \vspace{\lengthBelowSection}
 
   \iflanguage{swedish}{%
     \section*{Sammanfattning}
