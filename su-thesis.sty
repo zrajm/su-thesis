@@ -143,8 +143,22 @@
 %%
 %% * = default for LaTeX
 
-\setlength{\parindent}{0cm} % remove indent of 1st line in paragraph
-\setlength{\parskip}{6pt}   % add vertical space between paragraphs
+%% Add blank space between paragraphs & remove paragraph indent.
+%% (With the old version of this package installed on my system parskip is
+%% always set to (\baselineskip * .5 + 2pt) which works well enough.)
+\usepackage{parskip} % https://ctan.org/pkg/parskip
+
+%% %% DEBUG: Use this to set length between paragraphs.
+%% \newcommand{\loadparskip}[1]{
+%%   \newlength{\lengthNewParskip}
+%%   \deflength{\lengthNewParskip}{(#1 * 2) -4pt}
+%%   \newlength{\lengthOrgBaselineskip}
+%%   \deflength{\lengthOrgBaselineskip}{\baselineskip}
+%%   \baselineskip=\lengthNewParskip
+%%   \usepackage{parskip} % https://ctan.org/pkg/parskip
+%%   \baselineskip=\lengthOrgBaselineskip
+%% }
+%% \loadparskip{8pt}
 
 %% FIXME line height! (Currently rounded off fontsize * 1.2).
 \renewcommand\LARGE{\@setfontsize\LARGE{28pt}{34pt}}
