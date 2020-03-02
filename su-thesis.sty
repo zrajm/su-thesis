@@ -102,6 +102,9 @@
 %% http://mirrors.ctan.org/macros/latex/contrib/geometry/geometry.pdf
 \usepackage[paper=a4paper,left=25mm,right=25mm,top=27.25mm,bottom=25mm]{geometry}
 %\usepackage{showframe} % DEBUG: display margins
+%\typeout{...}%         % DEBUG: write stuff on stdout during compilation
+
+\newcommand{\TODO}[1]{\marginpar{\texthl{#1}}}
 
 %\usepackage{graphicx}
 %\usepackage{url}
@@ -264,14 +267,17 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% This gives capability for prettier tables.
 %%   \midrule, \bottomrule, \toprule is from booktabs.
-%%   L and C can be used in column specifications of tabularx.
+%%   'L' and 'C' can be used in column specifications of tabularx.
+%%
 \usepackage{tabularx}  % https://ctan.org/pkg/tabularx
 \usepackage{booktabs}  % https://ctan.org/pkg/booktabs
 \newcolumntype{C}{>{\centering\arraybackslash}X}   % centered 'X' column
 \newcolumntype{L}{>{\raggedright\arraybackslash}X} % left aligned 'X' column
-
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Slew of random stuff
