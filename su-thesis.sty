@@ -205,6 +205,65 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CITATION FORMATS
+%%
+%% When 'apacite' package is loaded with 'natbibapa', then citation commands
+%% from the 'natbib' packackage is used in the text.
+%%
+%% Use (AVOID USING \cite{...}):
+%%     \citep{...} -- parenthetical citation like '(Bergman & Wallin, 2001)'
+%%     \citet{...} -- textual citation like 'Bergman och Wallin (2001)'
+%%
+%% Args can include multiple sources:
+%%     \citep{src1,src2}
+%%     \citet{src1,src2}
+%%
+%% Optional args:
+%%     \citep[][13--14]{jon90}
+%%     \citep[see][]{jon90}
+%%     \citep[see][chap.~2]{jon90}
+%%
+%% \shortcite{...} produces a citation like '(1999)'
+%% \newcite{...}   produces a citation like 'Author (1999)'
+%%
+%% All three take an optional argument which can be used to add page
+%% references, etc.:
+%% "\newcite[1--6]{...}" produces a citation like "Author (1999, 1--6)"
+%%
+%% Use 'apacite' for references.
+\usepackage[natbibapa]{apacite} % https://ctan.org/pkg/apacite & https://ctan.org/pkg/natbib
+\bibliographystyle{apacite}
+\setcitestyle{notesep={:}}                     % : between year arg page number
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Printed uncited references are in gray in references section.
+%%
+%% (This is a hack that most likely will only work with 'natbib'. It's based on
+%% this https://tex.stackexchange.com/questions/212515/)
+%%
+\csletcs{orgcitation}{citation}
+\csletcs{orgbibitem}{bibitem}
+\newcommand*{\eachcite}[1]{%                   % remember each citation used
+  \global\csdef{ZZ#1}{}%
+}
+\csdef{citation}#1{%                           % split \citeX argument on comma
+  \forcsvlist{\eachcite}{#1}%
+  \orgcitation{#1}%
+}
+\renewcommand{\bibitem}[2][]{%                 % set text color for bibitem
+  \color{black}%
+  \ifcsundef{ZZ#2}{%
+    \typeout{FIXME: MISSING CITATION FOR '#2'}%
+    \color{gray}%
+  }{}%
+  \orgbibitem[#1]{#2}%
+}%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %% This gives capability for prettier tables.
 %%   \midrule, \bottomrule, \toprule is from booktabs.
 %%   L and C can be used in column specifications of tabularx.
