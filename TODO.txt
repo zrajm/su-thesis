@@ -1,5 +1,17 @@
 -*- mode: org; ispell-dictionary: "svenska" -*-
 
+* TODO Translate TODO into English
+* TODO Load images relative to .sty file path
+  Currently the Stockholm university logo renders just fine in the example
+  document, but not when this module is invoked from LaTeX document in a
+  different directory than the one the `su-thesis.sty` file.
+* [0/5] Use commands more similar to LaTeX praxis
+** TODO \maketitle
+** TODO \title{...}
+** TODO \subtitle{...}
+** TODO \author{...}
+** TODO Use \and to separate multiple authors
+** TODO Use \and to separate multiple supervisors
 * TODO Använd Stockholms universitets grafisk profil
 ** Länkar till grafisk profil
   https://www.su.se/medarbetare/organisation-styrning/styrdokument-regelboken/kommunikation-och-samverkan/regler-f%C3%B6r-visuell-identitet-vid-stockholms-universitet-1.26306
