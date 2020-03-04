@@ -22,12 +22,11 @@ kommandot \texttt{pdflatex} fungerar inte. \hl{FIXME: fungerar inte
 pdflatex?}). Denna guide utgår också ifrån bekvämlighetsverktyget
 \texttt{latexmk}.
 
-\noindent Om du kör Linux (med Debian eller Ubuntu) kör du följande kommandon (som
-användaren 'root') för att installera:
+\noindent Om du kör Linux (med Debian eller Ubuntu) kör du följande kommandon
+(som användaren 'root') för att installera:
 
 \begin{verbatim}
-apt install texlive-xetex
-apt install latexmk
+apt install texlive-xetex latexmk
 \end{verbatim}
 
 \noindent Dokumentationen till kommandot \texttt{latexmk} finns här:
@@ -39,15 +38,21 @@ apt install latexmk
 Det enklaste sättet att kompilera din uppsats är:
 
 \begin{verbatim}
-latexmk -xelatex su-thesis.tex
+latexmk su-thesis.tex
 \end{verbatim}
 
-\noindent Om du inte använder \texttt{latexmk} utan insisterar på att kompilera
+\noindent\texttt{latexmk} har inställningar i en fil som heter
+\texttt{latexmkrc}. Om du installerar denna uppsatsmall i en underkatalog så
+vill du förmodligen kopiera \texttt{latexmkrc} till katalogen där du har din
+uppsats också.
+
+Om du inte använder \texttt{latexmk} utan insisterar på att kompilera
 själv så motsvarar detta följande kommandon (Ja! -- \texttt{xelatex} behöver
 vanligtvis köras tre gånger för att vara säker på att både innehållsförteckning
 och referenser stämmer överens med texten).
 
 \begin{verbatim}
+export TEXINPUTS=".//:$TEXINPUTS"
 xelatex su-thesis.tex
 bibtex su-thesis.bib
 xelatex su-thesis.tex
