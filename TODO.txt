@@ -1,5 +1,10 @@
 -*- mode: org; ispell-dictionary: "svenska" -*-
 
+Stockholms unis beskrivning av "Uppsatsmall och Word-tips" (detaljerad, verkar bra)
+https://www.su.se/svefler/publikationer/uppsatsarkiv/uppsatsmall-och-word-tips-1.29497
+
+* TODO Add GitHub README
+* TODO URL command which line breaks URL properly
 * TODO Translate TODO into English
 * TODO Load images relative to .sty file path
   Currently the Stockholm university logo renders just fine in the example
