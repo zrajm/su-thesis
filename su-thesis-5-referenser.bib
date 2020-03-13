@@ -1,14 +1,295 @@
 @Comment -----------------------------------------------------------------------
+@Comment NOTA BENE: Comments cannot contain ampersand!
+@Comment -----------------------------------------------------------------------
+@Comment
+@Comment The following information is from the 'apacite' package documentation,
+@Comment chapters '5.1 Types of references' and '5.2 Fields', and from the
+@Comment wikipedia page on BibTeX.
+@Comment
+@Comment [http://mirrors.ctan.org/biblio/bibtex/contrib/apacite/apacite.pdf]
+@Comment [https://en.wikipedia.org/wiki/BibTeX]
+@Comment
+@Comment Types of References
+@Comment ===================
+@Comment
+@Comment 'article' -- An article from a journal or magazine.
+@Comment Required: author, title, journal, year, volume
+@Comment Optional: number, pages, month, doi, note, key
+@Comment Extra: day, editor, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     A journal article or comparable. If the “article” referenced to is
+@Comment     a special issue of a journal or something else that has editors
+@Comment     instead of authors, the 'author' field should be empty and the
+@Comment     'editor' field should be used for the editors. If the journal
+@Comment     paginates by issue instead of by volume, or when you are referring
+@Comment     to a whole special issue, the issue number should be given in the
+@Comment     'number' field. In all other cases (including referring to an
+@Comment     article within a special issue), the 'number' field must not be
+@Comment     used. The 'type' field can be used to denote the type of article,
+@Comment     for example, “Letter to the editor”, or “Review of the book
+@Comment     \emph{Life in the middle}”.
+@Comment
+@Comment 'magazine' -- A magazine article.
+@Comment Required: author, title, journal, year, volume
+@Comment Optional: number, pages, month, day, doi, note, key
+@Comment Extra: editor, englishtitle, howpublished, lastchecked
+@Comment
+@Comment      This is equivalent to 'article'. However, with an 'article', the
+@Comment      'month' and 'day' fields should generally not be used, unless
+@Comment      there is a compelling reason to use them. For a magazine, the
+@Comment      'month', and 'day' (for weeklies) fields are commonly used.
+@Comment
+@Comment 'newspaper' -- A newspaper article.
+@Comment Required: author, title, journal, year, volume
+@Comment Optional: number, pages, month, day, doi, note, key
+@Comment Extra: editor, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     This is similar to 'article' and 'magazine', except that the pages
+@Comment     are formatted a little different, with “pp. 23–49” instead of just
+@Comment     “23–49”.
+@Comment
+@Comment 'book' -- A book with an explicit publisher.
+@Comment Required: author/editor, title, publisher, year
+@Comment Optional: volume/number, series, address, edition, month, note, key,
+@Comment     url
+@Comment Extra: doi, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     An entire book. The 'type' field can be used to denote a specific
+@Comment     type of item (so generally not strictly a book), e.g., “Brochure”.
+@Comment     Similarly, the 'number' field can be used if this is considered
+@Comment     useful. This seems quite rare to me, however. It should certainly
+@Comment     *not* be used for ISBN numbers and the like.
+@Comment
+@Comment 'incollection' -- A part of a book having its own title.
+@Comment Required: author, title, booktitle, publisher, year
+@Comment Optional: editor, volume/number, series, type, chapter, pages, address,
+@Comment     edition, month, note, key
+@Comment Extra: day, doi, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     An article in a (usually edited) book, or other kind of larger
+@Comment     work, except a report, for which the 'intechreport' entry is used.
+@Comment     The 'booktitle' field contains the title of the whole collection
+@Comment     (book). The 'type' field is currently used to denote the type of
+@Comment     article, as with the 'article' reference type, although in some
+@Comment     cases, it may be more naturally to let the 'type' field contain the
+@Comment     type of the whole work (e.g., CD).
+@Comment
+@Comment 'techreport' -- A report published by a school or other institution,
+@Comment     usually numbered within a series.
+@Comment Required: author, title, institution, year
+@Comment Optional: type, number, address, month, note, key
+@Comment Extra: day, doi, edition, editor, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     A report. This may be a “technical” report such as published by
+@Comment     universities, or a report from government organizations or private
+@Comment     companies. The 'type' field can be used to indicate what kind of
+@Comment     report it is, e.g., “College Board Rep.” or “{DHHS} Publication”.
+@Comment     If the 'type' field is missing, the default type “Tech.\
+@Comment     Rep.\hbox{}” is used. (The \hbox{} ensures that TEX does not view
+@Comment     the period as the end of a sentence, which would insert too much
+@Comment     space.) If no type description should be given, '\bibnotype' should
+@Comment     be used as the contents of the 'type' field. The 'number' field can
+@Comment     be used to give the report number. The organization that published
+@Comment     the report should be given in the 'institution' field.
+@Comment
+@Comment 'intechreport' -- An article in a (usually edited) report.
+@Comment Required: author, title, booktitle, institution, year
+@Comment Optional: editor, volume/number, series, type, chapter, pages, address,
+@Comment     edition, month, note, key
+@Comment Extra: day, doi, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     This is more or less a combination of 'incollection' and
+@Comment     'techreport'. It uses the same fields as the former to describe the
+@Comment     article itself, except 'type', e.g., 'booktitle', which is in this
+@Comment     case the title of the entire report, and the same fields as the
+@Comment     latter to describe the report. In particular, the 'type', 'number',
+@Comment     and 'institution' fields are used for the report.
+@Comment
+@Comment 'lecture' -- A paper presented at a meeting.
+@Comment Extra: address, author, chair, day, doi, englishtitle, howpublished,
+@Comment     lastchecked
+@Comment
+@Comment     According to the APA manual, the year and month should be given,
+@Comment     but apacite also uses the 'day' field when available. The
+@Comment     'symposium' field can be used for the name of the symposium and the
+@Comment     'chair' field for the chair of the meeting. The 'howpublished'
+@Comment     field should be used to indicate the occasion at which the paper
+@Comment     was presented if the 'symposium' field is empty, e.g., “Paper
+@Comment     presented at the meeting of the American Professional Society on
+@Comment     the Abuse of Children”. It can also be used to give additional
+@Comment     information about the symposium if the 'symposium' field is not
+@Comment     empty.
+@Comment
+@Comment 'phdthesis' -- A Ph.D. thesis.
+@Comment Required: author, title, school, year
+@Comment Optional: type, address, month, note, key
+@Comment Extra: doi, edition, englishtitle, howpublished, journal, lastchecked
+@Comment
+@Comment     A doctoral dissertation. The school field is used to denote the
+@Comment     university for which the thesis was written. The 'type' field can
+@Comment     be used for the thesis type, e.g., “PhD thesis”. If it is empty,
+@Comment     the default type is used, which is “Unpublished doctoral
+@Comment     dissertation” or “Doctoral dissertation”, depending on whether the
+@Comment     'journal' field is empty or not.
+@Comment
+@Comment     If the thesis is abstracted in “Dissertation Abstracts
+@Comment     International” or similar, then the 'journal', 'volume', 'number',
+@Comment     and 'pages' fields can be used as with journal articles. The 'year'
+@Comment     field should denote the year of the “journal”. The 'originalyear'
+@Comment     field should be used to denote the year of the original thesis,
+@Comment     even if it is the same as the year of the abstract, provided that
+@Comment     the original thesis is used, and not the abstract. Then, the
+@Comment     'school' field should also be used, and optionally the 'type'
+@Comment     field. If only the abstract is used, it should presumably be
+@Comment     treated as a journal article.
+@Comment
+@Comment 'mastersthesis' -- A Master's thesis.
+@Comment Required: author, title, school, year
+@Comment Optional: type, address, month, note, key
+@Comment Extra: doi, edition, englishtitle, howpublished, journal, lastchecked
+@Comment
+@Comment     This is equivalent to the 'phdthesis' type, except that the default
+@Comment     “unpublished” and “published” 'type's are “Unpublished master’s
+@Comment     thesis” and “Master’s thesis”.
+@Comment
+@Comment 'unpublished' -- A document having an author and title, but not
+@Comment     formally published.
+@Comment Required: author, title, note
+@Comment Optional: month, year, key
+@Comment Extra: address, day, doi, editor, englishtitle, howpublished,
+@Comment     lastchecked
+@Comment
+@Comment     For unpublished manuscripts and similarly “obscure” material. The
+@Comment     'howpublished' field will typically be used to indicate what kind
+@Comment     of work is referred to (e.g., “Unpublished manuscript”). The
+@Comment     'organization' field can be used to denote the organization in
+@Comment     which the document was produced, e.g., “Johns Hopkins University,
+@Comment     Center for Social Organization of Schools”. Note that the larger
+@Comment     organization should be given first and the department after that.
+@Comment     The address (city and state, etc., see the discussion of the
+@Comment     'address' field in section 5.2 below) of the organization should be
+@Comment     given in the 'address' field, unless it is already mentioned in the
+@Comment     name of the organization. Presumably, if the organization is
+@Comment     “University of Groningen”, the city name “Groningen” should not be
+@Comment     given in the 'address' field, but the country “The Netherlands”
+@Comment     should. When both the 'organization' and the 'address' field are
+@Comment     available, apacite formats these as “organization, address”. This
+@Comment     is different from the usual “address: publisher” form. This
+@Comment     behavior cannot explicitly be deduced from the 5th edition, nor
+@Comment     from the 4th edition, of the APA manual, but the 3rd edition
+@Comment     (American Psychological Association [APA], 1984) gives an explicit
+@Comment     example (example 53, p. 131): Gottfredson (1978).
+@Comment
+@Comment 'manual' -- Technical documentation.
+@Comment Required: title
+@Comment Optional: author, organization, address, edition, month, year, note,
+@Comment     key
+@Comment Extra: day, doi, editor, englishtitle, howpublished, lastchecked
+@Comment
+@Comment     This is treated as a 'misc', except that when the 'type' field is
+@Comment     empty, it is assumed to be a '\bibcomputersoftwaremanual'. See also
+@Comment     the description of the 'type' field below.
+@Comment
+@Comment 'misc' -- For use when nothing else fits.
+@Comment Required: none
+@Comment Optional: author, title, howpublished, month, year, note, key
+@Comment Extra: address, day, doi, edition, editor, englishtitle, howpublished,
+@Comment     lastchecked
+@Comment
+@Comment     For works that do not fit into the other categories, such as motion
+@Comment     pictures, cassette recordings, computer software, etc. The 'type'
+@Comment     field can be used to indicate the type of work, and apacite
+@Comment     recognizes a few specific types that should be formatted a little
+@Comment     differently, see the discussion of the 'type' field below. If the
+@Comment     'address' and 'publisher' fields are available, the address and
+@Comment     publisher part is formatted as with books. The 'unpublished' and
+@Comment     'misc' types are very similar, but there are some differences. For
+@Comment     example, 'unpublished' uses the 'organization' field and 'misc'
+@Comment     uses the 'publisher' field, and this part is formatted differently.
+@Comment     Further, the 'unpublished' type requires 'author', 'editor',
+@Comment     'title', or 'type', whereas with 'misc', 'howpublished' takes the
+@Comment     first position if these fields are all empty. Finally, as briefly
+@Comment     indicated above and discussed in more detail below, 'misc'
+@Comment     recognizes some special types in the 'type' field.
+@Comment
+@Comment 'literal'
+@Comment Extra: doi, text
+@Comment
+@Comment     If the other categories do not format the item correctly, this
+@Comment     category can be used. The 'text' field is copied literally to the
+@Comment     bibliography. The 'firstkey', 'key', 'year', and possibly
+@Comment     'originalyear' and 'translator' fields are necessary to get correct
+@Comment     in-text citations. However, I have never needed to use this entry
+@Comment     type and I think that 'misc' should also be able to format the
+@Comment     entry correctly. Furthermore, the correct placement of 'literal'
+@Comment     references in the reference list (alphabetizing, sorting), may be
+@Comment     problematic.
+@Comment
+@Comment =======================================================================
+@Comment
+@Comment 'booklet' -- A work that is printed and bound, but without a named
+@Comment     publisher or sponsoring institution.
+@Comment Required: title
+@Comment Optional: author, howpublished, address, month, year, note, key
+@Comment
+@Comment 'inbook' -- A part of a book, usually untitled. May be a chapter (or
+@Comment     section, etc.) and/or a range of pages.
+@Comment Required: author/editor, title, chapter/pages, publisher, year
+@Comment Optional: volume/number, series, type, address, edition, month,
+@Comment     note, key
+@Comment
+@Comment 'conference'/'inproceedings' -- An article in a conference proceedings.
+@Comment Required: author, title, booktitle, year
+@Comment Optional: editor, volume/number, series, pages, address, month,
+@Comment     organization, publisher, note, key
+@Comment
+@Comment 'proceedings' -- The proceedings of a conference.
+@Comment Required: title, year
+@Comment Optional: editor, volume/number, series, address, month,
+@Comment     publisher, organization, note, key
+@Comment
+@Comment     These categories are defined by all standard citation styles. They
+@Comment     are, however, not needed for the examples in the APA manual. For
+@Comment     compatibility, however, they are included and defined as follows:
+@Comment     'booklet = proceedings = misc'; 'inbook = inproceedings =
+@Comment     incollection'. Kopka and Daly (2004, p. 230) also mention
+@Comment     'conference' as being the same as 'inproceedings'; for
+@Comment     compatibility, this is now supported in apacite.
+@Comment
+@Comment =======================================================================
+
+@Comment -----------------------------------------------------------------------
+@Comment Schött, K., Melin, L., Strand, H. & Moberg, B. (2007). Studenternas
+@Comment skrivhandbok. Stockholm: Liber.
+@Comment -----------------------------------------------------------------------
+@book{schott+others-2007,
+  author    = {Schött, Kristina and Melin, Lars and Strand, Hans and Moberg, Bodil},
+  title     = {Studenternas skrivhandbok},
+  publisher = {Liber},
+  year      = {2007},
+  address   = {Stockholm},
+}
+
+@Comment -----------------------------------------------------------------------
+@Comment Wirén, M. (2020). Uppsatskompendium för kandidatkurser. Institutionen
+@Comment för lingvistik, Stockholms universitet.
+@Comment -----------------------------------------------------------------------
+@book{wiren-2020,
+  author    = {Wirén, Mats},
+  title     = {Uppsatskompendium för kandidatkurser},
+  publisher = {Institutionen för lingvistik, Stockholms universitet},
+  year      = {2020},
+  Xday       = {13},
+  Xmonth     = {januari},
+}
+
+@Comment -----------------------------------------------------------------------
 @Comment Bergman, Brita & Wallin, Lars. (2001). ”A Preliminary Analysis of
 @Comment Visual Mouth Segments in Swedish Sign Language”. I: Boyes Braem,
 @Comment Penny & Sutton-Spence, Rachel (red.). *The Hands are the Head of the
 @Comment Mouth: The Mouth as Articulator in Sign Language,* 51--68. Hamburg:
 @Comment Signum.
 @Comment -----------------------------------------------------------------------
-@Comment 'incollection' – A part of a book having its own title.
-@Comment Required fields: author, title, booktitle, publisher, year
-@Comment Optional fields: editor, volume/number, series, type, chapter, pages,
-@Comment     address, edition, month, note, key
 @incollection{bergman+wallin-2001,
   author    = {Bergman, Brita and Wallin, Lars},
   title     = {{A Preliminary Analysis of Visual Mouth Segments in Swedish Sign
@@ -30,13 +311,9 @@
                   the hypothesis that mouth movements borrowed from Swedish are
                   reconstructed according to the native pattern.},
 }
+
 @Comment Bergman, Brita. (1977). *Tecknad svenska*. Utbildningsforskning 28.
 @Comment Stockholm: Liber Läromedel~/ Utbildningsförlaget.
-@Comment
-@Comment 'book' – A book with an explicit publisher.
-@Comment Required fields: author/editor, title, publisher, year
-@Comment Optional fields: volume/number, series, address, edition, month, note,
-@Comment     key, url
 @book{bergman-1977,
    author      = {Bergman, Brita},
    title       = {Tecknad svenska},
@@ -46,3 +323,5 @@
    address     = {Stockholm},
    isbn        = {91-47-02483-6},
 }
+
+@Comment [eof]
