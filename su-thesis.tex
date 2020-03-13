@@ -68,7 +68,10 @@
 
 %% Use 'apacite' package for references
 \usepackage[natbibapa]{apacite}
-\setcitestyle{notesep={:}}      % put ':' between year and page number
+\setcitestyle{notesep={:}}    % put ':' between year and page number
+\apptocmd{\thebibliography}   % remove extra space after period in references
+         {\def\newblock{}}    % [https://tex.stackexchange.com/questions/480787]
+         {}{}
 
 %% Hyphenation patterns
 \hyphenation{Fo-ne-tik-lab-bet}
@@ -101,7 +104,7 @@
 \input{su-thesis-4-uppsatsstruktur.tex}
 \clearpage
 
-%% \nocite{*} % show all references, even those not referred to in text
+\nocite{*} % show all references, even those not referred to in text
 \bibliography{su-thesis-5-referenser.bib}
 \clearpage
 
