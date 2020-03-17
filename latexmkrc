@@ -1,11 +1,24 @@
 # -*- perl -*-
-# This is the config file for the 'latexmk' command. It is written in Perl.
-# https://mg.readthedocs.io/latexmk.html
+# This is the config file for the 'latexmk' command. This config file is
+# written in Perl. https://mg.readthedocs.io/latexmk.html
 
 ################################################################################
-# Equivalent to command line option '-xelatex'.
-#
-$pdflatex = "xelatex %O %S";
+# Latexmk percent sequences:
+#   * %S - source
+#   * %D - destination
+#   * %B - base of current rule
+#   * %R - root/base of primary tex file
+#   * %O - options
+#   * %T - texfile name
+#   * %Y - $aux_dir1
+#   * %Z - $out_dir1
+#   * %% - literal '%'
+
+# The below options are equivalent to 'latexmk -xelatex' + running XeLaTeX with
+# the option '-interaction=nonstopmode' (to avoid having XeLaTeX prompting the
+# user for input in case of errors).
+# [https://tex.stackexchange.com/questions/258814/]
+$pdflatex = "xelatex -interaction=nonstopmode -halt-on-error %O %S";
 $pdf_mode = 1;
 $postscript_mode = 0;
 $dvi_mode = 0;
