@@ -242,6 +242,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Turn DOIs in reference section into links.
+%% (3rd solution from https://tex.stackexchange.com/a/482395/185988.)
+%%
+\newcommand*{\doi}{}
+\newcommand{\doi@}[1]{\href{https://doi.org/#1}{#1}}
+\DeclareRobustCommand{\doi}{\hyper@normalise\doi@}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Printed uncited references are in gray in references section.
 %%
 %% (This is a hack that most likely will only work with 'natbib'. It's based on
