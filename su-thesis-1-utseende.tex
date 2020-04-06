@@ -48,8 +48,8 @@ Sidmarginalerna är 2,5 cm på alla sidor.
 
 \subsection{Stilar}
 
-\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
-  \hline
+\begin{longtable}{p{.40\textwidth} p{.60\textwidth}}
+  \toprule
 %%% Wordmall: 'Default Style'
   %% Set with:
   %%   \documentclass[11pt]{article} % set base font size
@@ -59,15 +59,18 @@ Sidmarginalerna är 2,5 cm på alla sidor.
   Times New Roman 11~punkter. Vänsterjusterad.
   % I Libreoffice: (Line spacing: Single.)
   Avstånd ovanför 0~punkter, avstånd nedanför 6~punkter.
-  \\\hline
+  \\
+  \bottomrule
 %% %%% Wordmall: 'Header'
 %%   Sidhuvud &
 %%   \hl{FIXME}
-%%   \\\hline
+%%   \\
+%%   \midrule
 %% %%% Wordmall: 'Footer'
 %%   Sidfot &
 %%   \hl{FIXME}
-%%   \\\hline
+%%   \\
+%%   \midrule
 \end{longtable}
 
 
@@ -76,40 +79,44 @@ Sidmarginalerna är 2,5 cm på alla sidor.
 På fram- och baksida är all text satt i Verdana, och allting (text och logotyp)
 har Stockholms universitets blå färg.
 
-\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
-  \hline
+\begin{longtable}{p{.40\textwidth} p{.60\textwidth}}
+  \toprule
 %%% Wordmall: 'Uppsatstitel' (sans, blå)
   {\sffamily\raggedright\LARGE\color{sublue}Titel} &
   Uppsatstiteln på framsidan. Verdana 28~punkter rak. Vänsterjusterad.
   % I Libreoffice: (Line spacing "at least" 15~punkter.)
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Undertitel' (sans, blå)
   {\color{sublue}\sffamily\large{}Undertitel} &
   Undertitel och författarnamn på framsidan. Verdana 14~punkter rak.
   Vänsterjusterad.
   % I Lireoffice: (Line spacing "at least" 24~punkter.) Avstånd ovanför
   % 6~punkter, avstånd nedanför 28~punkter.
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Textruta' (sans, blå)
   {\color{sublue}\sffamily\small{}Textruta} &
   Textruta med tryckinformation längst ned till vänster på fram- och baksida.
   Verdana 8~punkter rak. Vänsterjusterad.
   % I Libreoffice: (Line spacing "fixed" 14~punkter.) Avstånd ovanför
   % 0~punkter, avstånd nedanför 0~punkter.
-  \\\hline
+  \\
+  \bottomrule
 \end{longtable}
 
 
 \subsubsection{Sammanfattningssida / Abstract}
 
-\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
-  \hline
+\begin{longtable}{p{.40\textwidth} p{.60\textwidth}}
+  \toprule
 %%% Wordmall: 'Uppsatstitel sidan2' (sans) -- \section*{}
   {\sffamily\raggedright\Large{}Titel sidan 2} &
   %% Verdana 26~punkter. Vänsterjusterad. (Line spacing "at least"
   %% 15~punkter.) Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter \\
   Uppsatstiteln på sammanfattningssidan. Samma stil som '1 Rubrik'.
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Undertitel sidan2' (sans)
   {\sffamily\bfseries{}Undertitel sidan 2} &
   Används bara på sammanfattningssidan till undertitel och författarnamn på.
@@ -117,21 +124,24 @@ har Stockholms universitets blå färg.
   % I Libreoffice: (Line spacing "at least" 15~punkter.)
   Avstånd ovanför 36~punkter, avstånd nedanför 18~punkter (Typsnittstorlek är
   densamma som i under-underrubrik men här är avståndet ovan/under större).
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Sammanfattning' (sans) -- \section*{}
   {\sffamily\Large\raggedright{}Rubrik sammanfattning} &
   Onumrerad rubrik till sammanfattning/abstract.
   %% Verdana 26~punkter. Vänsterjusterad. (Line spacing "at least"
   %% 15~punkter.) Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter
   (samma som '1 Rubrik').
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Nyckelord' (sans) samma som 'Heading 3'?)
   {\sffamily\bfseries{}Nyckelordsrubrik} &
   Onumrerad under-underrubrik. Verdana 11~punkter fetstil. Vänsterjusterad.
   % I Libreoffice (Line spacing "at least" 15~punkter.)
   Avstånd ovanför 24~punkter, avstånd nedanför 6~punkter. (Samma som
   under-underrubrik, men här är avståndet ovanför dubbelt så stort).
-  \\\hline
+  \\
+  \bottomrule
 \end{longtable}
 
 
@@ -140,46 +150,52 @@ har Stockholms universitets blå färg.
 Inuti uppsatsen används sansserifftypsnitt för alla rubriker, samt för texten i
 innehållsförteckningen. All text är svart.
 
-\begin{longtable}{| p{.40\textwidth} | p{.60\textwidth} |}
-  \hline
+\begin{longtable}{p{.40\textwidth} p{.60\textwidth}}
+  \toprule
 %%% Wordmall: 'Innehållsförteckning' (sans) (rubrik) -- \section*{}
   {\sffamily\raggedright\Large{}Rubrik innehåll} &
   Onumrerad rubrik till innehållsförteckning.
   %% Verdana 26~punkter. Vänsterjusterad. (Line spacing "at least"
   %% 15~punkter.) Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter
   (samma som '1 Rubrik').
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: FIXME
   {\sffamily\textbf{Kapitelrubrik i innehållsförteckning}} &
   Text i innehållsförteckning. Verdana 11~punkter fetstil. Vänsterjusterad.
   %I Libreoffice: (Line spacing: Single.)
   Avstånd ovanför 0~punkter, avstånd nedanför 5~punkter.
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: FIXME
   {\sffamily{}Underrubrik i innehållsförteckning} &
   Text i innehållsförteckning. Verdana 11~punkter rak. Vänsterjusterad.
   % I Libreoffice: (Line spacing: Single.)
   Avstånd ovanför 0~punkter, avstånd nedanför 5~punkter.
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Heading 1' (sans)
   {\sffamily\Huge{}1 Rubrik} &
   Numrerad kapitelrubrik. Verdana 26~punkter. Vänsterjusterad.
   % I Libreoffice: (Line spacing "at least" 15~punkter.)
   Avstånd ovanför 36~punkter, avstånd nedanför 24~punkter.
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Heading 2' (sans) -- \subsection{}
   {\sffamily\raggedright\bfseries\large{}1.1 Underrubrik} &
   Numrerad underrubrik. Verdana 16~punkter fetstil. Vänsterjusterad.
   % I Libreoffice: (Line spacing "at least" 15~punkter.)
   Avstånd ovanför 24~punkter, avstånd nedanför 6~punkter.
-  \\\hline
+  \\
+  \midrule
 %%% Wordmall: 'Heading 3' (sans) -- \subsubsection{}
   {\sffamily\raggedright\bfseries\normalsize{}1.1.1 Under-underrubrik} &
   Numrerad under-underrubrik. Verdana 11~punkter fetstil. Vänsterjusterad.
   % I Libreoffice: (Line spacing "at least" 15~punkter.)
   Avstånd ovanför 12~punkter, avstånd nedanför 6~punkter. (Samma som i
   undertiteln på sidan 2 men här är avståndet ovan/under mindre).
-  \\\hline
+  \\
+  \bottomrule
 \end{longtable}
 
 
