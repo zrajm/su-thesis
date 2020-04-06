@@ -238,7 +238,15 @@
 %% Use 'apacite' for references.
 \usepackage[natbibapa]{apacite} % https://ctan.org/pkg/apacite & https://ctan.org/pkg/natbib
 \bibliographystyle{apacite}
+
+%% FIXME: 'notesep' should be settable by option to 'su-thesis'.
 \setcitestyle{notesep={:}}                     % : between year arg page number
+
+%% This is good for Swedish and French, but not desired in English.
+%% FIXME: Spacing in references should be settable by option to 'su-thesis'.
+\apptocmd{\thebibliography}   % remove extra space after period in references
+         {\def\newblock{}}    % [https://tex.stackexchange.com/questions/480787]
+         {}{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
