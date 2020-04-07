@@ -167,9 +167,12 @@
 %% }
 %% \loadparskip{8pt}
 
+%% \addfontfeature squishes letters together. It is from 'fontspec' pagage.
+%% [https://tex.stackexchange.com/a/82890/185988]
+
 %% FIXME line height! (Currently rounded off fontsize * 1.2).
-\renewcommand\LARGE{\@setfontsize\LARGE{28pt}{34pt}}
-\renewcommand\Large{\@setfontsize\Large{26pt}{31pt}}
+\renewcommand\LARGE{\@setfontsize\LARGE{28pt}{34pt}\addfontfeature{LetterSpace=-.5}}
+\renewcommand\Large{\@setfontsize\Large{26pt}{31pt}\addfontfeature{LetterSpace=-.5}}
 \renewcommand\large{\@setfontsize\large{16pt}{19pt}}
 \newcommand\subtitlesize{\@setfontsize\subtitlesize{14pt}{16.8pt}}
 \renewcommand\small{\@setfontsize\small{8pt}{9pt}}
