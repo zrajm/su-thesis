@@ -83,6 +83,16 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 
+%% Indent the verbatim environment one em.
+%% [https://tex.stackexchange.com/a/148448/185988]
+\usepackage{verbatim}
+\newlength\myverbindent
+\setlength\myverbindent{1em} % change this to change indentation
+\makeatletter
+\def\verbatim@processline{%
+  \hspace{\myverbindent}\the\verbatim@line\par}
+\makeatother
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
