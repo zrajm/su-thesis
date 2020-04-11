@@ -78,11 +78,35 @@ språk).
 \subsection{Fonetiska tecken (IPA)}
 \label{ipa}
 
-\hl{FIXME: Lägg till en \texttt{\textbackslash{}suipa\{...\}} funktion.}
+Med den här mallen kommer en nyare variant av Times New Roman som inkluderar
+IPA-symboler (tyvärr finns dock inte fet eller kursiv stil med i detta
+typsnitt). För att ladda typsnittet behöver du lägga till följande (före
+\verb|\begin{document}|):
 
-Det finns en IPA-skrivmaskin på nätet som man kan använda för att skriva
-IPA-symboler:
-\texttt{\href{https://ipa.typeit.org/full/}{https://\linebreak[0]{}ipa\linebreak[0]{}.typeit\linebreak[0]{}.org/\linebreak[0]{}full/}}
+\medskip
+\begin{verbatim}
+%% IPA font (does not support italic or bold).
+\newfontfamily{\ipafamily}{times_f94e4fee465af93db5f536a94751dc25.ttf}[
+  Ligatures = TeX,
+  Path      = ./su-thesis/,
+]
+\newcommand{\ipa}[1]{\ipafamily{}#1}
+\end{verbatim}
+\medskip
+
+Om du lagt till det ovanstående så har du nu två nya kommandon du kan använda
+för att inkludera IPA-symboler i ditt dokument:
+\texttt{\{\textbackslash{}ipafamily~}...\texttt{\}} (för längre textstycken)
+och \texttt{\textbackslash{}ipa\{}...\texttt{\}} (för enstaka ord eller
+tecken).
+
+Om du inte har någon annan metod för att skriva IPA-tecken så kan du använda
+följande hemsida och därefter klippa/klistra in resultatet i din uppsats:
+\texttt{%
+  \href{https://ipa.typeit.org/full/}{%
+    https://\linebreak[0]ipa\linebreak[0].typeit\linebreak[0].org/%
+    \linebreak[0]full/%
+}}
 
 
 \subsection{Ta bort inledande/avslutande sidor}
