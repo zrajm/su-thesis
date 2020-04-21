@@ -108,7 +108,8 @@
 \input{su-thesis-4-uppsatsstruktur.tex}
 \clearpage
 
-\nocite{*} % show all references, even those not referred to in text
+\nocite{*}                               % show all references (even non-cited)
+\addcontentsline{toc}{section}{\refname} % include section in table of content
 \bibliography{su-thesis-5-referenser.bib}
 \clearpage
 

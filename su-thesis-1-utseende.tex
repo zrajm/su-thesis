@@ -291,12 +291,18 @@ dina referenser. En onumrerad rubrik på ditt valda språk kommer automatiskt
 infogas före referenserna (på svenska 'Referenser').
 
 \begin{verbatim}
-\nocite{*}                      % visa även oanvända referenser
-\bibliography{referenser.bib}   % ladda BibTeX-fil 'referenser.bib'
+\nocite{*}                               % visa även oanvända referenser
+\addcontentsline{toc}{section}{\refname} % inkludera i innehållsförteckning
+\bibliography{dina_referenser.bib}       % ladda 'dina_referenser.bib'
 \end{verbatim}
 
 Om du använder \verb|\nocite{*}| så kommer referenskapitlet inkludera även de
 referenser som du inte refererat till i din text, men dessa visas i grått för
-att göra det lättare komma på vilka det är.
+att göra det lättare att se vilka det är.
+
+\verb|\addcontentsline|-kommandot lägger till referenskapitlet i din uppsats
+innehållsförteckning. Notera att detta kommando måste komma precis före
+\verb|\bibliography|-kommandot för att sidreferensen i innehållsförteckningen
+ska peka på rätt sida.
 
 %% [eof]
