@@ -177,21 +177,48 @@
 \renewcommand\small{\@setfontsize\small{8pt}{9pt}}
 \renewcommand\tiny{\@setfontsize\tiny{6pt}{7.2pt}}
 
-%% Set default fonts.
-%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/fontspec/fontspec.pdf
-\usepackage{fontspec}
-\setmainfont[Ligatures=TeX]{Times New Roman}
-\setsansfont[Ligatures=TeX,WordSpace=.95,LetterSpace=1]{Verdana}
-% \setmainfont{Doulos SIL} % contains IPA (see https://software.sil.org/doulos/)
-% \setmainfont{Linux Libertine O} % contains IPA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Load fonts (Times New Roman and Verdana)
+%%
+\usepackage{fontspec}   % https://ctan.org/pkg/fontspec
+\usepackage{etoolbox}   % https://ctan.org/pkg/etoolbox
 
-%% IPA font (does not support italic or bold).
-%% FIXME: There should be an option to 'su-thesis' for enabling IPA font.
-%% \newfontfamily{\ipafamily}{times_f94e4fee465af93db5f536a94751dc25.ttf}[
-%%   Ligatures = TeX,
-%%   Path      = ./su-thesis/,
-%% ]
-%% \newcommand{\ipa}[1]{\ipafamily{}#1}
+%% Usage: \susetfontpath{DIR/}{FILE}
+%% Sets \sufontpath to DIR if file 'DIR/FILE' exists.
+\newcommand{\susetfontpath}[2]{
+  \ifundef{\sufontpath}{% etoolbox
+    \IfFileExists{#1#2}{
+      \newcommand{\sufontpath}{#1}
+    }{}
+  }{}
+}
+%% Find font path or die.
+\susetfontpath{./su-thesis/fonts/}{times.ttf}
+\susetfontpath{./fonts/}{times.ttf}
+\ifundef{\sufontpath}{% etoolbox
+  \PackageError{su-thesis}{%
+    Font dir not found (expected\MessageBreak
+    './fonts/' or './su-thesis/fonts/')
+  }{}
+}{}
+\defaultfontfeatures{
+  Path = \sufontpath,
+  Extension = .ttf,
+  Ligatures = TeX,
+}
+\setmainfont{times}[
+  BoldFont       = *bd,
+  ItalicFont     = *i,
+  BoldItalicFont = *bi
+]
+\setsansfont{verdana}[
+  BoldFont       = *b,
+  ItalicFont     = *i,
+  BoldItalicFont = *z,
+  WordSpace      = .95,
+  LetterSpace    = 1,
+]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Set section heading font and size.
 %% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/titlesec/titlesec.pdf
@@ -370,8 +397,6 @@
 
 \usepackage{multirow}
 
-%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/etoolbox/etoolbox.pdf
-\usepackage{etoolbox}
 
 %% Commands which set/get variables named \su<LANG><NAME>.
 \newcommand{\suset}[3][english]{%
