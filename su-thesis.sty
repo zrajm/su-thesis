@@ -83,9 +83,8 @@
 %% Use " for quotes. [https://tex.stackexchange.com/questions/386695/]
 %%
 %% The csquotes package also allows for language-sensitive quotes, and quotes
-%% inside quotes etc. For full specs see csquotes docs:
-%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/csquotes/csquotes.pdf
-\usepackage[autostyle=true]{csquotes}
+%% inside quotes etc.
+\usepackage[autostyle=true]{csquotes}  % https://ctan.org/pkg/csquotes
 \MakeOuterQuote{"}
 
 %% Needed for \IfSubStr.
@@ -252,6 +251,14 @@
 
 %% FIXME: 'notesep' should be settable by option to 'su-thesis'.
 \setcitestyle{notesep={:}}                     % : between year arg page number
+
+%% FIXME: Below should be used with Swedish only
+%% This defines what quotes to use article names when used in citations (for
+%% references without authors, shown as '(”Font info”, 2018)') when using the
+%% 'key = {{\APACcitebtitle{Text}}}' in the BiBTeX bibliography (more info in
+%% the 'apacite' docs). The quotes used here are "..." since were also using
+%% the 'csquotes' package.
+\renewcommand{\APACciteatitle}[1]{"#1"}
 
 %% This is good for Swedish and French, but not desired in English.
 %% FIXME: Spacing in references should be settable by option to 'su-thesis'.
