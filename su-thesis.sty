@@ -210,9 +210,16 @@
   BoldFont       = *b,
   ItalicFont     = *i,
   BoldItalicFont = *z,
+  %% FIXME: Should this only be incorporated into the thesis title?
   WordSpace      = .95,
   LetterSpace    = 1,
 ]
+%% A font for Swedish sign language (swl) transcription.
+\newfontfamily{\swlfamily}{freesans-swl}
+\newcommand{\swl}[1]{{\swlfamily{}#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Set section heading font and size.
