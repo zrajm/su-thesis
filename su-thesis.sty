@@ -166,7 +166,7 @@
 %% }
 %% \loadparskip{8pt}
 
-%% \addfontfeature squishes letters together. It is from 'fontspec' pagage.
+%% \addfontfeature squishes letters together. It is from 'fontspec' package.
 %% [https://tex.stackexchange.com/a/82890/185988]
 
 %% FIXME line height! (Currently rounded off fontsize * 1.2).
@@ -611,6 +611,7 @@
 
 \AtEndDocument{
   \pagenumbering{gobble} % turn off page numbering
+  \clearpage
   \sumakebackpage
   \clearpage
 }

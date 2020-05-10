@@ -5,9 +5,9 @@
 
 
 \subsection{Ladda mallen}
-\label{variabler}
+\label{ladda}
 
-För att ladda mallen använd:
+För att ladda mallen använd \LaTeX-kommandot:
 
 \begin{verbatim}
 \usepackage{su-thesis}
@@ -75,38 +75,33 @@ språk).
 \end{verbatim}
 
 
-\subsection{Fonetiska tecken (IPA)}
+\subsection{Fonetisk transkription (IPA)}
 \label{ipa}
 
-Med den här mallen kommer en nyare variant av Times New Roman som inkluderar
-IPA-symboler (tyvärr finns dock inte fet eller kursiv stil med i detta
-typsnitt). För att ladda typsnittet behöver du lägga till följande (före
-\verb|\begin{document}|):
+Den version av Times New Roman som kommer med uppsatsmallen\footnote{Times New
+  Roman har haft stöd för IPA-symboler sedan version 5.22 \citep{ipa} som kom
+  med Windows 7 \citep{win-7-fonts}. I uppsatsmallen är Times New Roman version
+  7.00 och Verdana 5.22 inkluderade (från Windows 10).} har stöd för
+IPA-symboler (International Phonetic Alphabet). Detta fungerar med både fet och
+kursiv stil fungerar, men dessvärre finns inte IPA-symbolerna med i Verdana, så
+det går bara att få fonetiska symboler med serifftypsnitt. Tabell
+\ref{tabell-svenska-konsonanter} är ett exempel på hur det kan se ut.
 
-\medskip
-\begin{verbatim}
-%% IPA font (does not support italic or bold).
-\newfontfamily{\ipafamily}{times_f94e4fee465af93db5f536a94751dc25.ttf}[
-  Ligatures = TeX,
-  Path      = ./su-thesis/,
-]
-\newcommand{\ipa}[1]{\ipafamily{}#1}
-\end{verbatim}
-\medskip
-
-Om du lagt till det ovanstående så har du nu två nya kommandon du kan använda
-för att inkludera IPA-symboler i ditt dokument:
-\texttt{\{\textbackslash{}ipafamily~}...\texttt{\}} (för längre textstycken)
-och \texttt{\textbackslash{}ipa\{}...\texttt{\}} (för enstaka ord eller
-tecken).
-
-Om du inte har någon annan metod för att skriva IPA-tecken så kan du använda
+Om du saknar en inmatningsmetod för att skriva IPA-symboler så kan du använda
 följande hemsida och därefter klippa/klistra in resultatet i din uppsats:
-\texttt{%
-  \href{https://ipa.typeit.org/full/}{%
-    https://\linebreak[0]ipa\linebreak[0].typeit\linebreak[0].org/%
-    \linebreak[0]full/%
-}}
+\url{https://ipa.typeit.org/full/}. (Det går förstås lika bra att använda Word,
+eller andra program och klistra in resultatet därifrån i ditt dokument.)
+
+\begin{table}
+  \caption{IPA-exempel, svenska konsonanter (från \citealp[140]{engstrand-1999},
+    egen översättning).}
+  \label{tabell-svenska-konsonanter}
+  \vspace{.5em}
+  \input{tables/svenska-konsonanter.tex}
+  \vspace{1em}
+\end{table}
+
+\hl{FIXME: Lägg till instruktioner för teckenspråkstranskription}
 
 
 \subsection{Ta bort inledande/avslutande sidor}
@@ -118,13 +113,15 @@ relevanta kommandona så att det inte generar någon effekt. Detta görs med hj�
 av \LaTeX-kommandot \verb|\renewcommand|. Följande kommandon kan användas:
 
 \begin{verbatim}
+\usepackage{su-thesis}
+...
 \renewcommand{\sumakefrontpage}{}     % ta bort framsida
 \renewcommand{\sumakeabstractpage}{}  % ta bort sammanfattningssida
 \renewcommand{\sutableofcontents}{}   % ta bort innehållsförteckning
 \renewcommand{\sumakebackpage}{}      % ta bort baksida
 \end{verbatim}
 
-\noindent\textbf{Notera:} Raden med \verb|\renewcommand| måste komma efter
-raden som laddar mallen.
+\noindent\textbf{Notera:} Raden med \verb|\renewcommand| måste utföras efter
+\verb|\usepackage{su-thesis}|.
 
 %% [eof]

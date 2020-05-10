@@ -18,20 +18,27 @@ du använder Overleaf.
 
 \subsubsection{Installation av program}
 
-Denna uppsatsmall kräver kommandot \texttt{xelatex} (det traditionella
-kommandot \texttt{pdflatex} fungerar inte. \hl{FIXME: fungerar inte
-pdflatex?}). Denna guide utgår också ifrån bekvämlighetsverktyget
-\texttt{latexmk}.
+Denna uppsatsmall kräver fungerar inte med PDF\LaTeX, utan kräver XeLaTeX eller
+\LuaLaTeX\footnote{Stilmallen är inte testad med \LuaLaTeX{} men det borde
+  fungera.} för att fungera. Detta beror på att mallen använder sig av
+\LaTeX-paketet \texttt{fontspec} för att ladda de Truetype-typsnitt som
+specificeras av Stockholms stilrekommendationer och detta paket fungerar inte
+under PDF\LaTeX.
 
-\noindent Om du kör Linux (med Debian eller Ubuntu) kör du följande kommandon
-(som användaren 'root') för att installera:
+Jag rekommenderar att du använder bekvämlighetsverktyget
+\texttt{latexmk}\footnote{Dokumentationen till kommandot \texttt{latexmk} finns
+  här: \url{https://mg.readthedocs.io/latexmk.html}. } för att kompilera din
+\LaTeX-kod. Om du gör det kan du använda den \texttt{latexmkrc}-fil som följer
+med uppsatsmallen för att om det som behövs för kompilering.
+
+Innan du börjar behöver du se till att alla relevanta program är installerade
+på datorn. Om du kör Linux (Ubuntu, Debian eller likanande) så kan du kanvända
+följande kommando för att installera:
 
 \begin{verbatim}
-apt install texlive-xetex latexmk
+sudo apt install texlive-xetex latexmk
 \end{verbatim}
 
-\noindent Dokumentationen till kommandot \texttt{latexmk} finns här:
-\texttt{\href{https://mg.readthedocs.io/latexmk.html}{https://\linebreak[0]{}mg\linebreak[0]{}.readthedocs\linebreak[0]{}.io/\linebreak[0]{}latexmk\linebreak[0]{}.html}}
 
 
 \subsubsection{Kompilering}
@@ -42,10 +49,10 @@ Det enklaste sättet att kompilera din uppsats är:
 latexmk su-thesis.tex
 \end{verbatim}
 
-\noindent\texttt{latexmk} har inställningar i en fil som heter
-\texttt{latexmkrc}. Om du installerar denna uppsatsmall i en underkatalog så
-vill du förmodligen kopiera \texttt{latexmkrc} till katalogen där du har din
-uppsats också.
+De inställningar som behövs till \texttt{latexmk} följer med uppsatsmallen och
+finns i en fil som heter \texttt{latexmkrc}. Om du installerar denna
+uppsatsmall i en underkatalog så vill du förmodligen också kopiera
+\texttt{latexmkrc} till katalogen där du har din uppsats.
 
 Om du inte använder \texttt{latexmk} utan insisterar på att kompilera
 själv så motsvarar detta följande kommandon (Ja! -- \texttt{xelatex} behöver
@@ -114,7 +121,8 @@ runt författarnamnet).
     \citealt{bergman+wallin-2001} \\
     \bottomrule
   \end{tabular}
-  \caption{\LaTeX-kommandon för att skriva referenser (från \texttt{natbib}-paketet)}
+  \caption{Några \LaTeX-kommandon för att skriva referenser (från
+    \texttt{natbib}-paketet)}.
 \end{table}
 
 \texttt{\textbackslash{}citealp} och \texttt{\textbackslash{}citealt}
@@ -122,8 +130,8 @@ kommandona fungerar som \texttt{\textbackslash{}citep} och
 \texttt{\textbackslash{}citet} men utelämnar de omgivande parenteserna. Ibland
 kan detta vara nödvändigt, som tex om man vill ange två källor med sidreferens
 inom parentes. I detta fall kan man skriva
-\texttt{(\textbackslash{}citealp[55]\{källa1\} och
-  \textbackslash{}citealp[25]\{källa2\})}.
+"\texttt{(\textbackslash{}citealp[55]\{källa1\} och
+  \textbackslash{}citealp[25]\{källa2\})}".
 
 Det finns ytterligare kommandon som kan användas för att skapa referenser, hur
 de används finns beskrivet i

@@ -1,0 +1,168 @@
+%%
+%% This table uses 'tabularx', 'array' and 'makecell' packages.
+%%
+%% * 'Tables in LATEX2ε: Packages and Methods' (docs on tables etc.)
+%%   https://www.tug.org/pracjourn/2007-1/mori/mori.pdf
+%%
+%% * 'The tabularx package∗'
+%%   http://mirrors.ibiblio.org/CTAN/macros/latex/required/tools/tabularx.pdf
+%%
+%%
+%% Random Observations
+%% ===================
+%%
+%%       \setlength{\extrarowheight}{40pt}%   % array:
+%%       \setlength{\tabcolsep}{<length>}     % tabular: ½ of width between cols
+%%       \setlength{\arraycolsep}{<length>}   % array:   ½ of width between cols
+%%       %%\extracolsep{\fill}
+%%
+%%   Vertical padding is possible in a global way using @Herbert's answer. That
+%%   is, to redefine the array stretch factor <factor> using
+%%
+%%       \renewcommand\arraystretch{.01}%      % (array)
+%%
+%%   \baselineskip -- Specifies minimum space between baselines successive
+%%   lines in a paragraph. Is reset, for example, by font changes. The value in
+%%   effect at end of a paragraph, is used for whole paragraph.
+%%
+%%       \setlength{\baselineskip}{0pt}%      % minimum line height (reset by font commands)
+%%
+%%   \baselinestretch is used to multiply \baselineskip. (Default: 1.0). Use
+%%   this to change line height in a document, since its not reset by other
+%%   commands.
+%%
+%%       \renewcommand{\baselinestretch}{0}%   % multiplier of line height (default: 1)
+%%       \arraybackslash%                      % '\\' inside table
+%%
+%%
+%% Column Specifications
+%% =====================
+%% These column specifications are used by 'tabularx'. Some of them are
+%% imported from the 'array' package, and some from the (non-x) 'tabular'.
+%%
+%%     @{text}     Replace padding between this & previous column with <text>
+%%     >{code}     (array) insert <code> at beginning of cell
+%%     l           left aligned
+%%     r           right aligned
+%%     c           horizontally centered
+%%     p{width}    justified
+%%     m{width}    (array) vertically centered
+%%     b{width}    (array) bottom align
+%%     <{code}     (array) insert <code> at end of cell
+%%     @{text}     Replace padding between this & next column with <text>
+%%
+%% Relative Column Widths ('tabularx')
+%% ===================================
+%% If there are two columns, then then all <\hsize>s added together should be
+%% 2, but if you want differing widths you could use something like this (which
+%% will cause the first column to be three times wider than the second):
+%%
+%%    \begin{tabularx}{\linewidth}{|%
+%%      >{\hsize=1.5\hsize\linewidth=\hsize}c|%
+%%      >{\hsize=0.5\hsize\linewidth=\hsize}c|}
+%%
+\centering%
+{
+  \large%
+  \newcommand{\na}{\makecell{}}               % empty cell content
+  \newcommand{\td}[1]{\makecell{#1}}
+  \renewcommand{\theadfont}{\normalsize}      % small font in header
+  \renewcommand\theadalign{cc}
+  \renewcommand\cellalign{cc}
+  \renewcommand\theadset{                     % (makecell)
+    \renewcommand\arraystretch{.6}%           % (array) line height
+    %\renewcommand\theadalign{c}
+  }%
+  \renewcommand{\tabularxcolumn}[1]{>{}m{#1}}
+  \newcolumntype{Z}{%                       % phoneme column
+    >{\centering\arraybackslash}X%
+  }%
+  \newcolumntype{P}{%                       % Placeholder column
+    @{}%                                    %   suppress left margin
+    c%                                      %   horizontally centered text
+    @{}%                                    %   suppress right margin
+  }%
+  %% Left side table headers.
+  %%
+  %% Leading & trailing space should be of same width here. But something is
+  %% adding approx .2em space on the left side, so that's from the left hand
+  %% side subtracted below. (Specifying an empty @{} will suppress the
+  %% default space between columns.)
+  %%
+  \newcolumntype{H}{%             % Header
+    @{\hspace{.3em}}%             %   left margin
+    c%                            %   horizontally centered text
+    @{\hspace{.5em}}%             %   right margin
+  }%
+  \begin{tabularx}{\linewidth}{P|H|ZZ|ZZ|ZZ|ZZ|ZZ|ZZ|ZZ|}
+    \hline%---------------------------------------------------------------------
+    \makecell{\rule{0pt}{1.5em}} &
+                                                & % header = 3 columns wide
+    \multicolumn{2}{c|}{\thead{Bilabial}}       &
+    \multicolumn{2}{c|}{\thead{Labio-\\dental}} &
+    \multicolumn{2}{c|}{\thead{Dental}}         &
+    \multicolumn{2}{c|}{\thead{Alveolar}}       &
+    \multicolumn{2}{c|}{\thead{Palatal}}        &
+    \multicolumn{2}{c|}{\thead{Velar}}          &
+    \multicolumn{2}{c|}{\thead{Glottal}} \\
+    \hline%---------------------------------------------------------------------
+    \makecell{\rule{0pt}{1.5em}} &
+    \thead{Klusil} &
+    \td{p} & \td{b} &  % bilabial
+    \na    & \na    &  % labiodental
+    \td{t} & \td{d} &  % dental
+    \na    & \na    &  % alveolar
+    \na    & \na    &  % palatal
+    \td{k} & \td{ɡ} &  % velar
+    \na    & \na    \\ % glottal
+    \hline%---------------------------------------------------------------------
+    \makecell{\rule{0pt}{1.5em}} &
+    \thead{Nasal} &
+    \na & \td{m} &  % bilabial
+    \na & \na    &  % labiodental
+    \na & \td{n} &  % dental
+    \na & \na    &  % alveolar
+    \na & \na    &  % palatal
+    \na & \td{ŋ} &  % velar
+    \na & \na    \\ % glottal
+    \hline%---------------------------------------------------------------------
+    \makecell{\rule{0pt}{1.5em}} &
+    \thead{Frikativa} &
+    \na    & \na    &  % bilabial
+    \td{f} & \td{v} &  % labiodental
+    \td{s} & \na    &  % dental
+    \na    & \na    &  % alveolar
+    \na    & \td{ʝ} &  % palatal
+    \na    & \na    &  % velar
+    \td{h} & \na    \\ % glottal
+    \hline%---------------------------------------------------------------------
+    \makecell{\rule{0pt}{1.5em}} &
+    \thead{Approximant} &
+    \na & \na    &  % bilabial
+    \na & \na    &  % labiodental
+    \na & \na    &  % dental
+    \na & \td{ɹ} &  % alveolar
+    \na & \na    &  % palatal
+    \na & \na    &  % velar
+    \na & \na    \\ % glottal
+    \hline%---------------------------------------------------------------------
+    \makecell{\rule{0pt}{1.5em}} &
+    \thead{Lateral\\approximant} &
+    \na & \na    &  % bilabial
+    \na & \na    &  % labiodental
+    \na & \td{l} &  % dental
+    \na & \na    &  % alveolar
+    \na & \na    &  % palatal
+    \na & \na    &  % velar
+    \na & \na    \\ % glottal
+    \hline%---------------------------------------------------------------------
+  \end{tabularx}
+
+  \medskip
+
+  ɧ {\normalsize \hspace{.25em} Tonlös dorso-palatal/velar frikativa}
+  \hspace{.8em}
+  ɕ {\normalsize \hspace{.25em} Tonlös alveolar-palatal frikativa}
+}
+
+%% [eof]

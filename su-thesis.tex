@@ -13,6 +13,12 @@
 %% \usepackage[UKenglish]{babel} % British English
 %% \usepackage[USenglish]{babel} % American English
 
+\usepackage{makecell} % https://ctan.org/pkg/makecell -- \makecell{} \thead{} \multirowthead etc
+\renewcommand{\theadfont}{\normalsize\sffamily\bfseries}
+\renewcommand\theadalign{tl}
+
+\newcommand{\texcommand}[2][…]{\texttt{\textbackslash#2\{#1\}}}
+
 \usepackage{su-thesis}
 
 %% Always used
@@ -75,7 +81,7 @@
 \setlist{itemsep=0pt}
 
 %% For XeLaTeX logo
-\usepackage{metalogo}
+\usepackage{metalogo} % https://ctan.org/pkg/metalogo
 
 %% Suppress abstract page.
 %\renewcommand{\sumakeabstractpage}{}
@@ -96,28 +102,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\input{su-thesis-1-utseende.tex}
-\clearpage
-
-\input{su-thesis-2-latex.tex}
-\clearpage
-
-\input{su-thesis-3-mallen.tex}
-\clearpage
-
-\input{su-thesis-4-uppsatsstruktur.tex}
-\clearpage
+%% \include{} automatically does leading & trailing \clearpage.
+\include{su-thesis-1-utseende}
+\include{su-thesis-2-latex}
+\include{su-thesis-3-mallen}
+\include{su-thesis-4-uppsatsstruktur}
 
 \nocite{*}                               % show all references (even non-cited)
 \addcontentsline{toc}{section}{\refname} % include section in table of content
+\renewcommand{\bibliographyprenote}{
+  Om du använder kommandot \texcommand[*]{nocite} så markerar uppsatsmallen
+  alla de referenser som bara finns i \texttt{.bib}-filen och som inte citeras
+  i uppsatsens text, med grått nedan. (Detta för att hjälpa dig att komma ihåg
+  att citera alla dina referenser.) Om du inte har något
+  \texcommand[*]{nocite}-kommando ur ditt dokument så döljs de oanvända
+  referenserna istället.
+
+  \medskip
+}
 \bibliography{su-thesis-5-referenser.bib}
-\clearpage
 
 %% \begin{appendices}
-%% \input{su-thesis-9-bilagor.tex}
+%% \include{su-thesis-9-bilagor}
 %% \end{appendices}
-%% \clearpage
-
 \end{document}
 
 %% [eof]
