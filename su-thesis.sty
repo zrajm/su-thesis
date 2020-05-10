@@ -69,13 +69,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Support for Swedish characters (and other Unicode characters).
-%% [https://tex.stackexchange.com/questions/664/]
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Use " for quotes. [https://tex.stackexchange.com/questions/386695/]
 %%
 %% The csquotes package also allows for language-sensitive quotes, and quotes
@@ -180,6 +173,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Load fonts (Times New Roman and Verdana)
+%% (Don't use inputenc, fontenc, or textcomp with XeLaTeX.)
 %%
 \usepackage{fontspec}   % https://ctan.org/pkg/fontspec
 \usepackage{etoolbox}   % https://ctan.org/pkg/etoolbox
