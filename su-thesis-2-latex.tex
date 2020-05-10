@@ -19,7 +19,7 @@ du använder Overleaf.
 \subsubsection{Installation av program}
 
 Denna uppsatsmall kräver fungerar inte med PDF\LaTeX, utan kräver XeLaTeX eller
-\LuaLaTeX\footnote{Stilmallen är inte testad med \LuaLaTeX{} men det borde
+\LuaLaTeX\footnote{Uppsatsmallen är inte testad med \LuaLaTeX{} men det borde
   fungera.} för att fungera. Detta beror på att mallen använder sig av
 \LaTeX-paketet \texttt{fontspec} för att ladda de Truetype-typsnitt som
 specificeras av Stockholms stilrekommendationer och detta paket fungerar inte
@@ -60,7 +60,6 @@ vanligtvis köras tre gånger för att vara säker på att både innehållsfört
 och referenser stämmer överens med texten).
 
 \begin{verbatim}
-export TEXINPUTS=".//:$TEXINPUTS"
 xelatex su-thesis.tex
 bibtex su-thesis.bib
 xelatex su-thesis.tex
@@ -73,7 +72,48 @@ rad. -- När detta händer skriv 'x' (och tryck enter) för att avsluta. Rätta
 felet i din \texttt{.tex}-fil och kompilera om.
 
 
-\subsection{Att skriva referenser}
+\subsection{Att lägga till bilder}
+\label{bilder}
+
+För att lägga till en bild i din uppsats, skapa en katalog som heter
+"\texttt{images/}" och lägg bilden där. Därefter använder du \LaTeX-kommandot
+\texcommand{includegraphics} för att lägga till bilden till ditt dokument
+("\texttt{images/}"-delen av filnamnet ska \emph{inte} vara med!). Vill du göra
+bilden till en 'flytande' figur, omger du den dessutom med \texttt{figure}
+miljö (eller en \texttt{table}-miljö om bilden är en tabell av något slag). Det
+kan se ut såhär:
+
+\begin{multicols}{2}
+
+\null \vfill
+\noindent\begin{verbatim}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[
+    width=.75\linewidth
+  ]{su-logo-sv.png}
+  \caption{Test image!}
+\end{figure}
+\end{verbatim}
+
+\vfill \null
+\columnbreak
+
+{
+  \centering
+  \includegraphics[
+    width=.75\linewidth
+  ]{su-logo-sv.png} \\
+  \medskip
+  Figur 1: Test image! \\
+}
+
+\end{multicols}
+
+
+
+
+\subsection{Att citera en referens}
 
 För att skriva en referens i din text använder antingen kommandot
 \texttt{\textbackslash{}citep\{\}} (för en parentetisk referens) eller

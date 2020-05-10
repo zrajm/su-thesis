@@ -1,7 +1,3 @@
-%%
-%% FIXME: SU logo should be loaded relative to .sty file's path
-%%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Template for Bachelor's, Magister and Master's theses at the Department of
 %% Linguistics, Stockholm University
@@ -16,8 +12,8 @@
 %% Projektstruktur
 %% /
 %% ├── su-thesis.sty
-%% └── /media/
-%%     ├── su-logga-sv.png
+%% └── /images/
+%%     ├── su-logo-sv.png
 %%     └── su-logo-en.png
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Denna uppsatsmall inkluderar:
@@ -105,7 +101,12 @@
 
 \newcommand{\TODO}[1]{\marginpar{\texthl{#1}}}
 
-%\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Specify which paths to load images from.
+\usepackage{graphicx} % https://ctan.org/pkg/graphicx
+\graphicspath{{./images/}{./su-thesis/images/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\usepackage{url}
 %\usepackage{hyperref}
 
@@ -500,7 +501,7 @@
     \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
       \raisebox{-3mm}{%
         \iflanguage{swedish}{%
-          \includegraphics[width=41mm]{su-logga-sv.png}%
+          \includegraphics[width=41mm]{su-logo-sv.png}%
         }{%
           \includegraphics[width=41mm]{su-logo-en.png}%
         }%
@@ -587,7 +588,7 @@
     \hspace{\stretch 1}\ \kern\textwidth\kern-50mm\smash{%
       \raisebox{-3mm}{%
         \iflanguage{swedish}{%
-          \includegraphics[width=41mm]{su-logga-sv.png}%
+          \includegraphics[width=41mm]{su-logo-sv.png}%
         }{%
           \includegraphics[width=41mm]{su-logo-en.png}%
         }%
