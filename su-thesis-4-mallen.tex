@@ -101,7 +101,54 @@ eller andra program och klistra in resultatet därifrån i ditt dokument.)
   \vspace{1em}
 \end{table}
 
-\hl{FIXME: Lägg till instruktioner för teckenspråkstranskription}
+
+\subsection{Teckenspråkstranskription}
+\label{teckenspråk}
+
+Med uppsatsmallen kommer sansserifftypsnittet FreeSans-SWL ("SWL" är ISO-koden
+för svenskt teckenspråk) som innehåller de teckentranskriptionssymboler som
+används för svenskt teckenspråk. (Symbolerna används inte utanför Sverige och
+det finns dessvärre ingen version av Verdana eller Times New Roman som
+inkluderar dem.)
+
+Det saknas stöd för teckentranskriptionssymbolerna i de flesta
+textredigeringsprogram, så med största sannolikhet kommer du inte att kunna se
+dem när du jobbar med texten. (Om du vill försöka kan du kopiera typsnittet
+från "\texttt{fonts/freesans-swl.ttf}" och installera det på din dator och
+därefter testa att välja det som typsnitt i ditt textredigeringsprogram.)
+
+Det enklaste sättet att skriva symbolerna är att använda följande webbsida, och
+därefter klistra in resultatet därifrån in i ditt \LaTeX{}-dokument:
+\href{https://zrajm.github.io/teckentranskription/}{\url{zrajm.github.io/teckentranskription/}}
+
+Det finns två \LaTeX{} kommandon för att använda det: \texcommand{swl} och
+\verb|\swlfamily|. \texcommand{swl} är i det flesta situationer det mer
+praktiska av de två. Ange den text du vill visa med FreeSans-SWL som argument
+(vanligtvis är detta transkriptionen, men FreeSans-SWL är ett Unicode-typsnitt
+och har support för de flesta språk).
+
+\medskip
+
+\hspace{1em}\texcommand[????????????????]{swl} → \swl{􌥃􌥔􌥘􌥃􌤵􌤷􌥧􌥡􌥼􌥲􌦊􌥱􌦈􌥼􌤟􌥣}
+
+\medskip
+
+\verb|\swlfamily| byter typsnitt till FreeSans-SWL och passar bättre till
+längre texter (jag har aldrig sätt en längre text skriven på detta sätt). För
+att byta tillbaka till originaltypsnittet kan du antingen använda
+\verb|{\swlfamily …}|, eller använda \verb|\rmfamily| för att byta tillbaka
+till Times New Roman efteråt, eller använda \verb|\sffamily| för att byta till
+Verdana.
+
+\begin{verbatim}
+\swlfamily
+Teckenspråk heter ???????????????? på teckenspråk.
+\rmfamily
+\end{verbatim}
+
+\swlfamily
+\hspace{1em}→ Teckenspråk heter 􌥃􌥔􌥘􌥃􌤵􌤷􌥧􌥡􌥼􌥲􌦊􌥱􌦈􌥼􌤟􌥣 på teckenspråk.
+\rmfamily
 
 
 \subsection{Ta bort inledande/avslutande sidor}
