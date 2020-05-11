@@ -1,0 +1,75 @@
+%% -*- mode: latex; ispell-dictionary: "svenska" -*-
+
+\section{Vilken \LaTeX{} ska jag använda?}
+\label{latex}
+
+Detta är en uppsatsmall för \LaTeX{} för Stockholms universitet. Den kan
+användas med \XeLaTeX{} på din egen dator eller med webbverktyget Overleaf
+(\href{https://overleaf.com/edu/su}{\url{overleaf.com/edu/su}}) -- som student
+på Stockholms universitet har du automatiskt tillgång Overleaf.
+
+Denna uppsatsmall kräver \XeLaTeX{} eller \LuaLaTeX{}\footnote{Uppsatsmallen är
+  inte testad med \LuaLaTeX{} men det borde fungera.} för att fungera. Den
+fungerar inte med PDF\LaTeX{}. Detta beror på att bara \XeLaTeX{} och \LuaLaTeX
+stödjer Truetype-typsnitt, vilket behövs för att ladda de typsnitt som
+Stockholms universitets stilmanual rekommenderar.
+
+
+\subsection{Overleaf}
+
+Om du använder Overleaf måste du ändra inställningarna så att ditt dokument
+kompileras med \XeLaTeX{} (om du använder det förvalda alternativet PDF\LaTeX{}
+så kommer ditt dokument inte kunna kompilera).
+
+
+\subsection{På egen dator}
+
+\subsubsection{Installation av program}
+
+Jag rekommenderar att du använder bekvämlighetsverktyget
+\texttt{latexmk}\footnote{Dokumentationen till kommandot \texttt{latexmk} finns
+  här: \url{https://mg.readthedocs.io/latexmk.html}. } för att kompilera din
+\LaTeX{}-kod. Om du gör det kan du använda den \texttt{latexmkrc}-fil som
+följer med uppsatsmallen för att om det som behövs för kompilering.
+
+Innan du börjar behöver du se till att alla relevanta program är installerade
+på datorn. Om du kör Linux (Ubuntu, Debian eller likanande) så kan du kanvända
+följande kommando för att installera:
+
+\begin{verbatim}
+sudo apt install texlive-xetex latexmk
+\end{verbatim}
+
+
+
+\subsubsection{Kompilering}
+
+Det enklaste sättet att kompilera din uppsats är:
+
+\begin{verbatim}
+latexmk su-thesis.tex
+\end{verbatim}
+
+De inställningar som behövs till \texttt{latexmk} följer med uppsatsmallen och
+finns i en fil som heter \texttt{latexmkrc}. Om du installerar denna
+uppsatsmall i en underkatalog så vill du förmodligen också kopiera
+\texttt{latexmkrc} till katalogen där du har din uppsats.
+
+Om du inte använder \texttt{latexmk} utan insisterar på att kompilera
+själv så motsvarar detta följande kommandon (Ja! -- \texttt{xelatex} behöver
+vanligtvis köras tre gånger för att vara säker på att både innehållsförteckning
+och referenser stämmer överens med texten).
+
+\begin{verbatim}
+xelatex su-thesis.tex
+bibtex su-thesis.bib
+xelatex su-thesis.tex
+xelatex su-thesis.tex
+\end{verbatim}
+
+\noindent Då och då råkar man skriva något galet i \LaTeX{}-koden, och
+kompileringen stannar mitt i. Då får man upp en prompt, med ett frågetecken i
+början på en ny rad. -- När detta händer skriv 'x' (och tryck enter) för att
+avsluta. Rätta felet i din \texttt{.tex}-fil och kompilera om.
+
+%% [eof]

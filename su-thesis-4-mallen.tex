@@ -7,7 +7,7 @@
 \subsection{Ladda mallen}
 \label{ladda}
 
-För att ladda mallen använd \LaTeX-kommandot:
+För att ladda mallen använd \LaTeX{}-kommandot:
 
 \begin{verbatim}
 \usepackage{su-thesis}
@@ -15,7 +15,7 @@ För att ladda mallen använd \LaTeX-kommandot:
 
 
 \subsection{Välja språk}
-\label{sprak}
+\label{språk}
 
 \noindent Språket på uppsatsen ställer man in med hjälp av paketet
 \texttt{babel}. När du byter språk så kommer byts fram- och baksida ut mot
@@ -85,7 +85,7 @@ Den version av Times New Roman som kommer med uppsatsmallen\footnote{Times New
 IPA-symboler (International Phonetic Alphabet). Detta fungerar med både fet och
 kursiv stil fungerar, men dessvärre finns inte IPA-symbolerna med i Verdana, så
 det går bara att få fonetiska symboler med serifftypsnitt. Tabell
-\ref{tabell-svenska-konsonanter} är ett exempel på hur det kan se ut.
+\ref{tab-ipa} är ett exempel på hur det kan se ut.
 
 Om du saknar en inmatningsmetod för att skriva IPA-symboler så kan du använda
 följande hemsida och därefter klippa/klistra in resultatet i din uppsats:
@@ -95,9 +95,9 @@ eller andra program och klistra in resultatet därifrån i ditt dokument.)
 \begin{table}
   \caption{IPA-exempel, svenska konsonanter (från \citealp[140]{engstrand-1999},
     egen översättning).}
-  \label{tabell-svenska-konsonanter}
+  \label{tab-ipa}
   \vspace{.5em}
-  \input{tables/svenska-konsonanter.tex}
+  \input{tables/svenska-konsonanter}
   \vspace{1em}
 \end{table}
 
@@ -110,7 +110,7 @@ eller andra program och klistra in resultatet därifrån i ditt dokument.)
 Mallen använder interna kommandon för att genera inledande och avslutande
 sidor. För att ta bort en eller flera av dessa kan man definiera om de
 relevanta kommandona så att det inte generar någon effekt. Detta görs med hjälp
-av \LaTeX-kommandot \verb|\renewcommand|. Följande kommandon kan användas:
+av \LaTeX{}-kommandot \verb|\renewcommand|. Följande kommandon kan användas:
 
 \begin{verbatim}
 \usepackage{su-thesis}

@@ -1,0 +1,234 @@
+%% -*- mode: latex; ispell-dictionary: "svenska" -*-
+
+\section{Hur använda \LaTeX{}?}
+\label{hur}
+
+Uppsatsmallen \texttt{su-thesis} är tänkt att vara en hjälp i uppsatsskrivandet
+så långt som möjligt, men det finns också andra bra vanor som inte kan byggas
+in i en modul. Jag försöker här summera några av de viktigaste lärdomarna jag
+gjort själv.
+
+\LaTeX{} är populärt och har funnits lääänge (sedan 1984) vilket innebär att
+det finns en uppsjö tillägg och extrapaket för allt mellan himmel och jord. Så
+om det är någonting du saknar, eller funderar över -- googla!
+
+Websajten \href{https://ctan.org/}{\url{ctan.org}} (\emph{Comprehensive Tex
+  Archive Network}) har massor med dokumentation, så lägg till "ctan" i din
+googlesökning om du letar efter något du gissar skulle kunna stå i
+dokumentationen.
+
+
+\subsection{En grundplåt}
+\label{grundplåt}
+
+Ett minimalt startdokument för din uppsats kan se ut såhär:
+
+\begin{verbatim}
+\documentclass[11pt]{article}
+\usepackage[swedish]{babel}
+\usepackage{su-thesis}
+
+\suset{author}{Shevek}
+\suset{supervisor}{Sabul}
+\suset[swedish]{title}{Principer för samtidighet}
+\suset[swedish]{subtitle}{Om tiden och samtidighetens natur}
+\suset[english]{title}{Principles of Simultaneity}
+\suset[english]{subtitle}{On the Nature of Time and Simultaneity}
+\suset[swedish]{abstract}{...}
+\suset[english]{abstract}{...}
+
+\begin{document}
+\include{kapitel-1-sekvens}      % laddar 'kapitel-1-sekvens.tex'
+\include{kapitel-2-samtidighet}
+\include{kapitel-3-referenser}
+\end{document}
+\end{verbatim}
+
+Ovanstående dokument använder \texcommand{include} för att inkludera de olika
+kapitlen. Varje deldokument som laddas på detta sätt börjar automatiskt på en
+ny sida så det passar bra för just kapitel. \LaTeX{} kompilerar också de olika
+deldokumenten varförsig vilket gör att det går fortare att kompilera om
+helheten om man bara ändrat i en eller ett par av filerna.
+
+Ett annat sätt man kan snabba upp kompilerandet på är genom att bara kompilera
+det kapitel man för tillfället jobbar med. Om du tex arbetar med det första
+kapitlet i ovanstående dokument, så kan du lägga till följande kommando
+(ovanför \texcommand[document]{begin}) för att bara kompilera det första
+kapitlet och kapitlet med referenser.
+
+\begin{verbatim}
+\includeonly{
+  kapitel-1-sekvens,
+  kapitel-3-referenser,
+}
+\end{verbatim}
+
+När du sedan är klar och vill kompilera alltihop, så tar du bara bort
+\texcommand{includeonly} och kompilerar om.
+
+För mer information att välja språk se \autoref{språk}, för mer information om
+vilka \texcommand{suset} variabler mallen har se \autoref{variabler}.
+
+
+\subsection{Att referera inom texten}
+\label{länkar}
+
+Ibland vill man referera till en annan plats i sin egen text. Detta gör man
+genom att placera ut en etikett \texcommand{label} på stället man vill referera
+till. Därefter kan man skapa en länkar med kommandot \texcommand{autoref} med
+samma etikett, länktexten anpassar sig automatiskt beroende på om det är en
+länk till figur/tabell eller en kapitelrubrik (i det här dokumentet blir tex
+\texcommand[tab-ipa]{autoref} → "\autoref{tab-ipa}" och
+\texcommand[citera]{autoref} → "\autoref{citera}").
+
+\textbf{Rekommendation:} Placera alltid ut \texcommand{label} direkt efter alla
+rubriker, underrubriker och \texcommand{caption} i tabeller och figurer. Tänk
+på att hålla etiketten kort men ändå unik inom ditt dokument. Det är vanligt
+att låta tabeller och figurers etikett börja på "\texttt{tab-}" respektive
+"\texttt{fig-}" eller liknande.
+
+
+\subsection{Bilder och figurer}
+\label{bilder}
+
+Om du vill lägga till en bild i din uppsats, skapa en katalog som heter
+"\texttt{images/}" och lägg bilden där. Därefter använder du \LaTeX{}-kommandot
+\texcommand[FILNAMN]{includegraphics} i din uppsats för att inkludera bilden.
+(Notera att filnamnet inte ska innehålla namnet på bildkatalogen
+"\texttt{images/}".) En bild utgör oftast en figur i uppsatsen. En enkel figur
+med en bild kan se ut såhär:
+
+\begin{multicols}{2}
+\null \vfill
+\noindent\begin{verbatim}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[
+    width=.666\linewidth
+  ]{su-logo-sv.png}
+
+  \caption{Bildtext till figuren.}
+  \label{fig-test}
+\end{figure}
+\end{verbatim}
+
+\vfill \null
+\columnbreak
+
+{
+  \centering
+  \hypertarget{fig-test}{%
+    \includegraphics[width=.666\linewidth]{su-logo-sv.png}%
+  } \\
+  \vspace{.5em}
+  Figur 1: Bildtext till figuren. \\ % '\\' needed for \centering to work
+}
+\end{multicols}
+
+En figur börjar med \texcommand[figure]{begin}, en tabell med
+\texcommand[table]{begin} och slutar med \texcommand{end}. Du behöver också
+ange en bildtext med \texcommand{caption} och en etikett med
+\texcommand{label}. Etiketten är ingenting som läsaren ser, utan används när du
+vill referera till den i texten med kommandot \texcommand{autoref} (se
+\autoref{länkar}). Notera att etiketten alltid måste komma efter bildtexten.
+
+Figurer och tabeller är "flytande" vilket innebär att \LaTeX{} kan flytta runt
+dem och placera dem där det ser bäst ut. Om en tabell eller figur inte får
+plats på sidan flyttas den oftast till nästa sida. Kom därför ihåg att hänvisa
+till din figur/tabell i texten. Figuren ovan har etiketten "\texttt{fig-test}"
+så om vi vill referera till den använder vi kommandot
+\texcommand[fig-test]{autoref} vilket resulterar i en länk med texten
+"\hyperlink{fig-test}{Figur 1}".
+
+Ibland kan en tabell eller figur växa i storlek och det kan vara praktiskt att
+bryta ut den och ha den i en egen fil för att göra det lättare att navigera i
+källkoden. I dessa fall brukar jag skapa en katalog "\texttt{tables/}"
+och/eller "\texttt{figures/}" och lägga mina tabeller/figurer där och sedan
+använda \LaTeX-kommandot \texcommand{input} för att läsa in tabellen där den
+ska vara. (Jag brukar behålla bildtext och \texcommand{label} i
+mammadokumentet, och bara använda \texcommand{input} för själva
+tabellen/figuren i fråga.) Resultatet brukar se ut ungefär såhär:
+
+\begin{verbatim}
+\begin{table}
+  \caption{Svenska konsonanter.}
+  \label{tab-konsonanter}
+  \input{tables/konsonanter}       % laddar 'tables/konsonanter.tex'
+\end{table}
+\end{verbatim}
+
+\textbf{Notera:} Här använder vi kommandot \texcommand{input} till skillnad
+från \texcommand{include} (som vi använde i \autoref{grundplåt}).
+\texcommand{input} lägger inte till någon sidbrytning före/efter och det
+kompileras om varje gång (även om ingen förändring skett) så det är bättre
+lämpat för mindre deldokument (som tex tabeller/figurer) medan
+\texcommand{include} passar bättre för hela kapitel.
+
+
+\subsection{Att citera en referens}
+\label{citera}
+
+För att skriva en referens i din text använder antingen kommandot
+\texttt{\textbackslash{}citep\{\}} (för en parentetisk referens) eller
+kommandot \texttt{\textbackslash{}citet\{\}} (för en referens utan parentes
+runt författarnamnet).
+
+\begin{table}[ht]
+  \centering
+  \renewcommand{\arraystretch}{1.25}%
+  \begin{tabular}[t]{lcc}
+    \toprule
+    {\sffamily\textbf{Kommando}} &
+    {\sffamily\textbf{Beskrivning}} &
+    {\sffamily\textbf{Exempel}} \\
+    \midrule
+    \texttt{\textbackslash{}citep\{källa\}} &
+    med parentes &
+    \citep{bergman+wallin-2001} \\
+    \texttt{\textbackslash{}citet\{källa\}} &
+    utan parentes &
+    \citet{bergman+wallin-2001} \\
+    \midrule
+    \texttt{\textbackslash{}citep\{källa1,källa2\}} &
+    flera källor &
+    \citep{bergman+wallin-2001,bergman-1977} \\
+    \texttt{\textbackslash{}citet\{källa1,källa2\}} &
+    flera källor &
+    \citet{bergman+wallin-2001,bergman-1977} \\
+    \midrule
+    \texttt{\textbackslash{}citep[1--2]\{källa1\}} &
+    sidnummer &
+    \citep[1--2]{bergman-1977} \\
+    \texttt{\textbackslash{}citep[jmf][]\{källa1\}} &
+    text före &
+    \citep[jmf][]{bergman-1977} \\
+    \texttt{\textbackslash{}citep[jmf][1--2]\{källa1\}} &
+    text + sidref. &
+    \citep[jmf][1--2]{bergman-1977} \\
+    \midrule
+    \texttt{\textbackslash{}citealp\{källa\}} &
+    som \texttt{\textbackslash{}citep\{källa\}} &
+    \citealp{bergman+wallin-2001} \\
+    \texttt{\textbackslash{}citealt\{källa\}} &
+    som \texttt{\textbackslash{}citet\{källa\}} &
+    \citealt{bergman+wallin-2001} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Några \LaTeX{}-kommandon för att skriva referenser (från
+    \texttt{natbib}-paketet)}.
+  \label{tab-cite-kommandon}
+\end{table}
+
+\texttt{\textbackslash{}citealp} och \texttt{\textbackslash{}citealt}
+kommandona fungerar som \texttt{\textbackslash{}citep} och
+\texttt{\textbackslash{}citet} men utelämnar de omgivande parenteserna. Ibland
+kan detta vara nödvändigt, som tex om man vill ange två källor med sidreferens
+inom parentes. I detta fall kan man skriva
+"\texttt{(\textbackslash{}citealp[55]\{källa1\} och
+  \textbackslash{}citealp[25]\{källa2\})}".
+
+Det finns ytterligare kommandon som kan användas för att skapa referenser, hur
+de används finns beskrivet i
+\underline{\href{http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/natbib/natbib.pdf}{\texttt{natbib}-paketets referensmanual}}.
+
+%% [eof]

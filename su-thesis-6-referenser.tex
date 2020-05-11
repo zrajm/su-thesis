@@ -1,0 +1,18 @@
+\nocite{*}                               % show all references (even non-cited)
+\phantomsection                          % make toc point here (hyperref)
+\addcontentsline{toc}{section}{\refname} % include section in table of content
+\renewcommand{\bibliographyprenote}{
+
+  I vanliga fall så innehåller referenskapitlet endast de referenser som du
+  faktiskt används i din huvudtext, men om du istället vill inkludera alla
+  referenser som finns i din \texttt{.bib}-fil (vare sig de används eller ej)
+  så kan du använda kommandot \texcommand[*]{nocite}. För att hjälpa dig att
+  hålla reda på om du har ociterade referenser så markerar uppsatsmallen dessa
+  med grå text (se nedan -- för att visa hur det ser ut är en av referenserna
+  nedan oanvänd).
+
+  \medskip
+}
+\bibliography{su-thesis-6-referenser.bib}
+
+%% [eof]
