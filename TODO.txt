@@ -3,9 +3,12 @@
 Stockholms unis beskrivning av "Uppsatsmall och Word-tips" (detaljerad, verkar bra)
 https://www.su.se/svefler/publikationer/uppsatsarkiv/uppsatsmall-och-word-tips-1.29497
 
+* TODO Language sensitive hyphenation
+  Use babel package \foreignlanguage{LANG}{TEXT} to achieve English hyphenation
+  of the English abstract. Note, this is non-trivial(?) because \suset uses
+  'english', but babel (probably) uses something like UKenglish/USenglish etc.
 * TODO Add GitHub README
 * TODO URL command which line breaks URL properly
-* TODO Translate TODO into English
 * TODO Load images relative to .sty file path
   Currently the Stockholm university logo renders just fine in the example
   document, but not when this module is invoked from LaTeX document in a
@@ -50,7 +53,6 @@ https://www.su.se/svefler/publikationer/uppsatsarkiv/uppsatsmall-och-word-tips-1
    https://www.su.se/medarbetare/kommunikation/grafisk-manual/logotyp-1.361901#Ladda%20ner%20logotypen
 *** TODO SVG-version av logo?
 *** TODO Fix placement of logo
-* TODO Innehållsförteckning ska ha svart text
 * DONE
 ** DONE PDF metadata i LaTeX-koden
    CLOSED: [2020-02-25 Tue 15:50]
@@ -74,10 +76,6 @@ https://www.su.se/svefler/publikationer/uppsatsarkiv/uppsatsmall-och-word-tips-1
     CLOSED: [2020-02-25 Tue 02:31]
 *** DONE All text på baksidan
     CLOSED: [2020-02-25 Tue 12:14]
-** DONE Fixa så referenser funkar
-   CLOSED: [2020-02-23 Sun 06:54]
-** DONE Läs in brödtext till kapitlen från separata filer
-   CLOSED: [2020-02-23 Sun 01:08]
 ** DONE Använd LaTeX-mall från Stockholms universitet
    CLOSED: [2020-02-23 Sun 01:09]
 * [eof]
