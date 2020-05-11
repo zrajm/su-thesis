@@ -101,7 +101,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\usepackage{url}
-%\usepackage{hyperref}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Define font sizes and margins around headings/paragraphs etc.
@@ -384,9 +383,28 @@
   }
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/hyperref/doc/manual.pdf
-\usepackage{hyperref}
-% Hyperlänkar för citeringar omfattar bara år. Ska tydligen vara så: https://latex.org/forum/viewtopic.php?t=25341
+\usepackage{hyperref} % https://ctan.org/pkg/hyperref
+
+%% Swedish translations for \autoref command (hyperref package).
+\addto\extrasswedish{%
+  \def\figureautorefname{Figur}          % Figure
+  \def\tableautorefname{Tabell}          % Table
+  \def\partautorefname{Del}              % Part
+  \def\appendixautorefname{Bilaga}       % Appendix
+  \def\equationautorefname{Ekvation}     % Equation
+  \def\Itemautorefname{punkt}            % item
+  \def\chapterautorefname{kapitel}       % chapter
+  \def\sectionautorefname{kapitel}       % section
+  \def\subsectionautorefname{kapitel}    % subsection
+  \def\subsubsectionautorefname{kapitel} % subsubsection
+  \def\paragraphautorefname{stycke}      % paragraph
+  \def\Hfootnoteautorefname{fotnot}      % footnote
+  \def\AMSautorefname{Ekvation}          % Equation
+  \def\theoremautorefname{Teorem}        % Theorem
+  \def\pageautorefname{sidan}            % page
+}
 
 % Examples & Glossaries
 %\usepackage{expex} % for examples
