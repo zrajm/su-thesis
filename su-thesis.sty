@@ -323,7 +323,7 @@
 \renewcommand{\bibitem}[2][]{%                 % set text color for bibitem
   \color{black}%
   \ifcsundef{ZZ#2}{%
-    \typeout{FIXME: MISSING CITATION FOR '#2'}%
+    \typeout{FIXME: IN REFERENCES, BUT NOT CITED IN TEXT '#2'}%
     \color{gray}%
   }{}%
   \orgbibitem[#1]{#2}%
