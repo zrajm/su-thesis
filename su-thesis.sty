@@ -280,19 +280,21 @@
 %% FIXME: 'notesep' should be settable by option to 'su-thesis'.
 \setcitestyle{notesep={:}}                     % : between year arg page number
 
-%% FIXME: Below should be used with Swedish only
-%% This defines what quotes to use article names when used in citations (for
-%% references without authors, shown as '(”Font info”, 2018)') when using the
-%% 'key = {{\APACcitebtitle{Text}}}' in the BiBTeX bibliography (more info in
-%% the 'apacite' docs). The quotes used here are "..." since were also using
-%% the 'csquotes' package.
-\renewcommand{\APACciteatitle}[1]{"#1"}
+%% Apacite settings for Swedish.
+\csappto{extrasswedish}{
+  %% This defines what quotes to use article names when used in citations (for
+  %% references without authors, shown as '(”Font info”, 2018)') when using the
+  %% 'key = {{\APACcitebtitle{Text}}}' in the BiBTeX bibliography (more info in
+  %% the 'apacite' docs). The quotes used here are "..." since were also using
+  %% the 'csquotes' package.
+  \renewcommand{\APACciteatitle}[1]{"#1"}
 
-%% This is good for Swedish and French, but not desired in English.
-%% FIXME: Spacing in references should be settable by option to 'su-thesis'.
-\apptocmd{\thebibliography}   % remove extra space after period in references
-         {\def\newblock{}}    % [https://tex.stackexchange.com/questions/480787]
-         {}{}
+  %% This is good for Swedish and French, but not desired in English.
+  %% FIXME: Spacing in references should be settable by option to 'su-thesis'.
+  \apptocmd{\thebibliography}   % remove extra space after period in references
+           {\def\newblock{}}    % [https://tex.stackexchange.com/questions/480787]
+           {}{}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -384,27 +386,29 @@
 \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/hyperref/doc/manual.pdf
+%% Configure \autoref.
 \usepackage{hyperref} % https://ctan.org/pkg/hyperref
-
-%% Swedish translations for \autoref command (hyperref package).
-\addto\extrasswedish{%
-  \def\figureautorefname{Figur}          % Figure
-  \def\tableautorefname{Tabell}          % Table
-  \def\partautorefname{Del}              % Part
-  \def\appendixautorefname{Bilaga}       % Appendix
-  \def\equationautorefname{Ekvation}     % Equation
-  \def\Itemautorefname{punkt}            % item
-  \def\chapterautorefname{kapitel}       % chapter
-  \def\sectionautorefname{kapitel}       % section
-  \def\subsectionautorefname{kapitel}    % subsection
-  \def\subsubsectionautorefname{kapitel} % subsubsection
-  \def\paragraphautorefname{stycke}      % paragraph
-  \def\Hfootnoteautorefname{fotnot}      % footnote
-  \def\AMSautorefname{Ekvation}          % Equation
-  \def\theoremautorefname{Teorem}        % Theorem
-  \def\pageautorefname{sidan}            % page
+\csappto{extrasswedish}{                 %% apply for Swedish only
+  %% Used by \autoref from hyperref
+  %% \csappto is from etoolbox
+  %% \extrasswedish is from babel        %% English original
+  \def\figureautorefname{Figur}          %% 'Figure'
+  \def\tableautorefname{Tabell}          %% 'Table'
+  \def\partautorefname{Del}              %% 'Part'
+  \def\appendixautorefname{Bilaga}       %% 'Appendix'
+  \def\equationautorefname{Ekvation}     %% 'Equation'
+  \def\Itemautorefname{punkt}            %% 'item'
+  \def\chapterautorefname{kapitel}       %% 'chapter'
+  \def\sectionautorefname{kapitel}       %% 'section'
+  \def\subsectionautorefname{kapitel}    %% 'subsection'
+  \def\subsubsectionautorefname{kapitel} %% 'subsubsection'
+  \def\paragraphautorefname{stycke}      %% 'paragraph'
+  \def\Hfootnoteautorefname{fotnot}      %% 'footnote'
+  \def\AMSautorefname{Ekvation}          %% 'Equation'
+  \def\theoremautorefname{Teorem}        %% 'Theorem'
+  \def\pageautorefname{sidan}            %% 'page'
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Examples & Glossaries
 %\usepackage{expex} % for examples
@@ -526,7 +530,6 @@
         }%
       }%
     }
-    %\renewcommand{\contentsname}{Table of Contents} % Uncomment to change the title of table of contents page to what is written in {Table of Contents}.
     \pagenumbering{gobble} % Switch off page numbering in table of contents
   }%
 }
