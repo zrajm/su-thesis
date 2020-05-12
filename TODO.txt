@@ -1,12 +1,23 @@
 -*- mode: org; ispell-dictionary: "svenska" -*-
 
-Stockholms unis beskrivning av "Uppsatsmall och Word-tips" (detaljerad, verkar bra)
-https://www.su.se/svefler/publikationer/uppsatsarkiv/uppsatsmall-och-word-tips-1.29497
+* TODO Maybe recommend some packages?
+** TODO pgfplots -- 2D & 3D plots
+** TODO expex -- for example sentences
+** TODO glossaries -- ??
+** TODO multirow + makecell -- ??
+** TODO What about these? (used in original, but cleaned away now)
+   %\usepackage{libertine}
+   %\usepackage{libertinust1math}
+   %\setmonofont[Scale=0.76]{Bitstream Vera Sans Mono} % typewriter font and scaling
 
+   %\usepackage{tikz}
+   %\usetikzlibrary{shapes.geometric, arrows, positioning}
 * TODO Language sensitive hyphenation
   Use babel package \foreignlanguage{LANG}{TEXT} to achieve English hyphenation
   of the English abstract. Note, this is non-trivial(?) because \suset uses
   'english', but babel (probably) uses something like UKenglish/USenglish etc.
+* TODO Use the cleveref package instead of href's \autoref{}?
+  \usepackage[capitalize,noabbrev]{cleveref}
 * TODO Add GitHub README
 * TODO URL command which line breaks URL properly
 * TODO Load images relative to .sty file path
