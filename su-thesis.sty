@@ -25,7 +25,8 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% OBS: I Overleaf, byt kompilator till XeLaTeX
+%% OBS: In Overleaf, change compiler to XeLaTeX (needed for loading Truetype
+%% fonts with 'fontspec' package.
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -65,8 +66,6 @@
 %%     \suset[english]{program}{Bachelor's Programme in Linguistics 180 ECTS credits}
 %%     \suset[english]{semester}{Spring semester 2020}
 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Use " for quotes. [https://tex.stackexchange.com/questions/386695/]
@@ -75,35 +74,41 @@
 %% inside quotes etc.
 \usepackage[autostyle=true]{csquotes}  % https://ctan.org/pkg/csquotes
 \MakeOuterQuote{"}
+%%
 
-%% Needed for \IfSubStr.
-\usepackage{xstring}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Needed for \IfSubStr, which is used to determine whether there is a plural
+%% number of supervisors in \sumakefrontpage{} below.
+\usepackage{xstring} % https://ctan.org/pkg/xstring
+%%
 
-%% Stockholm university's official colors.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Stockholm university's official colors. Use with \color{COLORNAME}.
 \usepackage{xcolor} % https://ctan.org/pkg/xcolor
 \definecolor{sublue}{HTML}{002F5F}
 \definecolor{suolive}{HTML}{A3A86B}
 \definecolor{susky}{HTML}{ACDEE6}
 \definecolor{suwater}{HTML}{9BB2CE}
 \definecolor{sufire}{HTML}{D95E00}
-
-%% http://mirrors.ctan.org/macros/latex/contrib/geometry/geometry.pdf
-\usepackage[paper=a4paper,left=25mm,right=25mm,top=27.25mm,bottom=25mm]{geometry}
-%\usepackage{showframe} % DEBUG: display margins
-%\typeout{...}%         % DEBUG: write stuff on stdout during compilation
-
-\newcommand{\TODO}[1]{\marginpar{\texthl{#1}}}
+%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Specify which paths to load images from.
+%% Set page margins.
+\usepackage[ % https://ctan.org/pkg/geometry
+  paper=a4paper,left=25mm,right=25mm,top=27.25mm,bottom=25mm
+]{geometry}
+%% \usepackage{showframe} % DEBUG: display margins
+%% \typeout{...}%         % DEBUG: write stuff on stdout during compilation
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Specify graphics paths (where to load images from).
 \usepackage{graphicx} % https://ctan.org/pkg/graphicx
 \graphicspath{{./images/}{./su-thesis/images/}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\usepackage{url}
+%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Define font sizes and margins around headings/paragraphs etc.
+%% Define font sizes and heading/paragraph margins etc.
 %%
 %% LaTeX size scale
 %% ----------------
@@ -117,7 +122,7 @@
 %% \footnotesize         -- default för footnote{}
 %% \scriptsize
 %% \tiny
-
+%%
 %% |------|---------------|-------------------------------|
 %% | 28pt | \LARGE        | titel sidan 1                 | \title{} (FIXME)
 %% |------|---------------|-------------------------------|
@@ -213,73 +218,48 @@
   WordSpace      = .95,
   LetterSpace    = 1,
 ]
-%% A font for Swedish sign language (swl) transcription.
+%% Define font for Swedish sign language (swl) transcription.
 \newfontfamily{\swlfamily}{freesans-swl}
 \newcommand{\swl}[1]{{\swlfamily{}#1}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% Set section heading font and size.
 %% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/titlesec/titlesec.pdf
 \usepackage{titlesec}
 \titleformat*{\section      }{\sffamily\raggedright\Large}
 \titleformat*{\subsection   }{\sffamily\raggedright\bfseries\large}
 \titleformat*{\subsubsection}{\sffamily\raggedright\bfseries\normalsize}
-
+%%
 %% This length is needed elsewhere too.
 \newlength{\lengthBelowSection}
 \deflength{\lengthBelowSection}{24pt}
-
+%%
 \titlespacing*{\section      }{0pt}{36pt}{\lengthBelowSection}
 \titlespacing*{\subsection   }{0pt}{24pt}{ 6pt}
 \titlespacing*{\subsubsection}{0pt}{12pt}{ 6pt}
-
-% For 'keyword' heading on abstract page.
-% (A \subsubsection with doubled space above.)
+%%
+%% For 'keyword' heading on abstract page.
+%% (A \subsubsection with doubled space above.)
 \newcommand{\keywordsection}[1]{%
     \vspace{12pt}
 
     \subsubsection*{#1}
     \vspace{-6pt}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% CITATION FORMATS
+%% References and citation settings.
 %%
-%% When 'apacite' package is loaded with 'natbibapa', then citation commands
-%% from the 'natbib' packackage is used in the text.
-%%
-%% Use (AVOID USING \cite{...}):
-%%     \citep{...} -- parenthetical citation like '(Bergman & Wallin, 2001)'
-%%     \citet{...} -- textual citation like 'Bergman och Wallin (2001)'
-%%
-%% Args can include multiple sources:
-%%     \citep{src1,src2}
-%%     \citet{src1,src2}
-%%
-%% Optional args:
-%%     \citep[][13--14]{jon90}
-%%     \citep[see][]{jon90}
-%%     \citep[see][chap.~2]{jon90}
-%%
-%% \shortcite{...} produces a citation like '(1999)'
-%% \newcite{...}   produces a citation like 'Author (1999)'
-%%
-%% All three take an optional argument which can be used to add page
-%% references, etc.:
-%% "\newcite[1--6]{...}" produces a citation like "Author (1999, 1--6)"
-%%
-%% Use 'apacite' for references.
+%% Use 'apacite' for references, but 'natbib' commands for citations.
 \usepackage[natbibapa]{apacite} % https://ctan.org/pkg/apacite & https://ctan.org/pkg/natbib
 \bibliographystyle{apacite}
-
+%%
 %% FIXME: 'notesep' should be settable by option to 'su-thesis'.
 \setcitestyle{notesep={:}}                     % : between year arg page number
-
+%%
 %% Apacite settings for Swedish.
 \csappto{extrasswedish}{
   %% This defines what quotes to use article names when used in citations (for
@@ -291,28 +271,21 @@
 
   %% This is good for Swedish and French, but not desired in English.
   %% FIXME: Spacing in references should be settable by option to 'su-thesis'.
-  \apptocmd{\thebibliography}   % remove extra space after period in references
-           {\def\newblock{}}    % [https://tex.stackexchange.com/questions/480787]
+  \apptocmd{\thebibliography}   %% remove extra space after period in references
+           {\def\newblock{}}    %% [https://tex.stackexchange.com/questions/480787]
            {}{}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Turn DOIs in reference section into links.
-%% (3rd solution from https://tex.stackexchange.com/a/482395/185988.)
 %%
+%% Turn DOIs in reference section into links.
+%% (3rd answer in https://tex.stackexchange.com/a/482395/185988)
 \newcommand*{\doi}{}
 \newcommand{\doi@}[1]{\href{https://doi.org/#1}{#1}}
 \DeclareRobustCommand{\doi}{\hyper@normalise\doi@}
 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Printed uncited references are in gray in references section.
+%% Mark uncited references in gray in references section.
 %%
-%% (This is a hack that most likely will only work with 'natbib'. It's based on
-%% this https://tex.stackexchange.com/questions/212515/)
-%%
+%% (This hack will most likely will only work with 'natbib'. Based on
+%% https://tex.stackexchange.com/questions/212515/)
 \csletcs{orgcitation}{citation}
 \csletcs{orgbibitem}{bibitem}
 \newcommand*{\eachcite}[1]{%                   % remember each citation used
@@ -329,9 +302,8 @@
     \color{gray}%
   }{}%
   \orgbibitem[#1]{#2}%
-}%
+}
 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% This gives capability for prettier tables.
@@ -343,47 +315,9 @@
 \newcolumntype{C}{>{\centering\arraybackslash}X}   % centered 'X' column
 \newcolumntype{L}{>{\raggedright\arraybackslash}X} % left aligned 'X' column
 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Slew of random stuff
-
-%\usepackage{libertine}
-%\usepackage{libertinust1math}
-%\setmonofont[Scale=0.76]{Bitstream Vera Sans Mono} % typewriter font and scaling
-
-\usepackage{amsmath}
-
-% \usepackage[capitalize,noabbrev]{cleveref}
-% \usepackage[capitalize,noabbrev]{cleveref}
-
-% Create normal/logarithmic plots in two and three dimensions
-% \usepackage{pgfplots}
-
-% \usepackage{filecontents}
-\usepackage[title]{appendix}
-
-% Define footnotecolor
-\makeatletter
-\def\@footnotecolor{red}
-\define@key{Hyp}{footnotecolor}{%
- \HyColor@HyperrefColor{#1}\@footnotecolor%
-}
-\def\@footnotemark{
-    \leavevmode
-    \ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
-    \stepcounter{Hfootnote}%
-    \global\let\Hy@saved@currentHref\@currentHref
-    \hyper@makecurrent{Hfootnote}%
-    \global\let\Hy@footnote@currentHref\@currentHref
-    \global\let\@currentHref\Hy@saved@currentHref
-    \hyper@linkstart{footnote}{\Hy@footnote@currentHref}%
-    \@makefnmark
-    \hyper@linkend
-    \ifhmode\spacefactor\@x@sf\fi
-    \relax
-  }
-\makeatother
+\usepackage[title]{appendix} % https://ctan.org/pkg/appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Configure \autoref.
@@ -408,20 +342,17 @@
   \def\theoremautorefname{Teorem}        %% 'Theorem'
   \def\pageautorefname{sidan}            %% 'page'
 }
+%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{soulutf8} % https://ctan.org/pkg/soulutf8 -- \hl{} (utf-8 safe)
+%%
 
-% Examples & Glossaries
-%\usepackage{expex} % for examples
-%\usepackage{glossaries}
-
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows, positioning}
-
-\usepackage{soulutf8} % Highlighting with \hl{} and utf-8
-
-\usepackage{multirow}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                            %%
+%%  Main Package Internals                                                    %%
+%%                                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Commands which set/get variables named \su<LANG><NAME>.
 \newcommand{\suset}[3][english]{%
   \csdef{su#1#2}{#3}%
