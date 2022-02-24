@@ -255,10 +255,10 @@
 %%
 %% Use 'apacite' for references, but 'natbib' commands for citations.
 \usepackage[natbibapa]{apacite} % https://ctan.org/pkg/apacite & https://ctan.org/pkg/natbib
-\bibliographystyle{apacite}
+\bibliographystyle{su-apacite}
 %%
 %% FIXME: 'notesep' should be settable by option to 'su-thesis'.
-\setcitestyle{notesep={:}}                     % : between year arg page number
+\setcitestyle{notesep={: }}                     % : between year arg page number
 %%
 %% Apacite settings for Swedish.
 \csappto{extrasswedish}{
@@ -297,6 +297,14 @@
 }
 \renewcommand{\bibitem}[2][]{%                 % set text color for bibitem
   \color{black}%
+  \iflanguage{swedish}{%
+    \def\BIn{I:}%     % preposition before book title
+    \def\BBOQ{''}%    % opening quote before article names
+  }{%
+    \def\BBOQ{``}%    % opening quote before article names
+  }%
+  \def\BBCQ{''}%      % closing quote after article names
+  \def\BPBI{.\,}%     % between initials
   \ifcsundef{ZZ#2}{%
     \typeout{FIXME: IN REFERENCES, BUT NOT CITED IN TEXT '#2'}%
     \color{gray}%

@@ -37,6 +37,7 @@ $dvi_mode = 0;
 # Update: latexmk version 4.67 (that's available under Ubuntu 20.04.03 LTS)
 # DOES support the 'ensure_path' function.
 #
+ensure_path('BSTINPUTS', './su-thesis/:');
 ensure_path('TEXINPUTS', './su-thesis/:');
 
 #[eof]

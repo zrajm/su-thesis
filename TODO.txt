@@ -65,6 +65,80 @@
 *** TODO SVG-version av logo?
 *** TODO Fix placement of logo
 * DONE
+** DONE Bibliography ';' mellan författarnamn i referenser
+   CLOSED: [2022-02-24 Thu 12:20]
+   See [[*Bibliography hela förnamnet på författare]] för första delen
+
+   Modify the bst-file, so that it does separates author names with a semicolon
+   instead of the usual comma.
+
+       ----------------------------------------
+       --- su-apacite.bst.org.bak      2013-07-23 00:04:45.000000000 +0200
+       +++ su-apacite.bst      2022-02-24 12:16:33.457965741 +0100
+       @@ -2288,7 +2288,7 @@
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        FUNCTION {comma.between.two} { "\BCBT {}" }
+
+       -FUNCTION {comma.between.names} { ", " }
+       +FUNCTION {comma.between.names} { "; " }
+
+        FUNCTION {comma.before.last} { "\BCBL {}" }
+       ----------------------------------------
+** DONE Bibliography hela förnamnet på författare
+   CLOSED: [2022-02-24 Thu 12:20]
+   First I copied the preinstalled `apacite.bst` definitions to the directory of
+   my LaTeX package 'su-thesis':
+
+     cp -a $(locate apacite.bst) su-thesis/su-apacite.bst
+
+   Thereafter, I made sure that the environment variable `$BSTINPUT` (in my
+   `latexmkrc` file) pointed to the 'su-thesis/' directory:
+
+       ----------------------------------------
+       --- latexmkrc.org.bak      2013-07-23 00:04:45.000000000 +0200
+       +++ latexmkrc      2022-02-24 12:16:33.457965741 +0100
+       @@ -34,8 +34,11 @@ $dvi_mode = 0;
+        #
+       +ensure_path('BSTINPUTS', './su-thesis/:');
+        ensure_path('TEXINPUTS', './su-thesis/:');
+       ----------------------------------------
+
+   After that the command `\bibliographystyle{...}` (but NOT
+   `\usepackage[natbibapa]{apacite}`) need to be modified so that it refer to
+   the new bst file instead of the old, preinstalled one:
+
+       ----------------------------------------
+       diff su-thesis.sty.org.bak su-thesis.sty
+       @@ -255,10 +266,10 @@
+        %%
+        %% Use 'apacite' for references, but 'natbib' commands for citations.
+        \usepackage[natbibapa]{apacite} % https://ctan.org/pkg/apacite & https://ctan.org/pkg/natbib
+       -\bibliographystyle{apacite}
+       +\bibliographystyle{su-apacite}
+        %%
+        %% FIXME: 'notesep' should be settable by option to 'su-thesis'.
+        \setcitestyle{notesep={: }}                     % : between year arg page number
+        %%
+        %% Apacite settings for Swedish.
+        \csappto{extrasswedish}{
+       ----------------------------------------
+
+   Finally I also modded the bst-file, so that it does not abbreviate the first
+   name of authors (editors etc.) in the reference chapter. Semi-blindly based
+   on: https://tex.stackexchange.com/a/131100/185988
+
+       ----------------------------------------
+       --- su-apacite.bst.org.bak      2013-07-23 00:04:45.000000000 +0200
+       +++ su-apacite.bst      2022-02-24 12:16:33.457965741 +0100
+       @@ -2064,7 +2064,7 @@
+
+        FUNCTION {last.part.name.format} { "{vv }{ll}" }
+
+       -FUNCTION {initials.with.space.name.format} { "{f.}" }
+       +FUNCTION {initials.with.space.name.format} { "{ff}" }
+
+        FUNCTION {von.last.junior.name.format} { "{vv }{ll}{ jj}" }
+       ----------------------------------------
 ** DONE PDF metadata i LaTeX-koden
    CLOSED: [2020-02-25 Tue 15:50]
    From 'default-su.tex':
