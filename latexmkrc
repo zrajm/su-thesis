@@ -34,8 +34,9 @@ $dvi_mode = 0;
 # With newer versions of latexmk, one could use the `ensule_path` function. But
 # unfortunately the version (4.41, from January 2015) that comes with Ubuntu
 # 18.04.4 LTS, is too old to have that, so I use the following Perl snippet.
+# Update: latexmk version 4.67 (that's available under Ubuntu 20.04.03 LTS)
+# DOES support the 'ensure_path' function.
 #
-#ensure_path('TEXINPUTS', './su-thesis/:');
-$ENV{TEXINPUTS} = "./su-thesis/:" . ($ENV{TEXINPUTS} || "");
+ensure_path('TEXINPUTS', './su-thesis/:');
 
 #[eof]
