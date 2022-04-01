@@ -18,13 +18,13 @@ Jag skapade denna mall till min kandidatuppsats.
 
 **[Paketdokumentation för LaTeX (PDF)](su-thesis.pdf):** (På svenska.) Detta är
 en introduktion till hur man använder Stockholms universitets uppsatsmall för
-LATEX. Här går vi igenom fyra saker: (a) Hur Stockholms universitets
+LaTeX. Här går vi igenom fyra saker: (a) Hur Stockholms universitets
 uppsatsmall ser ut. (b) Vilka möjligheter du, som student vid Stockholms
-universitet, har att använda LATEX. (c) Hur denna LATEX­version av
+universitet, har att använda LaTeX. (c) Hur denna LaTeX­version av
 uppsatsmallen används. Och slutligen (d) går vi i grova drag igenom strukturen
 på hur en uppsats på kandidat­ eller masternivå brukar se ut på Institutionen
 för lingvistik. Denna text tjänar också som ett exempel på en text skriven i
-LATEX och är tänkt att kunna användas som utgångspunkt vid uppsatsskrivande.
+LaTeX och är tänkt att kunna användas som utgångspunkt vid uppsatsskrivande.
 
 
 English Description
@@ -42,13 +42,13 @@ Language transcription][STS] used by [Svenskt teckenspråkslexikon] and for
 I created this template for my bachelor’s thesis.
 
 **[LaTeX package documentation (PDF)](su-thesis.pdf):** (In Swedish.) This is
-an introduction to Stockholm university’s thesis template for LATEX. In this
+an introduction to Stockholm university’s thesis template for LaTeX. In this
 guide we will cover four things: (a) What thesis template of Stockholm
 university looks like. (b) What choices you, as a student at Stockholm
-university, have for running LATEX. (c) How to use this LATEX version of the
+university, have for running LaTeX. (c) How to use this LaTeX version of the
 template. And, finally, we also cover roughly (d) what the expected structure
 of a bachelor’s or master’s thesis look like at the Department of Linguistics.
-This text also serve as an example of a text written in LATEX and is intended
+This text also serve as an example of a text written in LaTeX and is intended
 as a possible starting point when writing a thesis.
 
 [STS]: https://zrajm.github.io/teckentranskription/intro.html "Swedish Sign Language transcription"
