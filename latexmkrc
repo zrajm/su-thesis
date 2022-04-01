@@ -24,7 +24,16 @@
 # with the options '-interaction=nonstopmode' and '-halt-on-error' (which
 # avoids XeLaTeX stopping and waiting for user for input in case of errors).
 # [https://tex.stackexchange.com/questions/258814/]
-$pdflatex = "xelatex -interaction=nonstopmode -halt-on-error %O %S";
+#$pdflatex = "xelatex -interaction=nonstopmode -halt-on-error %O %S";
+
+# This seems to be a better way of doing it, that doesn't produce as much
+# output on the terminal. It uses grep to only display error messages preceded
+# by '!' (the grep return value is inverted so that latexmk will react when an
+# error is found). This will fail if there's ever an error message from xelatex
+# that does not begin with '!'. [https://tex.stackexchange.com/q/198599/185988]
+# (zrajm's answer)
+$pdflatex = "! xelatex -halt-on-error %O %S |  grep -A3 '^!'";
+
 $pdf_mode = 1;
 $postscript_mode = 0;
 $dvi_mode = 0;
