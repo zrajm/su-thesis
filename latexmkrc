@@ -2,6 +2,12 @@
 # This is the config file for the 'latexmk' command. This config file is
 # written in Perl. https://mg.readthedocs.io/latexmk.html
 
+# A nice way to run `latexmk` is the following command (which will run latexmk
+# on any file in the current directory whenever it is written to).
+#
+#   inotifywait -qmeCLOSE_WRITE *.tex | while read f _; do latexmk $f; done
+#
+
 ################################################################################
 # Latexmk percent sequences:
 #   * %S - source
@@ -14,9 +20,9 @@
 #   * %Z - $out_dir1
 #   * %% - literal '%'
 
-# The below options are equivalent to 'latexmk -xelatex' + running XeLaTeX with
-# the option '-interaction=nonstopmode' (to avoid having XeLaTeX prompting the
-# user for input in case of errors).
+# The below options are equivalent to 'latexmk -xelatex' and running XeLaTeX
+# with the options '-interaction=nonstopmode' and '-halt-on-error' (which
+# avoids XeLaTeX stopping and waiting for user for input in case of errors).
 # [https://tex.stackexchange.com/questions/258814/]
 $pdflatex = "xelatex -interaction=nonstopmode -halt-on-error %O %S";
 $pdf_mode = 1;
@@ -31,12 +37,10 @@ $dvi_mode = 0;
 # subdirectories (which can potentially take a long time if there are many
 # files and subdirectories to read).
 #
-# With newer versions of latexmk, one could use the `ensule_path` function. But
-# unfortunately the version (4.41, from January 2015) that comes with Ubuntu
-# 18.04.4 LTS, is too old to have that, so I use the following Perl snippet.
-# Update: latexmk version 4.67 (that's available under Ubuntu 20.04.03 LTS)
-# DOES support the 'ensure_path' function.
-#
+# Newer versions of latexmk (like latexmk 4.67 that comes Ubuntu 20.04.03 LTS),
+# supports the `ensule_path` function, so here we use that. (Previously, [with
+# latexmk 4.41, January 2015, Ubuntu 18.04.4 LTS] I instead had to use the Perl
+# snippet `$ENV{TEXINPUTS} = "./su-thesis/:" . ($ENV{TEXINPUTS} || "");`.)
 ensure_path('BSTINPUTS', './su-thesis/:');
 ensure_path('TEXINPUTS', './su-thesis/:');
 
