@@ -22,7 +22,4 @@
 *.toc
 *.xdv
 
-# Files compiled by LaTeX
-*.pdf
-
 #[eof]
