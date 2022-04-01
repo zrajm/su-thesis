@@ -1,6 +1,8 @@
 -*- mode: org; ispell-dictionary: "svenska" -*-
 
 * TODO Maybe recommend some packages?
+** TODO todonotes -- allows fancy todo annotations in doc
+   https://ctan.org/pkg/todonotes
 ** TODO pgfplots -- 2D & 3D plots
 ** TODO expex -- for example sentences
 ** TODO glossaries -- ??
