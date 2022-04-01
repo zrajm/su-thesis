@@ -1,3 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{su-thesis}[2020/05/12 zrajm]
+\RequirePackage{etoolbox}
+
+\newtoggle{suhideoutlines} % = false
+\settoggle{suhideoutlines}{false}
+
+\DeclareOption{showoutlines}{\settoggle{suhideoutlines}{false}} % default
+\DeclareOption{hideoutlines}{\settoggle{suhideoutlines}{true}}
+
+\ProcessOptions\relax
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Template for Bachelor's, Magister and Master's theses at the Department of
 %% Linguistics, Stockholm University
@@ -358,6 +369,25 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                            %%
+%%  Enable/disable 'outline' environment                                      %%
+%%                                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iftoggle{suhideoutlines}{
+  \usepackage{comment}
+  \excludecomment{outline}
+}{
+  \usepackage{fancyvrb}
+  \DefineVerbatimEnvironment{outline}{Verbatim}{%
+    formatcom = \color{sublue},
+    frame     = single,
+    framerule = 0.8mm,
+    rulecolor = \color{sublue},
+    boxwidth  = \linewidth,
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                            %%
 %%  Main Package Internals                                                    %%
 %%                                                                            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -578,4 +608,5 @@
   \clearpage
 }
 
+\endinput
 %% [eof]

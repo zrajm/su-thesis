@@ -13,6 +13,34 @@ För att ladda mallen använd \LaTeX{}-kommandot:
 \usepackage{su-thesis}
 \end{verbatim}
 
+Ibland är det praktiskt, att under arbetandet med en uppsats, lägga till
+kommentarer till sig själv (om vad som behöver ändras eller läggas till
+härnäst). Sådana kommentarer kan du skiva med:
+
+\begin{verbatim}
+\begin{outline}
+Detta är en kommentar till mig själv.
+\end{outline}
+\end{verbatim}
+
+\begin{outline}
+Kommentarerna ser ut såhär i dokumentet, så att de tydligt sticker ut från
+resten av texten.
+\end{outline}
+
+Om du vill undertrycka visandet av kommentarerna i dokumentet (för att se hur
+det ser ut utan dem) ange argumentet "\texttt{hideoutlines}" när du laddar
+uppsatsmallen (om du inte anger något argument så synas de). Det vill säga
+använd följande kommando för att ladda uppsatsmallen:
+
+\begin{verbatim}
+\usepackage[hideoutlines]{su-thesis}
+\end{verbatim}
+
+För att explicit slå på kommentarerna finns det också ett argument
+"\texttt{showoutlines}" (men det behöver du i princip aldrig använda eftersom
+det är det förvalda alternativet).
+
 
 \subsection{Välja språk}
 \label{språk}
