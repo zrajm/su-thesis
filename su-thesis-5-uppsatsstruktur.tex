@@ -12,6 +12,7 @@ jämförelser mellan olika kandidatuppsatser, delvis på information från
 eller masteruppsats är 30--60 sidor.
 
 \begin{itemize}
+\item0. \nameref{rubrik.sammanfattning}
 \item1. \nameref{rubrik.inledning}
 \item2. \nameref{rubrik.bakgrund}
 \item3. \nameref{rubrik.syfte}
@@ -20,7 +21,7 @@ eller masteruppsats är 30--60 sidor.
 \item6. \nameref{rubrik.diskussion}
 \item7. \nameref{rubrik.slutsats}
 \item\nameref{rubrik.referenser}
-\item (+ Eventuella bilagor)
+\item (Eventuella bilagor)
 \end{itemize}
 
 \noindent Namnsättningen på eventuella underrubriker är mestadels friare men
@@ -33,6 +34,44 @@ från uppsatsguide till uppsatsguide (ofta inkluderas tex rubrikerna
 \emph{\nameref{rubrik.inledning}}). Det som beskrivs nedan är den vanligaste
 uppsättningen rubriker för uppsatser vid Institutionen för Lingvistik, på
 Stockholms universitet.
+
+
+\setcounter{subsection}{-1}% start subsection numbering from zero.
+\subsection{Sammanfattning och nyckeord}
+\label{rubrik.sammanfattning}
+
+\textbf{Sammanfattning} (eller '\textbf{abstract}' på engelska) är en max 200
+ord lång text, bestående av endast ett stycke (utan underrubriker). Syftet med
+sammanfattningen är att kortfattat beskriva hela uppsatsen (och dess resultat)
+på ett sådant sätt att en ska läsare kunna avgöra om det är intressant att
+fortsätta och läsa hela uppsatsen.
+
+En sammanfattningen måste finnas på både svenska och engelska i din uppsats
+(oavsett om du skriver på svenska eller engelska). Använd följande kommandon
+(före \texcommand[document]{begin} i ditt \LaTeX-dokument) för att lägga till
+en sammanfattning till din uppsats:
+
+\begin{verbatim}
+\suset[english]{abstract}{…}
+\suset[swedish]{abstract}{…}
+\end{verbatim}
+
+\textbf{Nyckelord} ('\textbf{keywords}' på engelska) är vanligtvis 4--6 termer,
+avsedd att ge en hyperkondenserad inblick i uppsatsens ämne. Nyckelord sägs
+vara viktiga, då de ökar sannolikheten att din tänkta publik hittar din
+uppsats, men i ärlighetens namn undrar jag om det fortfarande gäller i detta
+tidevarv då alla sökmotorer tycks indexera artiklars hela text. -- Hursomhelst,
+av gammal hävd ska det finnas nyckelord i din uppsats! Bra nyckelord är längre
+fraser som beskriver ditt uppsatsämne. (Fraser som förekommer ofta i din
+uppsats kan vara lämpliga nyckelord.)
+
+Följande kommandon (före \texcommand[document]{begin} i ditt dokument) för att
+lägga till en nyckelord till din uppsats:
+
+\begin{verbatim}
+\suset[english]{keywords}{…}
+\suset[swedish]{keywords}{…}
+\end{verbatim}
 
 
 \subsection{Inledning}
