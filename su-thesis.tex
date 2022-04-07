@@ -24,11 +24,11 @@
 
 %% Always used
 \suset{author}{Zrajm}
-\suset{supervisor}{Ingen}
+%% \suset{supervisor}{Ingen}
 \suset[swedish]{title}{Mall för uppsats vid Stockholms~universitet}
 \suset[swedish]{subtitle}{För \LaTeX{} och Overleaf}
 \suset[english]{title}{Thesis Template for Stockholm~University}
-\suset[english]{subtitle}{For \LaTeX{} and Overleaf}
+%% \suset[english]{subtitle}{For \LaTeX{} and Overleaf}
 \suset[swedish]{keywords}{
   Stockholms universitet, uppsatsmall, nybörjarguide till \LaTeX{},
   kandidatuppsats, masteruppsats, uppsatsskrivande
@@ -60,19 +60,30 @@
   a thesis.
 }
 
-%% Swedish metadata (only used if language is Swedish)
-\suset[swedish]{department}{Institutionen för lingvistik} % e.g. ''
-\suset[swedish]{thesistype}{Examensarbete X hp/Degree X HE credits} % e.g. 'Examensarbete 15 hp'
-\suset[swedish]{course}{Examensämne} % e.g. 'Lingvistik -- kandidatkurs, LIN600'
-\suset[swedish]{program}{Kandidatprogrammet i lingvistik 180 hp}
-\suset[swedish]{semester}{Vårterminen 2020}
+%% If 'frontinfo' is set, it replaces the 'department', 'thesistype', 'course',
+%% 'program', 'semester' and 'supervisor' values with a free-form title page
+%% text (you may include su-thesis values here using '\suget').
+\suset{frontinfo}{%
+  © 2020--2022 av zrajm, Uppsala \\
+  \href{https://github.com/zrajm/su-thesis}{https://github.com/zrajm/su-thesis} \\
+  \href{https://github.com/zrajm/su-thesis/blob/master/LICENSE.txt}{%
+    Licens: GNU General Public License v2.0} \\
+  English title: \suget[english]{title}
+}
 
-%% English metadata (only used if language is English)
-\suset[english]{department}{Department of Linguistics}
-\suset[english]{thesistype}{Bachelor's Thesis 15 ECTS credits}
-\suset[english]{course}{Thesis Subject} % e.g. 'Linguistics -- Bachelor's Course, LIN600'
-\suset[english]{program}{Bachelor's Programme in Linguistics 180 ECTS credits}
-\suset[english]{semester}{Spring semester 2020}
+%% Swedish metadata (only used if language is Swedish, and 'frontinfo' isn't set)
+%% \suset[swedish]{department}{Institutionen för lingvistik} % e.g. ''
+%% \suset[swedish]{thesistype}{Examensarbete X hp/Degree X HE credits} % e.g. 'Examensarbete 15 hp'
+%% \suset[swedish]{course}{Examensämne} % e.g. 'Lingvistik -- kandidatkurs, LIN600'
+%% \suset[swedish]{program}{Kandidatprogrammet i lingvistik 180 hp}
+%% \suset[swedish]{semester}{Vårterminen 2020}
+
+%% English metadata (only used if language is English, and 'frontinfo' isn't set)
+%% \suset[english]{department}{Department of Linguistics}
+%% \suset[english]{thesistype}{Bachelor's Thesis 15 ECTS credits}
+%% \suset[english]{course}{Thesis Subject} % e.g. 'Linguistics -- Bachelor's Course, LIN600'
+%% \suset[english]{program}{Bachelor's Programme in Linguistics 180 ECTS credits}
+%% \suset[english]{semester}{Spring semester 2020}
 
 %% Hyphenation patterns
 \hyphenation{Fo-ne-tik-lab-bet}

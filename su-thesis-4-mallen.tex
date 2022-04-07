@@ -104,7 +104,10 @@ Mallen har ett antal variabler som man sätter med \verb|\suset[SPRÅK]{NAMN}|
 (för tillfället kan bara \texttt{swedish} och \texttt{english} användas som
 språk).
 
-\textbf{Notera:} Du behöver ladda mallen innan du kan sätta variablerna.
+\textbf{Notera:} Du behöver ladda mallen innan du kan sätta variablerna. Notera
+också att inte alla variabler sätts med ett språkargument. Dessa språkfria
+variabler är "\texttt{author}", "\texttt{supervisor}" och
+"\texttt{frontinfo}".
 
 \begin{verbatim}
 %% Always used
@@ -117,7 +120,15 @@ språk).
 \suset[swedish]{abstract}{Sammanfattning på svenska}
 \suset[english]{abstract}{Abstract in English}
 
-%% Swedish metadata (only used if language is Swedish)
+%% If 'frontinfo' is set, it replaces the 'department', 'thesistype', 'course',
+%% 'program', 'semester' and 'supervisor' values with a free-form title page
+%% text (you may include su-thesis values here using '\suget').
+\suset{frontinfo}{%
+  © 2020--2022 av zrajm, Uppsala \\
+  English title: \suget[english]{title}
+}
+
+%% Swedish metadata (only used if language is Swedish, and 'frontinfo' isn't set)
 \suset[swedish]{subtitle}{Svensk undertitel}
 \suset[swedish]{department}{Institutionen för lingvistik}
 \suset[swedish]{thesistype}{Examensarbete 15 hp}
@@ -125,7 +136,7 @@ språk).
 \suset[swedish]{program}{Kandidatprogrammet i lingvistik 180 hp}
 \suset[swedish]{semester}{Vårterminen 2020}
 
-%% English metadata (only used if language is English)
+%% English metadata (only used if language is English, and 'frontinfo' isn't set)
 \suset[english]{subtitle}{English Subtitle}
 \suset[english]{department}{Department of Linguistics}
 \suset[english]{thesistype}{Bachelor's Thesis 15 ECTS credits}

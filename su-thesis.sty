@@ -62,6 +62,19 @@
 %%     \suset[english]{keywords}{keyword1, keyword2, keyword3, \ldots}
 %%     \suset[swedish]{abstract}{Sammanfattning på svenska}
 %%     \suset[english]{abstract}{Abstract in English}
+%%
+%%     %% If 'frontinfo' is set, it replaces the 'department', 'thesistype',
+%%     %% 'course', 'program', 'semester' and 'supervisor' values with a
+%%     %% free-form title page text (you may include su-thesis values here
+%%     %% using '\suget').
+%%     \suset{frontinfo}{%
+%%       © 2020--2022 av zrajm, Uppsala \\
+%%       \href{https://github.com/zrajm/su-thesis}{https://github.com/zrajm/su-thesis} \\
+%%       \href{https://github.com/zrajm/su-thesis/blob/master/LICENSE.txt}{%
+%%         Licens: GNU General Public License v2.0} \\
+%%       English title: \suget[english]{title}
+%%     }
+%%
 %%     %% Swedish metadata (only used if language is Swedish)
 %%     \suset[swedish]{subtitle}{Svensk undertitel}
 %%     \suset[swedish]{department}{Institutionen för lingvistik}
@@ -470,22 +483,26 @@
 
     \begin{small}
       \noindent
-      \iflanguage{swedish}{%
-        \suget[swedish]{department} \\
-        \suget[swedish]{thesistype} \\
-        \suget[swedish]{course} \\
-        \suget[swedish]{program} \\
-        \suget[swedish]{semester} \\
-        Handledare: \suget{supervisor} \\
-        English title: \suget[english]{title}
+      \ifcsdef{suenglishfrontinfo}{%
+        \suget{frontinfo}%
       }{%
-        \suget[english]{department} \\
-        \suget[english]{thesistype} \\
-        \suget[english]{course} \\
-        \suget[english]{program} \\
-        \suget[english]{semester} \\
-        Supervisor\IfSubStr{\suenglishsupervisor}{,}{s}{}: \suget{supervisor} \\
-        Swedish title: \suget[swedish]{title}
+        \iflanguage{swedish}{%
+          \suget[swedish]{department} \\
+          \suget[swedish]{thesistype} \\
+          \suget[swedish]{course} \\
+          \suget[swedish]{program} \\
+          \suget[swedish]{semester} \\
+          Handledare: \suget{supervisor} \\
+          English title: \suget[english]{title}
+        }{%
+          \suget[english]{department} \\
+          \suget[english]{thesistype} \\
+          \suget[english]{course} \\
+          \suget[english]{program} \\
+          \suget[english]{semester} \\
+          Supervisor\IfSubStr{\suenglishsupervisor}{,}{s}{}: \suget{supervisor} \\
+          Swedish title: \suget[swedish]{title}
+        }%
       }
     \end{small}
 
