@@ -402,6 +402,41 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                            %%
+%%  Patch PDF table-of-contents to include chapter numbers                    %%
+%%                                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% See also:
+%% https://tex.stackexchange.com/questions/418908/table-of-contents-with-chapter-in-pdf-bookmarks
+
+%\usepackage{hyperref} % included elsewhere
+\usepackage{titletoc}
+\titlecontents*{chapter}
+  [0pt]% <left>
+  {}
+  {\chaptername\ \thecontentslabel\quad}
+  {}
+  {\bfseries\hfill\contentspage}
+
+\usepackage{bookmark}
+%\usepackage{etoolbox} % included elsewhere
+\makeatletter
+\newcommand*{\AddChapterPrefixInBookmarks}{%
+  \if@mainmatter
+    \ifnum\bookmarkget{level}=0 %
+      \preto\bookmark@text{\@chapapp\space}%
+    \fi
+  \fi
+}
+\makeatother
+
+\bookmarksetup{
+  numbered,
+  addtohook=\AddChapterPrefixInBookmarks,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                            %%
 %%  Main Package Internals                                                    %%
 %%                                                                            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
